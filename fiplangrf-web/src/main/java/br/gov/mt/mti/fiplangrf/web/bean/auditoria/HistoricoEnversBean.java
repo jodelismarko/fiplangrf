@@ -50,7 +50,6 @@ public abstract class HistoricoEnversBean<T,PK> extends HistoricoBean<PK> {
 		getCriteria().setDataFinal(null);
 		getCriteria().setDataInicial(null);
 		getCriteria().setNome(null);
-		getCriteria().setTipoOperacao(null);
 		
 	}
 

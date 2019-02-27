@@ -14,7 +14,7 @@
 			<maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>	
 	</properties>
 	
-	<name>fiplangma - Common Classes</name>
+	<name>fiplangrf - Common Classes</name>
 
 	<artifactId>fiplangrf-common</artifactId>
 

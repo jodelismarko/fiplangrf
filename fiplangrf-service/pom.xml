@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<name>fiplangma - Service</name>
+	<name>fiplangrf - Service</name>
 
 	<artifactId>fiplangrf-service</artifactId>
 	<packaging>ejb</packaging>
@@ -95,7 +95,7 @@
 			<version>42.2.5</version>
 		</dependency>
 
-		<!-- fiplangma Modules -->
+		<!-- fiplangrf Modules -->
 
 		<dependency>
 			<groupId>br.gov.mt.mti.fiplangrf</groupId>

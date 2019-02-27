@@ -4,7 +4,6 @@ import java.util.Date;
 
 import br.gov.mt.cepromat.ceprofw.core.service.exception.BusinessException;
 import br.gov.mt.mti.fiplangrf.common.msg.BusinessMsg;
-import br.gov.mt.mti.fiplangrf.dominio.DominioTipoOperacao;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,10 +20,6 @@ public class EnversCriteria {
 	@Getter
 	@Setter
 	private Date dataFinal;
-
-	@Getter
-	@Setter
-	private DominioTipoOperacao tipoOperacao;
 
 	public boolean isValid() throws BusinessException {
 		if (getDataInicial() != null && getDataFinal() == null) {

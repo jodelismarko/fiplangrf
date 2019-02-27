@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
-import br.gov.mt.mti.fiplangrf.dominio.DominioSimNaoFIPLAN;
 import lombok.Data;
 
 @Data
@@ -39,8 +36,5 @@ public class FIPLANUsuario implements Serializable {
 	@Column(name = "DT_EXPIRACAO", insertable = false, updatable = false)
 	private Date dataExpiracao;
 
-	@Column(name = "FLG_USR_BLOQUEADO", insertable = false, updatable = false)
-	@Type(type = DominioSimNaoFIPLAN.NOME)
-	private DominioSimNaoFIPLAN flagBloqueado;
 
 }

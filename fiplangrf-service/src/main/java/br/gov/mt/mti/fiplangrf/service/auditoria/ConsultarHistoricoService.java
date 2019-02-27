@@ -20,7 +20,6 @@ import org.apache.commons.lang.WordUtils;
 import org.hibernate.Session;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
-import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.exception.AuditException;
 import org.hibernate.envers.query.AuditEntity;
 import org.hibernate.envers.query.AuditQuery;
@@ -73,10 +72,6 @@ public class ConsultarHistoricoService<T, PK> {
 						.ilike("%" + criteria.getNome().toUpperCase() + "%"));
 			}
 
-			if (criteria.getTipoOperacao() != null) {
-				query.add(AuditEntity.revisionType().eq(RevisionType.valueOf(criteria.getTipoOperacao().name())));
-			}
-
 			List<T> result = query.addOrder(AuditEntity.revisionNumber().desc()).getResultList();
 			for (Object o : result) {
 				Object entity = ((Object[]) o)[0];
@@ -125,9 +120,6 @@ public class ConsultarHistoricoService<T, PK> {
 				query.add(AuditEntity.revisionProperty("nomeUsuario").like("%" + criteria.getNome() + "%"));
 			}
 
-			if (criteria.getTipoOperacao() != null) {
-				query.add(AuditEntity.revisionType().eq(RevisionType.valueOf(criteria.getTipoOperacao().name())));
-			}
 
 			List<T> result = query.addOrder(AuditEntity.revisionNumber().desc()).getResultList();
 

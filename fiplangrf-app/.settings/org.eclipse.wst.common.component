@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="fiplangma-app-1.0.1">
+    <wb-module deploy-name="fiplangrf-app-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="fiplangma-web-1.0.1.war" deploy-path="/" handle="module:/resource/fiplangma-web/fiplangma-web">
+        <dependent-module archiveName="fiplangrf-web-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/fiplangrf-web/fiplangrf-web">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="fiplangma-service-1.0.1.jar" deploy-path="/" handle="module:/resource/fiplangma-service/fiplangma-service">
+        <dependent-module archiveName="fiplangrf-service-0.0.1-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/fiplangrf-service/fiplangrf-service">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="cepro-fw-core-5.0.3-20190211.201740-37.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/br/gov/mt/cepromat/ceprofw/cepro-fw-core/5.0.3-SNAPSHOT/cepro-fw-core-5.0.3-SNAPSHOT.jar">
+        <dependent-module archiveName="cepro-fw-core-5.0.3-20190218.154843-45.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/br/gov/mt/cepromat/ceprofw/cepro-fw-core/5.0.3-SNAPSHOT/cepro-fw-core-5.0.3-SNAPSHOT.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="cepro-fw-common-5.0.3-20190211.201737-37.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/br/gov/mt/cepromat/ceprofw/cepro-fw-common/5.0.3-SNAPSHOT/cepro-fw-common-5.0.3-SNAPSHOT.jar">
+        <dependent-module archiveName="cepro-fw-common-5.0.3-20190218.154841-45.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/br/gov/mt/cepromat/ceprofw/cepro-fw-common/5.0.3-SNAPSHOT/cepro-fw-common-5.0.3-SNAPSHOT.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="commons-codec-1.10.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar">
@@ -365,10 +365,10 @@
         <dependent-module archiveName="xml-apis-1.4.01.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="fiplangma-model-1.0.1.jar" deploy-path="/lib" handle="module:/resource/fiplangma-model/fiplangma-model">
+        <dependent-module archiveName="fiplangrf-model-0.0.1-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/fiplangrf-model/fiplangrf-model">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="fiplangma-common-1.0.1.jar" deploy-path="/lib" handle="module:/resource/fiplangma-common/fiplangma-common">
+        <dependent-module archiveName="fiplangrf-common-0.0.1-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/fiplangrf-common/fiplangrf-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="vt-password-3.1.2.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/edu/vt/middleware/vt-password/3.1.2/vt-password-3.1.2.jar">

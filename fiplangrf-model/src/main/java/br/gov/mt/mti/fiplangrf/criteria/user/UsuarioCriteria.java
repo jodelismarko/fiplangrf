@@ -6,7 +6,6 @@ import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldType;
 import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldVisibility;
 import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FilterFieldOption;
 import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
-import br.gov.mt.mti.fiplangrf.dominio.DominioSimNaoFIPLAN;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacao;
 import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 import br.gov.mt.mti.fiplangrf.util.formatter.DateTimeFormatter;
@@ -28,9 +27,6 @@ public class UsuarioCriteria extends DynamicSearchCriteria<Usuario> {
 
 	@FilterFieldOption(label = "Email", property = "fiplanUsuario.email", type = FieldType.TEXT, fieldVisibility = FieldVisibility.FILTER)
 	private String email;
-
-	@FilterFieldOption(label = "Bloqueado no FIPLAN", property = "fiplanUsuario.flagBloqueado", labelProperty = "fiplanUsuario.flagBloqueado.desc", type = FieldType.ENUM, width = "150")
-	private DominioSimNaoFIPLAN flagBloqueado;
 
 	@FilterFieldOption(label = "Situação", property = "situacao", labelProperty = "situacao.desc", type = FieldType.ENUM, dataSource = DominioSituacao.class, width = "90")
 	private DominioSituacao situacao;

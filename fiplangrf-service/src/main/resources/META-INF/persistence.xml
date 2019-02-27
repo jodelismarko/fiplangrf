@@ -4,11 +4,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-	<persistence-unit name="fiplangrf"
+	<persistence-unit name="fiplangma"
 		transaction-type="JTA">
 
 		<!-- Oracle DataSource -->
-		<jta-data-source>java:jboss/datasources/fiplangrfDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/fiplangmaDS</jta-data-source>
 		<!-- <jta-data-source>java:jboss/datasources/fiplangrf_homDS</jta-data-source> -->
 
 		<class>br.gov.mt.mti.fiplangrf.model.auditoria.CustomRevisionEntity</class>
@@ -22,24 +22,6 @@
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria</class>
 
 		<!-- Tabelas Básicas -->
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.CNAE</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.NaturezaJuridica</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.GrupoPendencia</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.SubGrupoPendencia</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TipoAdministracao</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TipoOcorrencia</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TipoPendencia</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.UnidadeAdministrativa</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.LegislacaoUnidadeAdministrativa</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.CNAEUnidadeAdministrativa</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Ocorrencia</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.AcaoCoordenadoria</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Anexo</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.MedidaIntermediaria</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.EncerramentoPendencia</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TramiteOcorrencia</class>
-		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Revisao</class>
 
 
 		<properties>

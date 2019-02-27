@@ -16,7 +16,7 @@
 		<build.number>SNAPSHOT</build.number>
 	</properties>
 
-	<name>fiplangma - Web Application</name>
+	<name>fiplangrf - Web Application</name>
 
 	<artifactId>fiplangrf-web</artifactId>
 	<packaging>war</packaging>
@@ -79,7 +79,7 @@
 			<version>3.2.0.Final</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- fiplangma Modules -->
+		<!-- fiplangrf Modules -->
 
 		<dependency>
 			<groupId>br.gov.mt.mti.fiplangrf</groupId>

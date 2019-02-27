@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<name>fiplangma - Model</name>
+	<name>fiplangrf - Model</name>
 
 	<artifactId>fiplangrf-model</artifactId>
 
@@ -22,7 +22,7 @@
 			<artifactId>cepro-fw-core</artifactId>
 		</dependency>
 		
-		<!-- fiplangma Modules -->
+		<!-- fiplangrf Modules -->
 
 		<dependency>
 			<groupId>br.gov.mt.mti.fiplangrf</groupId>
