@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa" 
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<style type="text/css">
+		.table-no-select-all .ui-chkbox-all {
+     		display: none !important;
+		}
+	</style>
+
+	<sind:form id="filtrosForm">
+
+		<cfw:dynamicFilter id="filter" model="#{permissaoPesquisarBean.criteria.model}" bean="#{permissaoPesquisarBean}" header="Filtro de Pesquisa de Permissão" />
+
+		<cfw:panelButtons>
+
+			<p:commandButton id="pesquisar" actionListener="#{permissaoPesquisarBean.pesquisar}" update="@([id$=resultadoForm])" value="Pesquisar" icon="fa fa-search white Fs14" />
+			<p:defaultCommand target="pesquisar" />
+			<p:commandButton id="limpar" actionListener="#{permissaoPesquisarBean.limpar}" update="@([id$=resultadoForm]) @form" value="Limpar" icon="fa fa-eraser white Fs14" />
+
+		</cfw:panelButtons>
+
+	</sind:form>
+
+	<div class="layout-portlets-box">
+		<div class="Container100 Responsive100">
+			<p:panel>
+				<sind:form id="resultadoForm">
+					<p:dataTable id="dataTable" value="#{permissaoPesquisarBean.resultadoPesquisa}"
+								rows="10" paginatorPosition="bottom"
+								paginator="true" paginatorAlwaysVisible="true" var="entity"
+								lazy="true" sortMode="single" reflow="true"
+								resizableColumns="true"
+								emptyMessage="Sem Registros"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								currentPageReportTemplate="({startRecord} - {endRecord} #{paginatorMessage ne null ? paginator : 'Total' } {totalRecords})"
+								style="margin-bottom:20px" rowsPerPageTemplate="10,20,50" rowKey="#{entity.id}"
+								selection="#{permissaoPesquisarBean.selecionados}"
+								styleClass="table-no-select-all">
+								
+						<f:facet name="header">Resultado de Pesquisa por Permissões</f:facet>
+						
+						<p:columns id="abc" value="#{permissaoPesquisarBean.criteria.model.columns}" var="column"  width="#{column.width}"
+								   sortBy="#{column.sort}" columnIndexVar="colIndex" resizable="true" >
+							<f:facet name="header">
+								<h:outputText value="#{column.header}" />
+							</f:facet>
+							<h:outputText
+								value="#{column.getFormattedValue(entity[column])}"
+								escape="false" style="white-space: normal;word-wrap: break-word;"/>
+						</p:columns>
+						
+						<p:ajax event="rowSelectCheckbox" listener="#{permissaoPesquisarBean.onRowSelectCheckBox}" update="@([id$=panelBtns])"/>
+						<p:ajax event="rowUnselectCheckbox" listener="#{permissaoPesquisarBean.onRowUnselectCheckBox}" update="@([id$=panelBtns])"/>
+						
+						<p:column selectionMode="multiple" headerText="Sel." 
+							style="width:60px;text-align:center;"/>
+						
+					</p:dataTable>
+
+				</sind:form>
+			</p:panel>
+		</div>
+	</div>
+	<cfw:panelButtons>
+		<p:outputPanel id="panelBtns">
+			<p:commandButton id="incluir" value="Incluir" icon="fa fa-search white Fs14" disabled="#{empty permissaoPesquisarBean.permissoesSelecionadas}"
+			onclick="window.parent.updatePermissoes(); return window.parent.popup.close();"/>
+			<p:button value="Cancelar" onclick="return window.parent.popup.close()" />
+		</p:outputPanel>
+	</cfw:panelButtons>
+
+</ui:define>
+</ui:composition>

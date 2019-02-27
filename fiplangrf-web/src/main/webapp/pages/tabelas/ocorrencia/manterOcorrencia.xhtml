@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+
+		<sind:form id="crudForm">
+
+			<cfw:moldura titulo="#{manterOcorrenciaBean.modoDesc} Ocorrência"
+				icone="#{manterOcorrenciaBean.modoIcon}">
+
+				<p:outputPanel id="idMainPanel" styleClass="Container">
+
+					<p:tabView id="tabView" dynamic="false" cache="false"
+						widgetVar="wvTabView">
+
+						<p:tab title="Dados Gerais" id="dadosGeraisTab">
+							<ui:include
+								src="/pages/tabelas/ocorrencia/include/dadosOcorrencia.xhtml" />
+						</p:tab>
+
+						<p:tab title="Histórico Trâmites" id="tramiteTab">
+							<ui:include
+								src="/pages/tabelas/ocorrencia/include/tramiteOcorrencia.xhtml" />
+						</p:tab>
+
+					</p:tabView>
+
+				</p:outputPanel>
+
+			</cfw:moldura>
+
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+
+		<sind:form>
+			<ui:include
+				src="/pages/tabelas/ocorrencia/include/reativarDialog.xhtml" />
+		</sind:form>
+
+		<sind:form>
+			<ui:include
+				src="/pages/tabelas/ocorrencia/include/suspenderDialog.xhtml" />
+		</sind:form>
+		
+		<sind:form>
+			<ui:include
+				src="/pages/tabelas/ocorrencia/include/finalizarDialog.xhtml" />
+		</sind:form>
+
+		<sind:form>
+			<ui:include
+				src="/pages/tabelas/ocorrencia/include/voltarParaElaboracaoDialog.xhtml" />
+		</sind:form>
+
+		<sind:form>
+			<ui:include
+				src="/pages/tabelas/ocorrencia/include/voltarParaRegularizacaoDialog.xhtml" />
+		</sind:form>
+
+		<sind:form id="lgForm">
+			<ui:include
+				src="/pages/tabelas/ocorrencia/manterAcaoCoordenadoria.xhtml" />
+
+			<ui:include
+				src="/pages/tabelas/ocorrencia/manterMedidaIntermediaria.xhtml" />
+
+			<ui:include
+				src="/pages/tabelas/ocorrencia/manterEncerramentoPendencia.xhtml" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

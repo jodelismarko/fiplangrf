@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>fiplangrf</artifactId>
+		<groupId>br.gov.mt.mti.fiplangrf</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<name>fiplangrf - Enterprise Application</name>
+
+	<artifactId>fiplangrf-app</artifactId>
+	<packaging>ear</packaging>
+
+	<dependencies>
+
+		<!-- CEPROMAT Framework -->
+
+		<dependency>
+			<groupId>br.gov.mt.cepromat.ceprofw</groupId>
+			<artifactId>cepro-fw-core</artifactId>
+		</dependency>
+
+		<!-- fiplangma Modules -->
+
+		<dependency>
+			<groupId>br.gov.mt.mti.fiplangrf</groupId>
+			<artifactId>fiplangrf-web</artifactId>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>br.gov.mt.mti.fiplangrf</groupId>
+			<artifactId>fiplangrf-service</artifactId>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>br.gov.mt.mti.fiplangrf</groupId>
+			<artifactId>fiplangrf-model</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>br.gov.mt.mti.fiplangrf</groupId>
+			<artifactId>fiplangrf-common</artifactId>
+		</dependency>
+
+		<!-- SLF4J -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<version>${version.jboss.app}</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<modules>
+						<webModule>
+							<groupId>br.gov.mt.mti.fiplangrf</groupId>
+							<artifactId>fiplangrf-web</artifactId>
+							<contextRoot>fiplangrf</contextRoot>
+							<unpack>${exploded.war.file}</unpack>
+						</webModule>
+						<ejbModule>
+							<groupId>br.gov.mt.mti.fiplangrf</groupId>
+							<artifactId>fiplangrf-service</artifactId>
+							<unpack>${exploded.ejb.file}</unpack>
+						</ejbModule>
+					</modules>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+	<issueManagement>
+		<system>Sistema de Gestão de Atividades</system>
+	</issueManagement>
+</project>

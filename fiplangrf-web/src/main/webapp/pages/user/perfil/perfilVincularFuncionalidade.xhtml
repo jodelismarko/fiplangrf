@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+
+		<sind:form id="crudForm">
+			<cfw:moldura titulo="Vincular Funcionalidade"
+				icone="#{perfilVincularBean.modoIcon}">
+				<cfw:panelFloat>
+					<cfw:formInputText id="nome" labelValue="Nome"
+						containerWidth="Container50"
+						value="#{perfilVincularBean.perfil.descricao}" maxlength="200"
+						readonly="true" required="true" />
+				</cfw:panelFloat>
+
+				<div class="EmptyBox10"></div>
+
+				<p:remoteCommand name="updateFuncionalidades"
+					actionListener="#{perfilVincularBean.updateFuncionalidades()}"
+					update="#{p:component('tableFuncionalidades')}" immediate="true" />
+
+				<cfw:container containerWidth="Container100">
+					<p:outputPanel id="tableFuncionalidades">
+						<p:dataTable value="#{perfilVincularBean.perfil.funcionalidades}"
+							var="funcionalidade" scrollable="true" scrollHeight="450"
+							lazy="false">
+
+							<f:facet name="header">
+								<h:outputText value="Funcionalidade" style="margin-right:5px;" />
+
+								<p:commandButton
+									onclick="return popup.openNoWaitStatus(#{perfilVincularBean.perfil.id})"
+									icon="fa fa-plus" styleClass="RaisedButton" />
+
+							</f:facet>
+
+							<p:column width="60" headerText="Id"
+								sortBy="#{funcionalidade.id}">
+								<h:outputText value="#{funcionalidade.id}" />
+							</p:column>
+
+							<p:column headerText="Funcionalidade">
+								<h:outputText value="#{funcionalidade.descricao}" />
+							</p:column>
+
+							<p:column width="80" headerText="Situação">
+								<h:outputText value="#{funcionalidade.situacao.desc}" />
+							</p:column>
+
+							<p:column width="100" headerText="Ações">
+								<p:commandButton
+									action="#{perfilVincularBean.excluir(funcionalidade)}"
+									icon="ui-icon-trash fa fa-trash white Fs14"
+									title="Excluir Funcionalidade"
+									update="#{p:component('tableFuncionalidades')}">
+									<p:confirm header="Excluir Funcionalidade"
+										message="Deseja realmente excluir desvincular a funcionalidade #{funcionalidade.descricao}?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</cfw:container>
+
+			</cfw:moldura>
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton id="salvar" action="#{perfilVincularBean.salvar}"
+						value="Salvar" update="@form" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{!perfilVincularBean.modoVisualizacao and !perfilVincularBean.modoExclusao}" />
+					<p:button value="Fechar" onclick="return parentPopupClose()"
+						icon="fa fa-close white Fs14" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+		<script>
+			popup.setPath("/funcionalidade/pesquisar/popup/#{perfilVincularBean.bufferKey}");
+		</script>
+	</ui:define>
+</ui:composition>

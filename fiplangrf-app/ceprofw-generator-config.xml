@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ceprofw-generator>
+    <project-name>fiplangrf</project-name>
+    <project-code>fiplangrf</project-code>
+    <database-schema>public</database-schema>
+    <base-package>br.gov.mt.mti.fiplangrf</base-package>
+    <generator-properties>
+        <property key="enforceIncludes">true</property>
+        <property key="ignoreEntityExcludes">false</property>
+        <property key="disablePersistenceGeneration">true</property>
+        <property key="forceGlobalResourcesGeneration">false</property>
+    </generator-properties>
+    <entity-includes/>
+    <entity-excludes/>
+</ceprofw-generator>

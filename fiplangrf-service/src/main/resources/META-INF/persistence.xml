@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="fiplangrf"
+		transaction-type="JTA">
+
+		<!-- Oracle DataSource -->
+		<jta-data-source>java:jboss/datasources/fiplangrfDS</jta-data-source>
+		<!-- <jta-data-source>java:jboss/datasources/fiplangrf_homDS</jta-data-source> -->
+
+		<class>br.gov.mt.mti.fiplangrf.model.auditoria.CustomRevisionEntity</class>
+		<class>br.gov.mt.mti.fiplangrf.model.security.user.Usuario</class>
+		<class>br.gov.mt.mti.fiplangrf.model.security.user.Perfil</class>
+		<class>br.gov.mt.mti.fiplangrf.model.security.user.Funcionalidade</class>
+		<class>br.gov.mt.mti.fiplangrf.model.security.user.Permissao</class>
+
+		<!-- Integração FIPLAN -->
+		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUsuario</class>
+		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria</class>
+
+		<!-- Tabelas Básicas -->
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.CNAE</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.NaturezaJuridica</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.GrupoPendencia</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.SubGrupoPendencia</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TipoAdministracao</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TipoOcorrencia</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TipoPendencia</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.UnidadeAdministrativa</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.LegislacaoUnidadeAdministrativa</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.CNAEUnidadeAdministrativa</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Ocorrencia</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.AcaoCoordenadoria</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Anexo</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.MedidaIntermediaria</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.EncerramentoPendencia</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.TramiteOcorrencia</class>
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Revisao</class>
+
+
+		<properties>
+
+			<!-- Criar / Atualizar schema -->
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<!-- <property name="hibernate.hbm2ddl.import_files" value="data.sql"/> -->
+
+			<!-- Misc configuration -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="false" />
+			
+			<!-- Corrigi problema do merge no hibernate -->
+			<property name="hibernate.event.merge.entity_copy_observer"
+				value="allow" />
+
+
+			<!-- Cache configuration -->
+			<property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="hibernate.cache.use_query_cache"
+				value="true" />
+			<property name="hibernate.cache.region.factory_class"
+				value="org.jboss.as.jpa.hibernate5.infinispan.SharedInfinispanRegionFactory" />
+
+			<!-- Oracle Datasource configuration -->
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.Oracle10gDialect" />
+
+			<!-- <property name="hibernate.ejb.use_class_enhancer" value="true"/> -->
+
+			<!-- Métricas Hibernate/JPA -->
+			<property name="hibernate.generate_statistics" value="false" />
+
+			<property name="org.hibernate.envers.revision_field_name"
+				value="IDEN_AUDITORIA" />
+			<property
+				name="org.hibernate.envers.revision_type_field_name"
+				value="TIPO_OPERACAO" />
+
+			<property name="org.hibernate.envers.audit_table_suffix"
+				value="_AUD" />
+
+			<property
+				name="org.hibernate.envers.revision_on_collection_change"
+				value="true" />
+
+			<property name="org.hibernate.envers.store_data_at_delete"
+				value="true" />
+
+			<property name="hibernate.ejb.cfgfile"
+				value="hibernate.cfg.xml" />
+		</properties>
+	</persistence-unit>
+</persistence>

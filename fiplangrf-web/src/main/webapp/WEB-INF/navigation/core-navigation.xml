@@ -1,0 +1,20 @@
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ocpsoft.org/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.2.1.xsd">
+
+
+	<url-mapping id="accessDenied">
+		<pattern value="/accessDenied"/>
+		<view-id value="/pages/common/accessDenied.jsf"/>
+	</url-mapping>
+	
+	<url-mapping id="error">
+		<pattern value="/error/#{errorId}"/>
+		<view-id value="/pages/common/error.jsf"/>
+	</url-mapping>
+	
+	<url-mapping id="viewExpired">
+		<pattern value="/viewExpired"/>
+		<view-id value="/pages/common/viewExpired.jsf"/>
+	</url-mapping>						
+						
+</pretty-config>

@@ -1,0 +1,57 @@
+.ui-datatable table th{
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/*Ajuste Css Picklist Disabled*/
+.pickListContainer .ContainerIndent ul:not(.ui-picklist-list ){
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #b0bec5;
+	opacity: 0.8 !important;
+	padding: 8px !important;
+	font-size: 13px;
+	color: #546e7a;
+}
+
+.pickListContainer .ui-picklist ul {
+	opacity: 1 !important;
+}
+
+.pickListContainer .ContainerIndent {
+	padding-left: 3px;
+}
+
+.pickListContainer .ContainerIndent ul li {
+	
+}
+/*Ajuste Campo disabled*/
+.ui-state-disabled, .ui-widget-content .ui-state-disabled,
+	.ui-widget-header .ui-state-disabled {
+	opacity: 0.8 !important;
+}
+
+.ui-picklist-buttons {
+	width: 38px !important;
+}
+
+.ui-picklist-item {
+	outline: none;
+}
+
+.ui-picklist .ui-picklist-caption{
+	background-color: #337ab7;
+}
+
+.pickListStyle {
+	
+	width: 100%;
+}
+
+.ui-inputfield[readonly] {
+	border: 1px solid #e0e0e0;
+	background-color: #f5f5f5;
+}
+
+.ui-inputfield.ui-state-readonly, .ui-state-readonly .ui-inputfield {
+    background-color: #f5f5f5;
+}

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa">
+
+	<!-- Popup Voltar Para Regularação -->
+	<p:dialog id="dlgVoltarRegularizacao" modal="true" width="60%"
+		responsive="true" widgetVar="dlgVoltarRegularizacao" draggable="false"
+		resizable="false">
+
+		<cfw:panel idPanel="panelVoltarRegularizacao" focus="false"
+			titulo="Voltar para Regularização" icone="">
+
+			<cfw:panelFloat showMessage="false">
+				<p:messages id="voltarRegularizacaoMessage" autoUpdate="true" style="padding:0px 10px;" />
+
+				<cfw:container containerWidth="Container100">
+					<p:outputLabel value="Deseja realmente voltar para regularização?" />
+				</cfw:container>
+
+				<cfw:formInputTextArea labelValue="Justificativa" maxlength="500"
+					value="#{manterOcorrenciaBean.ocorrencia.justificativaTramite}"
+					containerWidth="Container99" />
+			</cfw:panelFloat>
+
+			<cfw:panelButtons id="buttons">
+				<p:outputPanel id="molduraBotoesVoltarRegularizacao"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+
+					<p:commandButton value="Confirmar"
+						actionListener="#{manterOcorrenciaBean.devolverParaRegularizacao}"
+						process="@([id$=dlgVoltarRegularizacao])"
+						update="@([id$=panelVoltarRegularizacao]) @([id$=crudForm]) @([id$=voltarRegularizacaoMessage])"
+						icon="ui-icon-check fa fa-check white Fs14"
+						styleClass="ResponsiveButton ui-confirmdialog-yes"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()" />
+
+					<p:commandButton onclick="PF('dlgVoltarRegularizacao').hide();"
+						value="Cancelar" immediate="true"
+						icon="ui-icon-check fa fa-mail-reply white Fs14"
+						styleClass="ui-confirmdialog-no ResponsiveButton" />
+
+				</p:outputPanel>
+			</cfw:panelButtons>
+		</cfw:panel>
+	</p:dialog>
+</ui:composition>

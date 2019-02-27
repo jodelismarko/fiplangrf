@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+	
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder>
+			<pattern>%-2d{HH:mm} [%-5p] %c{1} - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com" level="error" />
+	<logger name="net" level="error" />
+	<logger name="org" level="error" />
+
+	<logger name="br.gov.mt.cepromat.ceprofw" level="debug" />
+	<logger name="br.gov.mt.mti.fiplangrf" level="debug" />
+
+	<root level="ERROR">
+		<appender-ref ref="stdout" />
+	</root>
+	
+</configuration>

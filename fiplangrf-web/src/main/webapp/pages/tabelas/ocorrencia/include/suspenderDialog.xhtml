@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa">
+	<!-- Popup Suspender -->
+	<p:dialog id="dlgSuspender" modal="true" width="60%" responsive="true"
+		widgetVar="dlgSuspender" draggable="false" resizable="false">
+
+		<cfw:panel idPanel="panelSuspender" focus="false"
+			titulo="Suspender Ocorrência" icone="">
+
+			<cfw:panelFloat showMessage="false">
+				<p:messages id="suspenderMessage" autoUpdate="true" style="padding:0px 10px;" />
+
+				<cfw:container containerWidth="Container100">
+					<p:outputLabel value="Deseja realmente suspender a ocorrência?" />
+				</cfw:container>
+
+				<cfw:formInputTextArea labelValue="Justificativa" maxlength="500"
+					value="#{manterOcorrenciaBean.ocorrencia.justificativaTramite}"
+					containerWidth="Container99" />
+			</cfw:panelFloat>
+
+			<cfw:panelButtons id="buttons">
+				<p:outputPanel id="molduraBotoesSuspender"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+
+					<p:commandButton value="Confirmar"
+						actionListener="#{manterOcorrenciaBean.suspender}"
+						process="@([id$=dlgSuspender])"
+						update="@([id$=panelSuspender]) @([id$=crudForm]) @([id$=suspenderMessage])"
+						icon="ui-icon-check fa fa-check white Fs14"
+						styleClass="ResponsiveButton ui-confirmdialog-yes"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()"/>
+
+					<p:commandButton onclick="PF('dlgSuspender').hide();" value="Cancelar"
+						immediate="true" icon="ui-icon-check fa fa-mail-reply white Fs14"
+						styleClass="ResponsiveButton ui-confirmdialog-no" />
+						
+				</p:outputPanel>
+			</cfw:panelButtons>
+		</cfw:panel>
+	</p:dialog>
+</ui:composition>

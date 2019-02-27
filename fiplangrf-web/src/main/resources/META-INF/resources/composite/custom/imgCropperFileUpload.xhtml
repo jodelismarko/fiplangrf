@@ -1,0 +1,160 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<cc:interface>
+		<cc:attribute name="labelValue" required="false" />
+		<cc:attribute name="imgValue" required="true" />
+		<cc:attribute name="icon" required="false" default="fa fa-file-picture-o" />
+		<cc:attribute name="containerWidth" required="false" default="Container100" />
+		<cc:attribute name="componentWidth" required="false" />
+		<cc:attribute name="componentHeight" required="false" />
+		<cc:attribute name="responsive" required="false" type="java.lang.Boolean" default="true" />
+		<cc:attribute name="responsiveButton" required="false" type="java.lang.Boolean" default="true" />
+		<cc:attribute name="aspectRatio" required="false" type="java.lang.Boolean" default="false" />
+		<cc:attribute name="style" required="false" />
+		<cc:attribute name="styleClass" required="false" />
+		<cc:attribute name="disabled" required="false" type="java.lang.Boolean" />
+		<cc:attribute name="readonly" required="false" type="java.lang.Boolean" />
+		<cc:attribute name="btnRemoverListener" method-signature="void actionListener(javax.faces.event.ActionEvent)" required="true" />
+	</cc:interface>
+
+	<cc:implementation>
+		<h:outputStylesheet library="css" name="components.css" />
+		<ui:fragment rendered="#{cc.rendered}">
+			<style>
+				.imgCropperFileUpload > .ContainerIndent > .Container {
+					width:#{cc.attrs.componentWidth != null ? cc.attrs.componentWidth.concat('px') : '100%'};
+				}
+				.imgCropperFileUpload .imgPanel .ui-panel-content { /* 22: padding+border do imgPanel, 35: altura dos botoes-1px margin-top */
+					height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22-35).concat('px') : 'auto'};
+				}
+				.imgCropperFileUpload .imgPanel .image {
+					max-height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22-35).concat('px') : 'auto'};
+				}
+				.imgCropperFileUpload.ui-state-readonly .imgPanel .ui-panel-content {
+					height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22).concat('px') : 'auto'};
+				}
+				.imgCropperFileUpload.ui-state-readonly .imgPanel .image {
+					max-height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22).concat('px') : 'auto'};
+				}
+				@media (max-width: 960px) {
+					.imgCropperFileUpload > .ContainerIndent > .Container { /* 16: altura do label, 20: padding do ContainerIndent x2, 66: altura de um input+label (valores com tela com width > 960px) */
+						width:#{cc.attrs.componentWidth != null ? ''.concat(cc.attrs.componentWidth-((cc.attrs.componentWidth+(cc.attrs.labelValue!=null?16:0)+20-66)/6.6).intValue()).concat('px') : '100%'};
+					}
+					.imgCropperFileUpload .imgPanel .ui-panel-content {
+						height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22-35-((cc.attrs.componentHeight+(cc.attrs.labelValue!=null?16:0)+20-66)/6.6).intValue()).concat('px') : 'auto'};
+					}
+					.imgCropperFileUpload .imgPanel .image {
+						max-height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22-35-((cc.attrs.componentHeight+(cc.attrs.labelValue!=null?16:0)+20-66)/6.6).intValue()).concat('px') : 'auto'};
+					}
+					.imgCropperFileUpload.ui-state-readonly .imgPanel .ui-panel-content {
+						height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22-((cc.attrs.componentHeight+(cc.attrs.labelValue!=null?16:0)+20-66)/6.6).intValue()).concat('px') : 'auto'};
+					}
+					.imgCropperFileUpload.ui-state-readonly .imgPanel .image {
+						max-height:#{cc.attrs.componentHeight != null ? ''.concat(cc.attrs.componentHeight-22-((cc.attrs.componentHeight+(cc.attrs.labelValue!=null?16:0)+20-66)/6.6).intValue()).concat('px') : 'auto'};
+					}
+				}
+			</style>
+			<div id="#{cc.clientId}">
+				<div class="#{cc.attrs.containerWidth} #{cc.attrs.responsive ? 'Responsive' : 'noResponsive'} #{cc.attrs.styleClass} #{cc.attrs.readonly ? 'ui-state-readonly' : 'noReadonly'} imgCropperFileUpload"
+						style="#{cc.attrs.style}">
+					<div class="ContainerIndent">
+						<div class="Container">
+							<div>
+								<p:outputLabel value="#{cc.attrs.labelValue}" />
+							</div>
+							<p:panel
+								id="imgPanel"
+								styleClass="imgPanel">
+								<ui:fragment rendered="#{empty cc.attrs.imgValue}">
+									<i class="#{cc.attrs.icon} Black"></i>
+								</ui:fragment>
+								<p:graphicImage
+									rendered="#{not empty cc.attrs.imgValue}"
+									value="#{cc.attrs.imgValue}"
+									cache="false"
+									styleClass="image">
+								</p:graphicImage>
+							</p:panel>
+							<p:commandButton
+								id="alterarBtn"
+								value="Alterar"
+								icon="fa fa-pencil white Fs14"
+								styleClass="alterarBtn #{cc.attrs.responsiveButton ? 'ResponsiveButton' : 'noResponsiveButton'}"
+								process="@this"
+								rendered="#{not cc.attrs.readonly}"
+								disabled="#{cc.attrs.disabled}"
+								oncomplete="PF('dlgCropperUpload').show();" />
+							<p:commandButton
+								id="removerBtn"
+								value="Remover"
+								icon="fa fa-trash white Fs14"
+								styleClass="removerBtn #{cc.attrs.responsiveButton ? 'ResponsiveButton' : 'noResponsiveButton'}"
+								process="@this"
+								update="imgPanel,removerBtn"
+								actionListener="#{cc.attrs.btnRemoverListener}"
+								rendered="#{not cc.attrs.readonly}"
+								disabled="#{cc.attrs.disabled or imageUploadBean.getBytes() == null}" />
+						</div>
+					</div>
+					<p:dialog id="dlgCropperUpload" widgetVar="dlgCropperUpload" modal="true" closable="false"
+							responsive="true" draggable="false" resizable="false" header="Carregar Imagem">
+						<p:outputPanel id="dlgContent">
+						 	<p:panel
+						 		id="cropperPanel"
+						 		styleClass="cropperPanel">
+								<p:imageCropper
+									aspectRatio="#{cc.attrs.aspectRatio ? '1.0' : ''}"
+									minSize="100,100"
+									boxHeight="360"
+									boxWidth="360"
+									value="#{imageUploadBean.croppedImage}"
+									image="#{imageUploadBean.imageTempPath}"
+									initialCoords="0,0,100,100" />
+							</p:panel>
+							<div class="EmptyBox20"/>
+							<p:fileUpload
+								process="dlgContent"
+								update="dlgContent"
+								fileUploadListener="#{imageUploadBean.handleUpload}"
+								auto="true"
+								label="Carregar"
+								sizeLimit="5242880"
+								invalidSizeMessage="O tamanho máximo permitido é de 5MB."
+								invalidFileMessage="Formato inválido."
+								multiple="false"
+								allowTypes="/(\.|\/)(gif|jpe?g|png)$/">
+								<p:commandButton
+									value="Fechar"
+									icon="fa fa-close white Fs14"
+									styleClass="ResponsiveButton"
+									process="dlgContent"
+									update="dlgContent"
+									actionListener="#{imageUploadBean.cancelar}"
+									oncomplete="PF('dlgCropperUpload').hide();" />
+								<p:commandButton
+									value="Alterar"
+									icon="fa fa-pencil white Fs14"
+									styleClass="ResponsiveButton"
+									process="dlgContent"
+									update="imgPanel,dlgContent,removerBtn"
+									actionListener="#{imageUploadBean.cortar}"
+									disabled="#{not imageUploadBean.readyToCrop}"
+									oncomplete="PF('dlgCropperUpload').hide();" />
+							</p:fileUpload>
+						</p:outputPanel>
+					</p:dialog>
+				</div>
+			</div>
+		</ui:fragment>
+	</cc:implementation>
+</ui:component>
+	

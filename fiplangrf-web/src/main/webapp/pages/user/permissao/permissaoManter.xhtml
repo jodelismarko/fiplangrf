@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+		<sind:form id="crudForm">
+			<cfw:moldura titulo="#{permissaoManterBean.modoDesc} Permissão"
+				icone="#{permissaoManterBean.modoIcon}">
+				<cfw:panelFloat>
+					<cfw:formInputText id="nome" labelValue="Nome"
+						containerWidth="Container33"
+						value="#{permissaoManterBean.permissao.nome}" maxlength="200"
+						readonly="#{permissaoManterBean.modoVisualizacao}" required="true" />
+
+					<cfw:formInputText id="action" labelValue="Ação"
+						containerWidth="Container33"
+						value="#{permissaoManterBean.permissao.action}" maxlength="4000"
+						readonly="#{permissaoManterBean.modoVisualizacao}" required="true" />
+
+					<cfw:formInputText id="descricao" labelValue="Descrição"
+						containerWidth="Container33"
+						value="#{permissaoManterBean.permissao.descricao}" maxlength="400"
+						readonly="#{permissaoManterBean.modoVisualizacao}"
+						required="false" />
+
+					<cfw:formSelectOneMenu id="tipoPermissao"
+						labelValue="Tipo de permissão" containerWidth="Container33"
+						value="#{permissaoManterBean.permissao.tipoPermissao}"
+						readonly="#{permissaoManterBean.modoVisualizacao}"
+						itemsValue="#{combosEnumHelperBean.dominioTipoPermissao}"
+						itemLabel="#{item.desc}" itemValue="#{item}" required="true">
+						<f:selectItem itemValue="#{null}" itemLabel="Selecione" />
+					</cfw:formSelectOneMenu>
+
+				</cfw:panelFloat>
+			</cfw:moldura>
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+
+					<p:commandButton id="salvar"
+						actionListener="#{permissaoManterBean.salvar}" value="Salvar"
+						icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton"
+						process="@([id$=crudForm])" update="@([id$=crudForm])"
+						onsuccess="window.parent.atualizarPesquisa()"
+						rendered="#{!permissaoManterBean.modoVisualizacao and !permissaoManterBean.modoExclusao}" />
+
+					<p:commandButton id="alterar" action="pretty:alterarPermissao"
+						value="Alterar" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton" process="@([id$=crudForm])"
+						update="@([id$=crudForm])"
+						rendered="#{permissaoManterBean.modoVisualizacao and !permissaoManterBean.modoExclusao}" />
+
+					<p:commandButton id="excluir"
+						action="#{permissaoManterBean.excluir}" value="Excluir"
+						icon="fa fa-check white Fs14" update="@form"
+						styleClass="ResponsiveButton"
+						rendered="#{permissaoManterBean.modoExclusao}">
+						<p:confirm header="#{helperBean.mensagemHeaderExclusao}"
+							message="#{helperBean.mensagemConfirmarExclusao}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton id="limpar"
+						actionListener="#{permissaoManterBean.limpar}" value="Limpar"
+						process="@this" update="@([id$=crudForm])" resetValues="true"
+						icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton"
+						rendered="#{permissaoManterBean.id eq null and !permissaoManterBean.modoExclusao}" />
+
+					<p:button id="novaPesquisa" value="Nova Pesquisa"
+						rendered="#{permissaoManterBean.modoVisualizacao and !permissaoManterBean.modoExclusao}"
+						onclick="return parentPopupClose()"
+						icon="fa fa-mail-reply white Fs14" />
+
+					<p:commandButton id="cancelarEdicao" value="Cancelar"
+						rendered="#{permissaoManterBean.modoAlteracao}"
+						action="pretty:visualizarPermissao" icon="fa fa-close white Fs14" />
+
+					<p:button id="cancelarExclusao" value="Cancelar"
+						rendered="#{permissaoManterBean.modoExclusao or permissaoManterBean.modoInclusao}"
+						onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

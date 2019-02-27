@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+	version="3.1">
+
+	<module-name>fiplangrf-ejb</module-name>
+	
+	<display-name>fiplangrf-service</display-name>
+	
+ 	<interceptors>		
+		<interceptor>
+			<interceptor-class>br.gov.mt.mti.fiplangrf.service.security.interceptor.ClientInfoInterceptor</interceptor-class>		
+		</interceptor>	
+	</interceptors>
+	
+	<assembly-descriptor>		
+		<interceptor-binding>			
+			<ejb-name>*</ejb-name>			
+			<interceptor-class>br.gov.mt.mti.fiplangrf.service.security.interceptor.ClientInfoInterceptor</interceptor-class>
+		</interceptor-binding>	
+		
+		<interceptor-binding>			
+			<ejb-name>GenericService</ejb-name>			
+			<exclude-default-interceptors>true</exclude-default-interceptors>
+			<method>
+				<method-name>isPermitido</method-name>								
+			</method>									
+		</interceptor-binding>
+		
+		<interceptor-binding>			
+			<ejb-name>GenericService</ejb-name>			
+			<exclude-default-interceptors>true</exclude-default-interceptors>
+			<method>
+				<method-name>isInFuncionalidade</method-name>				
+			</method>									
+		</interceptor-binding>
+		
+		<interceptor-binding>
+			<ejb-name>GenericService</ejb-name>
+			<exclude-default-interceptors>true</exclude-default-interceptors>
+			<method>
+				<method-name>isInPapel</method-name>
+			</method>
+		</interceptor-binding>
+		
+		<interceptor-binding>
+			<ejb-name>GenericService</ejb-name>
+			<exclude-default-interceptors>true</exclude-default-interceptors>
+			<method>
+				<method-name>isLoggedIn</method-name>
+			</method>
+		</interceptor-binding>
+		
+	</assembly-descriptor>
+</ejb-jar>

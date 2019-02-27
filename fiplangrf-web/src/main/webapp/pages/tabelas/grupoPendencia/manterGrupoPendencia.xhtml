@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+		<sind:form id="crudForm">
+			<cfw:moldura titulo="#{manterGrupoPendenciaBean.modoDesc} Grupo Pendências"
+				icone="#{manterGrupoPendenciaBean.modoIcon}">
+				<cfw:panelFloat>
+					<cfw:formInputText id="descricao" labelValue="Descrição"
+						containerWidth="Container33"
+						value="#{manterGrupoPendenciaBean.grupoPendencia.descricao}"
+						maxlength="200"
+						readonly="#{!manterGrupoPendenciaBean.modoInclusao}"
+						required="true" />
+
+					<cfw:fieldDecorator labelValue="Tipo Ocorrência"
+						idComponent="tipoOcorrencia" containerWidth="Container33"
+						responsive="true">
+						<p:autoComplete id="tipoOcorrencia" dropdown="true"
+							forceSelection="true" scrollHeight="250" 
+							value="#{manterGrupoPendenciaBean.grupoPendencia.tipoOcorrencia}"
+							readonly="#{!manterGrupoPendenciaBean.modoInclusao}"
+							required="true" var="tipoOcorrencia"
+							itemLabel="#{tipoOcorrencia.descricao}"
+							type="br.gov.mt.mti.fiplangrf.model.tabelas.TipoOcorrencia"
+							itemValue="#{tipoOcorrencia}" converter="entityConverter"
+							completeMethod="#{manterGrupoPendenciaBean.autoCompleteTipoOcorrencia}">
+							<p:ajax event="change" process="@this" />
+							<p:ajax event="itemSelect" process="@this" />
+						</p:autoComplete>
+					</cfw:fieldDecorator>
+
+					<cfw:formSelectOneMenu id="situacao" labelValue="Situação"
+						containerWidth="Container33"
+						disabled="#{manterGrupoPendenciaBean.modoInclusao}"
+						value="#{manterGrupoPendenciaBean.grupoPendencia.situacao}"
+						itemsValue="#{combosEnumHelperBean.dominioSituacao}"
+						itemLabel="#{item.desc}" itemValue="#{item}"
+						readonly="#{manterGrupoPendenciaBean.modoVisualizacao}"
+						required="true" />
+
+					<cfw:formCalendar labelValue="Data de Cadastro"
+						containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+						value="#{manterGrupoPendenciaBean.grupoPendencia.dataCriacao}"
+						rendered="#{manterGrupoPendenciaBean.modoAlteracao or manterGrupoPendenciaBean.modoExclusao or manterGrupoPendenciaBean.modoVisualizacao}"
+						readonly="true" required="true" />
+
+					<cfw:formCalendar labelValue="Data da Última Alteração"
+						containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+						value="#{manterGrupoPendenciaBean.grupoPendencia.dataAtualizacao}"
+						rendered="#{manterGrupoPendenciaBean.modoAlteracao or manterGrupoPendenciaBean.modoExclusao or manterGrupoPendenciaBean.modoVisualizacao}"
+						readonly="true" />
+
+				</cfw:panelFloat>
+			</cfw:moldura>
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton id="salvar"
+						actionListener="#{manterGrupoPendenciaBean.salvar}" value="Salvar"
+						icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton"
+						process="@([id$=crudForm])" update="@form"
+						rendered="#{!manterGrupoPendenciaBean.modoVisualizacao and !manterGrupoPendenciaBean.modoExclusao}" />
+
+					<p:commandButton id="alterar" action="pretty:alterarGrupoPendencia"
+						value="Alterar" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton" process="@([id$=crudForm])"
+						update="@([id$=crudForm])"
+						rendered="#{manterGrupoPendenciaBean.modoVisualizacao and !manterGrupoPendenciaBean.modoExclusao}" />
+
+					<p:commandButton id="excluir"
+						action="#{manterGrupoPendenciaBean.excluir}" value="Excluir"
+						icon="fa fa-check white Fs14" update="@form"
+						styleClass="ResponsiveButton"
+						rendered="#{manterGrupoPendenciaBean.modoExclusao}">
+						<p:confirm header="#{helperBean.mensagemHeaderExclusao}"
+							message="#{helperBean.mensagemConfirmarExclusao}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton id="limpar"
+						actionListener="#{manterGrupoPendenciaBean.limpar}" value="Limpar"
+						process="@this" update="@([id$=crudForm])" resetValues="true"
+						icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterGrupoPendenciaBean.id eq null and !manterGrupoPendenciaBean.modoExclusao}" />
+
+					<p:button id="novaPesquisa" value="Nova Pesquisa"
+						rendered="#{manterGrupoPendenciaBean.modoVisualizacao and !manterGrupoPendenciaBean.modoExclusao}"
+						onclick="return parentPopupClose()"
+						icon="fa fa-mail-reply white Fs14" />
+
+					<p:commandButton id="cancelarEdicao" value="Cancelar"
+						rendered="#{manterGrupoPendenciaBean.modoAlteracao}"
+						action="pretty:visualizarGrupoPendencia"
+						icon="fa fa-close white Fs14" />
+
+					<p:button id="cancelarExclusao" value="Cancelar"
+						rendered="#{manterGrupoPendenciaBean.modoExclusao or manterGrupoPendenciaBean.modoInclusao}"
+						onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+						
+					<p:button id="historico"
+						onclick="return setPathId('/grupopendencia/visualizarHistorico',#{manterGrupoPendenciaBean.grupoPendencia.id})"
+						value="Histórico" icon="fa fa-clock-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{!manterGrupoPendenciaBean.modoInclusao and !manterGrupoPendenciaBean.modoExclusao and !manterGrupoPendenciaBean.modoAlteracao}" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

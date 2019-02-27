@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+
+		<h:form id="filtrosForm">
+
+			<p:outputPanel layout="block"
+				styleClass="ui-cepro-fw-search-fieldset-panel">
+
+				<p:fieldset toggleable="true"
+					legend="Filtro de Pesquisa de Histórico de Tipo de Serviço"
+					id="dataTableFieldSet" styleClass="ui-cepro-fw-search-fieldset">
+
+					<cfw:panelFloat>
+
+						<cfw:formInputText id="usuario" labelValue="Usuário"
+							containerWidth="Container33"
+							value="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.criteria.nome}"
+							maxlength="550" size="50" />
+
+						<cfw:formCalendar id="dataInicial" disabled="false"
+							labelValue="Data Inicial" containerWidth="Container33"
+							value="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.criteria.dataInicial}" />
+
+						<cfw:formCalendar id="dataFinal" labelValue="Data Final"
+							disabled="false" containerWidth="Container33"
+							value="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.criteria.dataFinal}" />
+
+						<cfw:formSelectOneMenu id="tipoOperacao"
+							labelValue="Tipo de Operação" containerWidth="Container33"
+							value="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.criteria.tipoOperacao}"
+							itemsValue="#{combosEnumHelperBean.dominioTipoOperacao}"
+							itemLabel="#{item.desc}" itemValue="#{item}">
+							<f:selectItem noSelectionOption="true" itemLabel="Todos" />
+						</cfw:formSelectOneMenu>
+
+					</cfw:panelFloat>
+
+				</p:fieldset>
+
+			</p:outputPanel>
+
+			<cfw:panelButtons>
+				<p:commandButton id="pesquisar" widgetVar="pesquisarBtn"
+					onclick="PF('pesquisarBtn').disable();jQuery(this).addClass('ui-state-disabled');"
+					oncomplete="setTimeout(function(){ PF('pesquisarBtn').enable(); jQuery(this).removeClass('ui-state-disabled');},500);"
+					actionListener="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.pesquisar}"
+					update="_resultadoForm" value="Pesquisar"
+					icon="fa fa-search white Fs14" />
+				<p:commandButton id="limpar"
+					actionListener="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.limparForm}"
+					update="_resultadoForm @form" value="Limpar"
+					icon="fa fa-close white Fs14" />
+			</cfw:panelButtons>
+
+		</h:form>
+
+		<h:form id="resultadoForm">
+
+			<cfw:dynamicDataTable id="datatable"
+				model="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.model}"
+				criteria="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.criteria}"
+				value="#{visualizarHistoricoLegislacaoUnidadeAdministrativaBean.resultadoPesquisa}"
+				header="Resultado de Pesquisa por Tipo de Serviço">
+
+				<p:column headerText="Data Operação" width="100">
+					<h:outputText value="#{entity[1].dataOperacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Tipo Operação" width="100">
+					<h:outputText
+						value="#{entity[2] eq 'ADD'? 'Inclusão': (entity[2] eq 'MOD'? 'Alteração': 'Exclusão')}" />
+				</p:column>
+
+				<p:column headerText="IP" width="100">
+					<h:outputText value="#{entity[1].enderecoIP}" />
+				</p:column>
+
+				<p:column headerText="Usuário" width="160"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[1].nomeUsuario}" />
+				</p:column>
+
+				<p:column headerText="CPF" width="100">
+					<h:outputText value="#{entity[1].cpf}" />
+				</p:column>
+
+				<p:column headerText="Tipo Legislação" width="100">
+					<h:outputText value="#{entity[0].tipoLegislacao.desc}" />
+				</p:column>
+
+				<p:column headerText="Descrição" width="200"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[0].descricao}" />
+				</p:column>
+
+				<p:column headerText="Situação" width="100">
+					<h:outputText value="#{entity[0].situacao.desc}" />
+				</p:column>
+
+			</cfw:dynamicDataTable>
+
+			<cfw:panelButtons>
+				<p:commandButton onclick="return parentPopupClose();"
+					title="Voltar " value="Voltar" icon="fa fa-mail-reply white Fs14" />
+			</cfw:panelButtons>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

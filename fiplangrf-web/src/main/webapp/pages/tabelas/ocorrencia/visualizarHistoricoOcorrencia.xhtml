@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+
+		<h:form id="filtrosForm">
+
+			<p:outputPanel layout="block"
+				styleClass="ui-cepro-fw-search-fieldset-panel">
+
+				<p:fieldset toggleable="true"
+					legend="Filtro de Pesquisa de Histórico de Ocorrência"
+					id="dataTableFieldSet" styleClass="ui-cepro-fw-search-fieldset">
+					<cfw:panelFloat>
+
+						<cfw:formInputText id="usuario" labelValue="Usuário"
+							containerWidth="Container33"
+							value="#{visualizarHistoricoOcorrenciaBean.criteria.nome}"
+							maxlength="550" size="50" />
+
+						<cfw:formCalendar id="dataInicial" disabled="false"
+							labelValue="Data Inicial" containerWidth="Container33"
+							value="#{visualizarHistoricoOcorrenciaBean.criteria.dataInicial}" />
+
+						<cfw:formCalendar id="dataFinal" labelValue="Data Final"
+							disabled="false" containerWidth="Container33"
+							value="#{visualizarHistoricoOcorrenciaBean.criteria.dataFinal}" />
+
+						<cfw:formSelectOneMenu id="tipoOperacao"
+							labelValue="Tipo de Operação" containerWidth="Container33"
+							value="#{visualizarHistoricoOcorrenciaBean.criteria.tipoOperacao}"
+							itemsValue="#{combosEnumHelperBean.dominioTipoOperacao}"
+							itemLabel="#{item.desc}" itemValue="#{item}">
+
+							<f:selectItem noSelectionOption="true" itemLabel="Todos" />
+						</cfw:formSelectOneMenu>
+
+					</cfw:panelFloat>
+				</p:fieldset>
+
+			</p:outputPanel>
+
+			<cfw:panelButtons>
+				<p:commandButton id="pesquisar" widgetVar="pesquisarBtn"
+					onclick="PF('pesquisarBtn').disable();jQuery(this).addClass('ui-state-disabled');"
+					oncomplete="setTimeout(function(){ PF('pesquisarBtn').enable(); jQuery(this).removeClass('ui-state-disabled');},500);"
+					actionListener="#{visualizarHistoricoOcorrenciaBean.pesquisar}"
+					update="_resultadoForm" value="Pesquisar"
+					icon="fa fa-search white Fs14" />
+				<p:commandButton id="limpar"
+					actionListener="#{visualizarHistoricoOcorrenciaBean.limparForm}"
+					update="_resultadoForm @form" value="Limpar"
+					icon="fa fa-close white Fs14" />
+			</cfw:panelButtons>
+
+		</h:form>
+
+		<h:form id="resultadoForm">
+
+			<cfw:dynamicDataTable id="datatable"
+				model="#{visualizarHistoricoOcorrenciaBean.model}"
+				criteria="#{visualizarHistoricoOcorrenciaBean.criteria}"
+				value="#{visualizarHistoricoOcorrenciaBean.resultadoPesquisa}"
+				header="Resultado de Pesquisa por Ocorrência">
+
+
+				<p:column headerText="Data Operação" width="150">
+					<h:outputText value="#{entity[1].dataOperacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Tipo Operação" width="100">
+					<h:outputText
+						value="#{entity[2] eq 'ADD'? 'Inclusão': (entity[2] eq 'MOD'? 'Alteração': 'Exclusão')}" />
+				</p:column>
+
+				<p:column headerText="IP" width="100">
+					<h:outputText value="#{entity[1].enderecoIP}" />
+				</p:column>
+
+				<p:column headerText="Usuário" width="160"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[1].nomeUsuario}" />
+				</p:column>
+
+				<p:column headerText="CPF" width="100">
+					<h:outputText value="#{entity[1].cpf}" />
+				</p:column>
+
+				<p:column headerText="CNPJ" width="140">
+					<h:outputText
+						value="#{entity[0].unidadeAdministrativa.numrCNPJFormatado}" />
+				</p:column>
+
+				<p:column headerText="Data Inscrição" width="150">
+					<h:outputText value="#{entity[0].dataInscricao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Nome empresarial" width="180"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText
+						value="#{entity[0].unidadeAdministrativa.nomeEmpresarial}" />
+				</p:column>
+
+				<p:column headerText="Unidade Orçamentaria" width="180"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[0].unidadeOrcamentariaFormatado}" />
+				</p:column>
+
+				<p:column headerText="Tipo Ocorrência" width="160"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[0].tipoOcorrencia.descricao}" />
+				</p:column>
+
+				<p:column headerText="Grupo Pendência" width="150"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[0].grupoPendencia.descricao}" />
+				</p:column>
+
+				<p:column headerText="Subgrupo Pendência" width="150"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[0].subGrupoPendencia.descricao}" />
+				</p:column>
+
+				<p:column headerText="Tipo Pendência" width="150"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[0].tipoPendencia.descricao}" />
+				</p:column>
+
+				<p:column headerText="Situação Pendência" width="150"
+					style="white-space: normal; word-wrap: break-word;">
+					<h:outputText value="#{entity[0].situacaoPendencia.desc}" />
+				</p:column>
+
+				<p:column headerText="Data Regularização" width="150">
+					<h:outputText value="#{entity[0].dataRegularizacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+			</cfw:dynamicDataTable>
+
+			<cfw:panelButtons>
+				<p:commandButton onclick="return parentPopupClose();"
+					title="Voltar " value="Voltar" icon="fa fa-mail-reply white Fs14" />
+			</cfw:panelButtons>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

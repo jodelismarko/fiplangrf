@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    <cc:interface>
+		<cc:attribute name="componentId" required="true" default="pesquisar"/>
+		<cc:attribute name="label" required="true" default="Pesquisar"/>
+		<cc:attribute name="update" required="true" default="resultadoForm_resultadoForm"/>
+		<cc:attribute name="actionListener" method-signature="void pesquisar(javax.faces.event.ActionEvent)"/>
+	</cc:interface>
+	
+    <cc:implementation>    
+		<p:commandButton id="#{cc.attrs.componentId}" actionListener="#{cc.attrs.actionListener}" 
+				update="#{cc.attrs.update}" value="#{cc.attrs.label}" icon="fa fa-search white Fs14" 
+				onclick="showWaitStatus()" onsuccess="hideWaitStatus()"/>
+	</cc:implementation>
+</ui:component>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:component xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa">
+
+	<cc:interface>
+
+		<cc:valueHolder name="input" />
+		<cc:clientBehavior event="change" name="change" default="true" targets="fd_input" />
+		<cc:clientBehavior event="blur" name="blur" targets="fd_input" />
+		<cc:attribute name="labelValue" required="true" />
+		<cc:attribute name="minlength" />
+		<cc:attribute name="maxlength" />
+		<cc:attribute name="required" required="false" type="java.lang.Boolean" />
+		<cc:attribute name="validationGroup" required="false" />
+
+		<cc:attribute name="disabled" required="false" type="java.lang.Boolean" />
+		<cc:attribute name="readonly" required="false" type="java.lang.Boolean" />
+		<cc:attribute name="value" required="false" />
+		<cc:attribute name="styleClass" required="false" />
+		<cc:attribute name="style" required="false" />
+		<cc:attribute name="title" required="false" />
+		<cc:attribute name="onblur" required="false"/>
+		<cc:attribute name="containerWidth" required="false" default="Container33" />
+		<cc:attribute name="responsive" required="false" type="java.lang.Boolean" default="true" />
+	</cc:interface>
+
+	<cc:implementation>
+
+		<ui:fragment rendered="#{cc.rendered}">
+
+			<div id="#{cc.clientId}">
+
+				<sind:fieldDecorator id="fd" labelValue="#{cc.attrs.labelValue}" idComponent="input" required="#{cc.attrs.required}" disabled="#{cc.attrs.disabled}" containerWidth="#{cc.attrs.containerWidth}" responsive="#{cc.attrs.responsive}">
+
+					<p:inputMask
+						converter="cnpjConverter"
+						id="input"
+						mask="?99.999-999"
+						value="#{cc.attrs.value}"
+						disabled="#{cc.attrs.disabled}"
+						readonly="#{cc.attrs.readonly}"
+						style="#{cc.attrs.style}"
+						title="#{cc.attrs.title}"
+						required="#{cc.attrs.required}"
+						label="#{cc.attrs.labelValue}"
+						onblur="#{cc.attrs.onblur}">
+
+						<f:validateLength minimum="8" maximum="8" />
+
+						<f:attribute name="styleClass" value="#{cc.attrs.disabled ? 'ui-input-mask-disabled' : cc.attrs.styleClass}" />
+
+						<cc:insertChildren />
+
+					</p:inputMask>
+
+				</sind:fieldDecorator>
+
+			</div>
+		</ui:fragment>
+
+	</cc:implementation>
+</ui:component>

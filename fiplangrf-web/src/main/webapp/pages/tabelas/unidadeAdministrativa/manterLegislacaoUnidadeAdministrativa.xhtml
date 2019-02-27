@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components">
+
+	<p:dialog id="dlgFormLegislacao" modal="true" responsive="true"
+		widgetVar="dlgFormLegislacao" draggable="false" resizable="false"
+		width="1000">
+		<cfw:panel idPanel="panelLegislacao" titulo="Legislação Unidade Administrativa" focus="false">
+			<cfw:panelFloat showMessage="false">
+
+				<p:messages id="idMessageFormLegislacao" style="padding:0px 10px;" />
+
+				<cfw:formSelectOneMenu id="tipoLegislacaoId"
+					labelValue="Tipo Legislação" containerWidth="Container50"
+					value="#{manterUnidadeAdministrativaBean.legislacaoUA.tipoLegislacao}"
+					itemsValue="#{combosEnumHelperBean.dominioTipoLegislacao}"
+					itemLabel="#{item.desc}" itemValue="#{item}" 
+					readonly="#{manterUnidadeAdministrativaBean.modoOperacao ne 'INCLUSAO'}"
+					required="true">
+					<f:selectItem noSelectionOption="true" itemLabel="Selecione" />
+				</cfw:formSelectOneMenu>
+
+				<cfw:formInputText id="lei" labelValue="Lei"
+					containerWidth="Container50"
+					value="#{manterUnidadeAdministrativaBean.legislacaoUA.descricao}"
+					maxlength="200"
+					readonly="#{manterUnidadeAdministrativaBean.modoOperacao ne 'INCLUSAO'}"
+					required="true" />
+
+				<cfw:formSelectOneMenu id="situacaoLegislacao" labelValue="Situação"
+					containerWidth="Container50"
+					value="#{manterUnidadeAdministrativaBean.legislacaoUA.situacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacao}"
+					itemLabel="#{item.desc}" itemValue="#{item}" itemVar="item"
+					readonly="#{manterUnidadeAdministrativaBean.modoOperacao ne 'ALTERACAO'}"
+					required="false" />
+
+				<cfw:formCalendar labelValue="Data de Cadastro"
+					containerWidth="Container50" pattern="dd/MM/yyyy HH:mm:ss"
+					value="#{manterUnidadeAdministrativaBean.legislacaoUA.dataCriacao}"
+					rendered="#{manterUnidadeAdministrativaBean.modoOperacao ne 'INCLUSAO'}"
+					readonly="true" required="true" />
+
+				<cfw:formCalendar labelValue="Data da Última Alteração"
+					containerWidth="Container50" pattern="dd/MM/yyyy HH:mm:ss"
+					value="#{manterUnidadeAdministrativaBean.legislacaoUA.dataAtualizacao}"
+					rendered="#{manterUnidadeAdministrativaBean.modoOperacao ne 'INCLUSAO'}"
+					readonly="true" />
+
+			</cfw:panelFloat>
+
+			<cfw:panelButtons id="buttons">
+				<p:outputPanel id="molduraBotoesLegislação"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton value="Concluir"
+						actionListener="#{manterUnidadeAdministrativaBean.closeLegislacao}"
+						process="@([id$=dlgFormLegislacao])"
+						update="@([id$=panelLegislacao]) @([id$=tableLegislacao]) @([id$=idMessageFormLegislacao])"
+						icon="fa fa-plus white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterUnidadeAdministrativaBean.modoOperacao eq 'ALTERACAO'}"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()" />
+
+					<p:commandButton value="Concluir"
+						actionListener="#{manterUnidadeAdministrativaBean.incluirLegislacao}"
+						process="@([id$=dlgFormLegislacao])"
+						update="@([id$=panelLegislacao]) @([id$=tableLegislacao]) @([id$=idMessageFormLegislacao])"
+						icon="fa fa-plus white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterUnidadeAdministrativaBean.modoOperacao eq 'INCLUSAO'}"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()" />
+						
+					<p:commandButton value="Limpar"
+						actionListener="#{manterUnidadeAdministrativaBean.limparLegislacao}"
+						process="@([id$=dlgFormLegislacao])"
+						update="@([id$=panelLegislacao]) @([id$=tableLegislacao]) @([id$=idMessageFormLegislacao])"
+						icon="fa fa-plus white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterUnidadeAdministrativaBean.modoOperacao eq 'INCLUSAO'}"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()" />
+
+					<p:commandButton value="Cancelar" title="Cancelar" process="@this"
+						update="@([id$=dlgFormLegislacao])"
+						actionListener="#{manterUnidadeAdministrativaBean.closeLegislacao}"
+						icon="fa fa-close white Fs14" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+		</cfw:panel>
+	</p:dialog>
+
+</ui:composition>

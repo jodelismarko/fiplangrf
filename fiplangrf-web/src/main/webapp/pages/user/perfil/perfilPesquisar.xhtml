@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="contents">
+
+		<sind:form id="filtrosForm">
+
+			<cfw:dynamicFilter id="filter"
+				model="#{perfilPesquisarBean.criteria.model}"
+				bean="#{perfilPesquisarBean}" header="Filtro de Pesquisa de Perfil de Acesso" />
+
+			<cfw:panelButtons>
+
+				<p:commandButton id="pesquisar"
+					actionListener="#{perfilPesquisarBean.pesquisar}"
+					update="@([id$=resultadoForm])" value="Pesquisar"
+					icon="fa fa-search white Fs14" />
+				<p:defaultCommand target="pesquisar" />
+				<p:commandButton id="limpar"
+					actionListener="#{perfilPesquisarBean.limpar}"
+					update="@([id$=resultadoForm]) @form" value="Limpar"
+					icon="fa fa-eraser white Fs14" />
+				<p:commandButton id="incluir"
+					onclick="return setPathId('/perfil/incluir', null)" value="Incluir"
+					icon="fa fa-plus white Fs14" />
+
+			</cfw:panelButtons>
+
+		</sind:form>
+
+		<sind:form id="resultadoForm">
+
+			<cfw:dynamicDataTable id="datatable"
+				model="#{perfilPesquisarBean.criteria.model}"
+				criteria="#{perfilPesquisarBean.criteria}"
+				value="#{perfilPesquisarBean.resultadoPesquisa}"
+				header="Resultado de Pesquisa por Perfil de Acesso">
+
+				<p:column width="60" headerText="Ações" id="action"
+					exportable="false">
+					<center>
+						<p:button icon="fa fa-file-text white Fs10"
+							title="Visualizar Perfil"
+							onclick="return setPathId('/perfil/visualizar/#{entity.id}')" />
+
+						<p:button icon="fa fa-pencil white Fs10" title="Alterar Perfil"
+							onclick="return setPathId('/perfil/alterar/#{entity.id}')" />
+
+						<p:button icon="fa fa-trash white Fs10" title="Excluir Perfil"
+							onclick="return setPathId('/perfil/excluir/#{entity.id}')" />
+
+						<!-- <p:button icon="fa fa-chain white Fs14"
+						title="Vincular Funcionalidade"
+						onclick="return setPathId('/perfil/vincular/#{entity.id}')" /> -->
+
+						<p:button icon="fa fa-clock-o white Fs10"
+							title="Visualizar Histórico"
+							onclick="return setPathId('/perfil/visualizarHistorico',#{entity.id})" />
+					</center>
+				</p:column>
+			</cfw:dynamicDataTable>
+			<p:remoteCommand name="atualizarPesquisa"
+				actionListener="#{perfilPesquisarBean.pesquisar}"
+				update="@([id$=resultadoForm])" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

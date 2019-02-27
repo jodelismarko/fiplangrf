@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+
+		<sind:form id="crudForm">
+			<cfw:moldura titulo="Vincular Permissão"
+				icone="#{funcionalidadeVincularBean.modoIcon}">
+				<cfw:panelFloat>
+					<cfw:formInputText id="nome" labelValue="Nome"
+						containerWidth="Container40"
+						value="#{funcionalidadeVincularBean.funcionalidade.nome}"
+						maxlength="200" readonly="true" required="true" />
+				</cfw:panelFloat>
+
+				<div class="EmptyBox10"></div>
+
+				<p:remoteCommand name="updatePermissoes"
+					actionListener="#{funcionalidadeVincularBean.updatePermissoes()}"
+					update="#{p:component('tablePermissoes')}" immediate="true" />
+
+				<cfw:container containerWidth="Container100">
+					<p:outputPanel id="tablePermissoes">
+						<p:dataTable
+							value="#{funcionalidadeVincularBean.funcionalidade.permissoes}"
+							var="permissao" widgetVar="tblPerm">
+
+							<f:facet name="header">
+								<h:outputText value="Permissão" style="margin-right:5px;" />
+								<p:commandButton
+									onclick="return popup.openNoWaitStatus(#{perfilVincularBean.perfil.id})"
+									icon="fa fa-plus" styleClass="RaisedButton" />
+
+							</f:facet>
+
+							<p:column>
+								<f:facet name="header">#</f:facet>
+								<h:outputText value="#{permissao.id}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">Permissão</f:facet>
+								<h:outputText value="#{permissao.nome}"
+									style="white-space: normal;word-wrap: break-word;" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">Ação</f:facet>
+								<h:outputText value="#{permissao.action}"
+									style="white-space: normal;word-wrap: break-word;" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">Descrição</f:facet>
+								<h:outputText value="#{permissao.descricao}"
+									style="white-space: normal;word-wrap: break-word;" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">Tipo de Permissão</f:facet>
+								<h:outputText value="#{permissao.tipoPermissao.desc}" />
+							</p:column>
+
+							<p:column width="180" headerText="Ações">
+
+								<p:commandButton
+									action="#{funcionalidadeVincularBean.excluir(permissao)}"
+									icon="ui-icon-trash fa fa-trash white Fs14"
+									title="Excluir Permissão"
+									update="#{p:component('tablePermissoes')}">
+									<p:confirm header="Excluir Permissão"
+										message="Deseja realmente excluir esta permissão?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</cfw:container>
+			</cfw:moldura>
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton id="salvar"
+						action="#{funcionalidadeVincularBean.salvar}" value="Salvar"
+						update="@form" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{!funcionalidadeVincularBean.modoVisualizacao and !funcionalidadeVincularBean.modoExclusao}" />
+					<p:button value="Fechar" onclick="return parentPopupClose()"
+						icon="fa fa-close white Fs14" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+		<script>
+	popup.setPath("/dev/permissao/pesquisar/popup/#{funcionalidadeVincularBean.bufferKey}/#{funcionalidadeVincularBean.funcionalidade.id}");
+</script>
+	</ui:define>
+</ui:composition>

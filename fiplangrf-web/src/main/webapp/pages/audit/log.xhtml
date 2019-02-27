@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="contents">
+
+		<cfw:moldura titulo="Consultar Log do Sistema" icone="fa fa-search">
+		
+		<sind:form id="form">
+			<cfw:panel idPanel="panelFiltro" titulo="Filtro de Pesquisa">
+			
+				<cfw:panelFloat>	
+					<cfw:gridRow>					
+						<ui:decorate template="/WEB-INF/templates/formInput.xhtml">
+							<ui:param name="id" value="comboEntidades"/>
+							<ui:param name="label" value="Tabelas"/>
+							<ui:param name="containerWidth" value="Container20"/>
+							<ui:define name="input">
+								<p:selectOneMenu 
+								        filter="true" filterMatchMode="contains"
+										id="comboEntidades" 
+										value="#{pesquisarLogBean.className}" 
+										required="true">
+									<f:selectItem noSelectionOption="true" itemLabel="Selecione"/>
+									<f:selectItems  
+										var="item" 
+										value="#{pesquisarLogBean.listaClasses}" 
+										itemLabel="#{item.label}" 
+										itemValue="#{item.value}"/>
+								</p:selectOneMenu>
+							</ui:define>
+						</ui:decorate>
+						
+						<cfw:formInputNumber value="#{pesquisarLogBean.id}" 
+								containerWidth="Container20"
+								labelValue="ID Registro" 
+								decimalPlaces="0"
+								minValue="0"
+								thousandSeparator=""/>
+					</cfw:gridRow>
+					
+					<cfw:gridRow>
+						<cfw:formSelectOneMenu
+							containerWidth="Container20"
+							value="#{pesquisarLogBean.revisaoInicial}"
+							labelValue="Revisão Inicial" 
+							filter="true"
+							itemVar="item" 
+							itemsValue="#{pesquisarLogBean.listaRevisoes}" 
+							itemLabel="#{item}"
+							itemValue="#{item}">
+							<f:selectItem noSelectionOption="true" itemLabel="Selecione"/>
+						</cfw:formSelectOneMenu>
+						
+						<cfw:formSelectOneMenu
+							containerWidth="Container20"
+							value="#{pesquisarLogBean.revisaoFinal}"
+							labelValue="Revisão Final" 
+							filter="true"
+							itemVar="item" 
+							itemsValue="#{pesquisarLogBean.listaRevisoes}" 
+							itemLabel="#{item}"
+							itemValue="#{item}">
+							<f:selectItem noSelectionOption="true" itemLabel="Selecione"/>
+						</cfw:formSelectOneMenu>
+					</cfw:gridRow>		
+					
+					<cfw:gridRow>
+						<ui:decorate template="/WEB-INF/templates/formInput.xhtml">
+							<ui:param name="id" value="dataInicial"/>
+							<ui:param name="label" value="Data Inicial"/>
+							<ui:param name="containerWidth" value="Container20"/>
+							<ui:define name="input">
+								
+								<p:calendar id="dataInicial"								
+											mask="true"
+											showOn="button"
+											value="#{pesquisarLogBean.dataInicial}"
+											required="false"	
+											pattern="dd/MM/yyyy HH:mm:ss"/>
+							</ui:define>
+						</ui:decorate>
+
+						<ui:decorate template="/WEB-INF/templates/formInput.xhtml">
+							<ui:param name="id" value="dataFinal"/>
+							<ui:param name="label" value="Data Final"/>
+							<ui:param name="containerWidth" value="Container20"/>
+							<ui:define name="input">
+								
+								<p:calendar id="dataFinal"
+											mask="true"
+											showOn="button"
+											value="#{pesquisarLogBean.dataFinal}"
+											required="false"											
+											pattern="dd/MM/yyyy HH:mm:ss"/>
+							</ui:define>
+						</ui:decorate>						
+					</cfw:gridRow>
+					
+					<cfw:gridRow>
+						<ui:decorate template="/WEB-INF/templates/formInput.xhtml">
+							<ui:param name="id" value="cpf"/>
+							<ui:param name="label" value="CPF"/>
+							<ui:param name="containerWidth" value="Container20"/>
+							<ui:define name="input">
+								<p:inputMask id="cpf" 
+								  		mask="?999.999.999-99" value="#{pesquisarLogBean.cpf}"/>
+							</ui:define>
+						</ui:decorate>
+						
+						<ui:decorate template="/WEB-INF/templates/formInput.xhtml">
+							<ui:param name="id" value="nomeUsuario"/>
+							<ui:param name="label" value="Nome do usuário"/>
+							<ui:param name="containerWidth" value="Container20"/>
+							<ui:define name="input">
+								<p:inputText 
+										id="nomeUsuario" 
+										value="#{pesquisarLogBean.nomeUsuario}" 
+										required="false"/>									
+							</ui:define>
+						</ui:decorate>
+					</cfw:gridRow>
+					
+					<cfw:gridRow>
+						<ui:decorate template="/WEB-INF/templates/formInput.xhtml">
+							<ui:param name="id" value="comboTipoOperacao"/>
+							<ui:param name="label" value="Tipo de Operação"/>
+							<ui:param name="containerWidth" value="Container20"/>
+							<ui:define name="input">
+								<p:selectManyMenu 
+										id="comboTipoOperacao" 
+										value="#{pesquisarLogBean.operacoesSelecionadas}" 
+										required="false"										
+										showCheckbox="true">
+									<f:converter converterId="genericEnumConverter"/>
+									<f:selectItems  
+										var="item"
+										value="#{pesquisarLogBean.listaOperacoes}" 
+										itemLabel="#{item}"
+										itemValue="#{item}"/>
+								</p:selectManyMenu>
+							</ui:define>
+						</ui:decorate>
+					</cfw:gridRow>
+				</cfw:panelFloat>
+				<cfw:panelButtons>
+					<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+					
+						<p:commandButton id="pesquisar" actionListener="#{pesquisarLogBean.pesquisar}" 
+								update="@([id$=formResult]) @([id$=form])" process="@([id$=form])"
+								value="Pesquisar" icon="fa fa-search white Fs14" />
+			<p:defaultCommand target="pesquisar" />
+								
+						<p:commandButton id="limpar" actionListener="#{pesquisarLogBean.limpar}" 
+								update="@([id$=formResult]) @form" value="Limpar" 
+								icon="fa fa-eraser white Fs14" />
+					</p:outputPanel>
+				</cfw:panelButtons>				
+			</cfw:panel>
+						
+			<p:blockUI block="@([id$=panelFiltro])" trigger="#{p:component('pesquisar')}" />
+			
+		</sind:form>
+		<sind:form id="formResult">
+				<cfw:container containerWidth="Container100">
+					<p:outputPanel>
+						<p:dataTable id="dataTable" value="#{pesquisarLogBean.listaLog}"
+							scrollable="true"	
+							rows="10"
+							paginator="true" paginatorAlwaysVisible="true" var="log"
+							lazy="true" sortMode="single" reflow="true"
+							resizableColumns="true"
+							emptyMessage="Sem Registros"
+							paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+							currentPageReportTemplate="({startRecord} - {endRecord}      Total {totalRecords})"
+							rowsPerPageTemplate="5,10,15">
+							
+							<f:facet name="header">
+								<h:outputText value="Resultado da Consulta Log #{pesquisarLogBean.entityName}"/>
+							</f:facet>
+							
+							<p:column headerText="Revisão" style="white-space: normal;word-wrap: break-word;text-align:right;"
+								resizable="true" width="60px;">
+								
+								<p:commandLink value="#{log[1].id}" action="#{pesquisarLogBean.pesquisarByRevisao(log[1])}"
+									update="@([id$=formResult]) @([id$=form])"/>
+								
+							</p:column>
+							<p:column headerText="ID Registro" style="white-space: normal;word-wrap: break-word;text-align:right;" width="80px;">								
+								
+								<p:commandLink value="#{pesquisarLogBean.getValue(log[0], 'id')}" action="#{pesquisarLogBean.pesquisarById(log[0])}"
+									update="@([id$=formResult]) @([id$=form])"/>
+								
+							</p:column>
+							
+							<p:columns id="abc" value="#{pesquisarLogBean.criteriaLogApp.criteria.model.columns}" var="column"
+									   sortBy="#{column.sort}" columnIndexVar="colIndex" resizable="true"									    
+									   filterBy="#{column.property}" filterable="true" filterMatchMode="contains" width="#{column.width}">
+								<f:facet name="header">
+									<h:outputText value="#{column.header}" />
+								</f:facet>
+								<h:outputText
+									value="#{pesquisarLogBean.getValue(log[0], column.property)}"									
+									escape="false" style="white-space: normal;word-wrap: break-word;"/>
+							</p:columns>							
+							
+							<p:column headerText="CPF" style="white-space: normal;word-wrap: break-word;" width="120px;">
+								<h:outputText value="#{log[1].numeroCPFUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Usuário" style="white-space: normal;word-wrap: break-word;" width="150px;">
+								<h:outputText value="#{log[1].nomeUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Data/Hora" style="white-space:normal;word-wrap: break-word;text-align:center;" width="150px;">
+								<h:outputText value="#{log[1].dataOperacao}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+								</h:outputText>
+							</p:column>
+							
+							<p:column headerText="Operação" style="white-space: normal;word-wrap: break-word;text-align:center;" width="110px;">
+								<h:outputText value="#{log[2]}" />
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</cfw:container>
+				<cfw:container containerWidth="Container100">
+					<p:dataTable var="tabela" value="#{pesquisarLogBean.listaTabelasPorRev}" rendered="#{pesquisarLogBean.revisaoSelecionada}">
+						<f:facet name="header">
+							<h:outputText value="Entidades alteradas na revisão: #{pesquisarLogBean.revisaoInicial}" />
+						</f:facet>
+						<p:column headerText="Entidade">
+							<h:outputText value="#{tabela}"/>
+						</p:column>
+					</p:dataTable>
+				</cfw:container>
+			</sind:form>
+			
+		</cfw:moldura>
+
+	</ui:define>
+</ui:composition>

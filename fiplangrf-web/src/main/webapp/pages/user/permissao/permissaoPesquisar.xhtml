@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa" 
+	template="/WEB-INF/templates/main.xhtml">
+
+<ui:define name="contents">
+
+	<sind:form id="filtrosForm">
+
+		<cfw:dynamicFilter id="filter" model="#{permissaoPesquisarBean.criteria.model}" bean="#{permissaoPesquisarBean}" header="Filtro de Pesquisa de Permissão" />
+
+		<cfw:panelButtons>
+
+			<p:commandButton id="pesquisar" actionListener="#{permissaoPesquisarBean.pesquisar}" update="@([id$=resultadoForm])" value="Pesquisar" icon="fa fa-search white Fs14" />
+			<p:defaultCommand target="pesquisar" />
+			<p:commandButton id="limpar" actionListener="#{permissaoPesquisarBean.limpar}" update="@([id$=resultadoForm]) @form" value="Limpar" icon="fa fa-eraser white Fs14" />
+			<p:commandButton id="incluir" onclick="return setPathId('/dev/permissao/incluir', null)" value="Incluir" icon="fa fa-plus white Fs14" />
+
+		</cfw:panelButtons>
+
+	</sind:form>
+
+	<sind:form id="resultadoForm">
+
+		<cfw:dynamicDataTable id="datatable" model="#{permissaoPesquisarBean.criteria.model}" criteria="#{permissaoPesquisarBean.criteria}"
+			value="#{permissaoPesquisarBean.resultadoPesquisa}" header="Resultado de Pesquisa por Permissão">
+
+			<p:column width="130" headerText="Ações" id="action" exportable="false">
+
+				<p:button icon="ui-icon-file-text fa fa-file-text white Fs14" title="Visualizar Permissão"
+						  onclick="return setPathId('/dev/permissao/visualizar/#{entity.id}')"/>
+
+				<p:button icon="ui-icon-edit fa fa-pencil white Fs14" title="Alterar Permissão"
+						  onclick="return setPathId('/dev/permissao/alterar/#{entity.id}')"/>
+
+				<p:button icon="ui-icon-trash fa fa-trash white Fs14" title="Excluir Permissão" update="@([id$=resultadoForm])"
+						  onclick="return setPathId('/dev/permissao/excluir/#{entity.id}')"/>
+			</p:column>
+
+		</cfw:dynamicDataTable>
+		<p:remoteCommand name="atualizarPesquisa" actionListener="#{permissaoPesquisarBean.pesquisar}" update="@([id$=resultadoForm])" />
+	</sind:form>
+
+</ui:define>
+</ui:composition>

@@ -1,0 +1,94 @@
+/* componentes Custom */
+.imgCropperFileUpload > .ContainerIndent > .Container {
+	margin: 0 auto;
+	max-width: 100%;
+}
+.imgCropperFileUpload.noReadonly > .ContainerIndent > .Container {
+	min-width: 220px; /* tamanho minimo para no cortar os botoes alterar / remover */
+}
+.imgCropperFileUpload .imgPanel .ui-panel-content {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.imgCropperFileUpload .imgPanel i {
+	font-size: 100px;
+	color: #546e7a;
+	opacity: 0.75;
+}
+.imgCropperFileUpload .imgPanel .image {
+	max-width: 100%;
+}
+.imgCropperFileUpload .alterarBtn {
+	width: 50%;
+	margin: -1px 2px 0 -1px;
+}
+.imgCropperFileUpload .removerBtn {
+	width: 50%;
+	margin: -1px -1px 0 0;
+}
+.imgCropperFileUpload .alterarBtn.noResponsiveButton,
+.imgCropperFileUpload .removerBtn.noResponsiveButton {
+	max-width: 120px;
+}
+.imgCropperFileUpload .ui-dialog .ui-dialog-content {
+	width: 382px;
+}
+.imgCropperFileUpload .cropperPanel {
+	height: 380px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.imgCropperFileUpload .ui-fileupload .ui-fileupload-buttonbar {
+	display: inline-block;
+	padding: 0;
+}
+.imgCropperFileUpload .ui-fileupload button {
+	float: right;
+	margin-right: 0;
+	margin-left: 2px;
+}
+.imgCropperFileUpload .ui-fileupload .ui-fileupload-content {
+	padding: 0;
+}
+.imgCropperFileUpload .ui-fileupload .ui-fileupload-files {
+	display: none;
+}
+.imgCropperFileUpload .ui-fileupload .ui-messages .ui-messages-error {
+	margin-bottom: 0;
+}
+
+.messageDialog {
+	max-width: 500px;
+	word-break: break-word;
+}
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-info,
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-warn,
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-error,
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-fatal {
+	border: none;
+	margin: -10px;
+}
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-info-summary,
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-warn-summary,
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-error-summary,
+.messageDialog .ui-dialog-content .ui-messages .ui-messages-fatal-summary,
+.messageDialog .ui-dialog-content .ui-messages .ui-message-info-summary,
+.messageDialog .ui-dialog-content .ui-messages .ui-message-warn-summary,
+.messageDialog .ui-dialog-content .ui-messages .ui-message-error-summary,
+.messageDialog .ui-dialog-content .ui-messages .ui-message-fatal-summary {
+	margin-left: 0;
+	color: #444 !important;
+}
+.messageDialog .ui-dialog-content .ui-message {
+	display: flex;
+	align-items: center;
+}
+.messageDialog .ui-dialog-content .ui-message .icone {
+	padding: 0px 5px;
+}
+.messageDialog .ui-dialog-content .ui-message .texto {
+	padding: 10px;
+}

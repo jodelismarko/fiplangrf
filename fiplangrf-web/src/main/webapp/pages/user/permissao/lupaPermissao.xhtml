@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components" 
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa">
+
+			<p:panel id="#{campoId}panel">				
+				<cfw:panelFloat>
+					<cfw:formSelectOneMenu
+					id="#{campoId}"
+					labelValue="Permissão"
+					containerWidth="Container100"
+					value="#{lupaPermissaoBean.permissaoSelecionada}"
+					readonly="false"
+					itemsValue="#{lupaPermissaoBean.listaPermissao}"
+					itemLabel="#{item.nome}"
+					itemValue="#{item}"
+					converter="entityConverter"
+					required="false" />
+				</cfw:panelFloat>
+				<cfw:panelButtons>
+					<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+						<p:commandButton
+							value="Confirmar"
+							process="@([id$=#{campoId}panel])"
+							partialSubmit="true"
+							actionListener="#{lupaPermissaoBean.selectPermissaoFromDialog(basePesquisaBean)}">
+						</p:commandButton>
+					</p:outputPanel>
+				</cfw:panelButtons>				
+			</p:panel>
+</ui:component>

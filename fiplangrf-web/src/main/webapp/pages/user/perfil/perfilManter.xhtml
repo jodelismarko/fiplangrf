@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+		<sind:form id="crudForm">
+			<cfw:moldura titulo="#{perfilManterBean.modoDesc} Perfil de Acesso"
+				icone="#{perfilManterBean.modoIcon}">
+				<cfw:panelFloat>
+					<cfw:formInputText id="nome" labelValue="Descrição"
+						containerWidth="Container33"
+						value="#{perfilManterBean.perfil.descricao}" maxlength="200"
+						readonly="#{perfilManterBean.modoVisualizacao}" required="true" />
+
+					<cfw:formSelectOneMenu id="situacao" labelValue="Situação"
+						containerWidth="Container33"
+						value="#{perfilManterBean.perfil.situacao}"
+						readonly="#{!perfilManterBean.modoAlteracao}"
+						itemsValue="#{combosEnumHelperBean.dominioSituacao}"
+						itemLabel="#{item.desc}" itemValue="#{item}" required="false" />
+
+					<cfw:formCalendar labelValue="Data de Cadastro"
+						containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+						value="#{perfilManterBean.perfil.dataCriacao}"
+						rendered="#{perfilManterBean.modoAlteracao or perfilManterBean.modoExclusao or perfilManterBean.modoVisualizacao}"
+						readonly="true" required="true" />
+
+					<cfw:formCalendar labelValue="Data da Última Alteração"
+						containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+						value="#{perfilManterBean.perfil.dataAtualizacao}"
+						rendered="#{perfilManterBean.modoAlteracao or perfilManterBean.modoExclusao or perfilManterBean.modoVisualizacao}"
+						readonly="true" />
+				</cfw:panelFloat>
+
+				<div class="pickListContainer" >
+					<cfw:fieldDecorator labelValue="Permissões"
+						idComponent="funcionalidades" responsive="false"
+						disabled="#{perfilManterBean.modoVisualizacao}"
+						containerWidth="Container99 Responsive99">
+						<cfw:formPickList id="funcionalidades" converter="entityConverter"
+							containerWidth="Container99 Responsive99" styleClass="pickListStyle"
+							value="#{perfilManterBean.funcionalidadesPickList}" var="item"
+							itemValue="#{item}" labelValue="#{item.descricao}"
+							itemLabel="#{item.descricao}" sourceCaption="Disponível"
+							targetCaption="Selecionado" responsive="false"
+							disabled="#{perfilManterBean.modoVisualizacao}">
+							<p:ajax event="transfer"
+								listener="#{perfilManterBean.onTransferFuncionalidade}" />
+						</cfw:formPickList>
+					</cfw:fieldDecorator>
+				</div>
+			</cfw:moldura>
+
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton id="salvar"
+						actionListener="#{perfilManterBean.salvar}" value="Salvar"
+						icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton"
+						process="@([id$=crudForm])" update="@([id$=crudForm])"
+						onsuccess="window.parent.atualizarPesquisa()"
+						rendered="#{!perfilManterBean.modoVisualizacao and !perfilManterBean.modoExclusao}" />
+
+					<p:commandButton id="alterar" action="pretty:alterarPerfil"
+						value="Alterar" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton" process="@([id$=crudForm])"
+						update="@([id$=crudForm])"
+						rendered="#{perfilManterBean.modoVisualizacao and !perfilManterBean.modoExclusao}" />
+
+					<p:commandButton id="excluir" action="#{perfilManterBean.excluir}"
+						value="Excluir" icon="fa fa-check white Fs14" update="@form"
+						styleClass="ResponsiveButton"
+						rendered="#{perfilManterBean.modoExclusao}">
+						<p:confirm header="#{helperBean.mensagemHeaderExclusao}"
+							message="#{helperBean.mensagemConfirmarExclusao}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton id="limpar"
+						actionListener="#{perfilManterBean.limpar}" value="Limpar"
+						process="@this" update="@([id$=crudForm])" resetValues="true"
+						icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton"
+						rendered="#{perfilManterBean.id eq null and !perfilManterBean.modoExclusao}" />
+
+					<p:button id="novaPesquisa" value="Nova Pesquisa"
+						rendered="#{perfilManterBean.modoVisualizacao and !perfilManterBean.modoExclusao}"
+						onclick="return parentPopupClose()"
+						icon="fa fa-mail-reply white Fs14" />
+
+					<p:commandButton id="cancelarEdicao" value="Cancelar"
+						rendered="#{perfilManterBean.modoAlteracao}"
+						action="pretty:visualizarPerfil" icon="fa fa-close white Fs14" />
+
+					<p:button id="cancelarExclusao" value="Cancelar"
+						rendered="#{perfilManterBean.modoExclusao or perfilManterBean.modoInclusao}"
+						onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+
+					<p:button id="historico"
+						onclick="return setPathId('/perfil/visualizarHistorico',#{perfilManterBean.perfil.id})"
+						value="Histórico" icon="fa fa-clock-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{!perfilManterBean.modoInclusao and !perfilManterBean.modoExclusao and !perfilManterBean.modoAlteracao}" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>br.gov.mt.cepromat.ceprofw</groupId>
+		<artifactId>cepro-fw-dependencies</artifactId>
+		<version>5.0.3-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.gov.mt.mti.fiplangrf</groupId>
+	<artifactId>fiplangrf</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>fiplangrf - Parent Project</name>
+
+	<properties>
+		<version.jboss.app>6</version.jboss.app>
+		<br.gov.mt.cepromat.ceprofw.version>5.0.3-SNAPSHOT</br.gov.mt.cepromat.ceprofw.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<deltaspike.version>1.6.1</deltaspike.version>
+		<cepro.security.version>2.0.1</cepro.security.version>
+	</properties>
+
+	<scm>
+		<url>http://github.mtifw.infovia-mt/mtifw/mtifw</url>
+		<connection>scm:git:http://github.mtifw.infovia-mt/mtifw/mtifw.git</connection>
+		<developerConnection>scm:git:http://github.mtifw.infovia-mt/mtifw/mtifw.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<dependencies>
+
+		<!-- Java EE -->
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.2.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+		<dependency>
+			<artifactId>slf4j-api</artifactId>
+			<groupId>org.slf4j</groupId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+
+	</dependencies>
+
+	<profiles>
+
+		<profile>
+			<id>desenvolvimento</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<ambiente.identificador>des</ambiente.identificador>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>integracao</id>
+			<properties>
+				<ambiente.identificador>int</ambiente.identificador>
+				<wildfly-username>admingci</wildfly-username>
+				<wildfly-password>123456</wildfly-password>
+				<wildfly-hostname>192.168.0.229</wildfly-hostname>
+				<wildfly-portname>20190</wildfly-portname>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>homologacao</id>
+			<properties>
+				<ambiente.identificador>hom</ambiente.identificador>
+				<wildfly-username>admingci</wildfly-username>
+				<wildfly-password>123456</wildfly-password>
+				<wildfly-hostname>192.168.0.229</wildfly-hostname>
+				<wildfly-portname>20090</wildfly-portname>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>producao</id>
+			<properties>
+				<ambiente.identificador>prd</ambiente.identificador>
+				<wildfly-username>usuario</wildfly-username>
+				<wildfly-password>senha</wildfly-password>
+				<wildfly-hostname>localhost</wildfly-hostname>
+				<wildfly-portname>9990</wildfly-portname>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>homologacao-topetinho-canela</id>
+			<properties>
+				<ambiente.identificador>hom</ambiente.identificador>
+				<wildfly-username>usuario</wildfly-username>
+				<wildfly-password>senha</wildfly-password>
+				<wildfly-hostname>192.168.0.163</wildfly-hostname>
+				<wildfly-portname>19990</wildfly-portname>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>homologacao-topetinho-vermelho</id>
+			<properties>
+				<ambiente.identificador>hom</ambiente.identificador>
+				<wildfly-username>usuario</wildfly-username>
+				<wildfly-password>senha</wildfly-password>
+				<wildfly-hostname>192.168.0.162</wildfly-hostname>
+				<wildfly-portname>19990</wildfly-portname>
+			</properties>
+		</profile>
+
+
+	</profiles>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>br.gov.mt.mti.fiplangrf</groupId>
+				<artifactId>fiplangrf-web</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+				<type>war</type>
+			</dependency>
+
+			<dependency>
+				<groupId>br.gov.mt.mti.fiplangrf</groupId>
+				<artifactId>fiplangrf-service</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+				<type>ejb</type>
+			</dependency>
+
+			<dependency>
+				<groupId>br.gov.mt.mti.fiplangrf</groupId>
+				<artifactId>fiplangrf-model</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>br.gov.mt.mti.fiplangrf</groupId>
+				<artifactId>fiplangrf-common</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<arguments>-Dmaven.javadoc.skip=true</arguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>br.gov.mt.cepromat.ceprofw.generator</groupId>
+				<artifactId>cepro-fw-generator</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.1.0.Alpha11</version>
+				<configuration>
+					<username>${wildfly-username}</username>
+					<password>${wildfly-password}</password>
+					<hostname>${wildfly-hostname}</hostname>
+					<port>${wildfly-portname}</port>
+
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+  <modules>
+    <module>fiplangrf-app</module>
+    <module>fiplangrf-common</module>
+    <module>fiplangrf-model</module>
+    <module>fiplangrf-service</module>
+    <module>fiplangrf-web</module>
+  </modules>
+</project>

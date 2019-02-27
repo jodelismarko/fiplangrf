@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	xmlns:sec="http://www.springframework.org/security/tags" 
+	template="/WEB-INF/templates/main.xhtml">
+
+<ui:define name="contents">
+
+	<sind:form id="filtrosForm">
+
+		<cfw:dynamicFilter id="filter" model="#{funcionalidadePesquisarBean.criteria.model}" bean="#{funcionalidadePesquisarBean}" header="Filtro de Pesquisa de Funcionalidade" />
+
+		<cfw:panelButtons>
+
+			<p:commandButton id="pesquisar" actionListener="#{funcionalidadePesquisarBean.pesquisar}" update="@([id$=resultadoForm])" value="Pesquisar" icon="fa fa-search white Fs14" />
+			<p:defaultCommand target="pesquisar" />
+			<p:commandButton id="limpar" actionListener="#{funcionalidadePesquisarBean.limpar}" update="@([id$=resultadoForm]) @form" value="Limpar" icon="fa fa-eraser white Fs14" />
+			<p:commandButton id="incluir" onclick="return setPathId('/funcionalidade/incluir', null)" value="Incluir" icon="fa fa-plus white Fs14" />
+
+		</cfw:panelButtons>
+
+	</sind:form>
+
+	<sind:form id="resultadoForm">
+
+		<cfw:dynamicDataTable id="datatable" model="#{funcionalidadePesquisarBean.criteria.model}" criteria="#{funcionalidadePesquisarBean.criteria}"
+			value="#{funcionalidadePesquisarBean.resultadoPesquisa}" header="Resultado de Pesquisa por Funcionalidade">
+
+			<p:column width="180" headerText="Ações" id="action" exportable="false">
+
+				<p:button icon="ui-icon-file-text fa fa-file-text white Fs14" title="Visualizar Funcionalidade"
+						  onclick="return setPathId('/funcionalidade/visualizar/#{entity.id}')"/>                    
+
+				<p:button icon="ui-icon-edit fa fa-pencil white Fs14" title="Alterar Funcionalidade"
+                          onclick="return setPathId('/funcionalidade/alterar/#{entity.id}')"/> 
+
+				<p:button icon="ui-icon-trash fa fa-trash white Fs14" title="Excluir Funcionalidade"
+						  onclick="return setPathId('/funcionalidade/excluir/#{entity.id}')"/>
+                
+                <p:button icon="ui-icon-edit fa fa-chain white Fs14" title="Vincular Permissão"
+                		  onclick="return setPathId('/dev/funcionalidade/vincular/#{entity.id}')"/>
+			</p:column>
+
+		</cfw:dynamicDataTable>
+		<p:remoteCommand name="atualizarPesquisa" actionListener="#{funcionalidadePesquisarBean.pesquisar}" update="@([id$=resultadoForm])" />
+	</sind:form>
+
+</ui:define>
+</ui:composition>

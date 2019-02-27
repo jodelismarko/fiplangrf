@@ -1,0 +1,28 @@
+<ui:composition 
+
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components">
+
+
+    <!-- FOOTER  -->
+	<div id="layout-footer">
+		<div class="Container100">
+			<div class="ContainerIndent">
+				<div class="Card">
+					<div id="divVersao">Versão: #{appInfoBean.version} - #{appInfoBean.buildTime}</div>
+					<div id="divDesenv">
+						<span style="margin-right: 7px;">Desenvolvido por:</span>
+						<a href="http://www.mti.mt.gov.br" target="_blank">
+							<h:graphicImage name="images/texto-mti-branco.svg" id="logoMTI" library="adamantium-layout" height="40px" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>

@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa">
+
+
+	<p:dialog id="dlgFormEncerramentoPendencia" modal="true" width="90%"
+		responsive="true" widgetVar="dlgFormEncerramentoPendencia"
+		draggable="false" resizable="false">
+		<cfw:panel idPanel="panelEncerramentoPendencia" focus="false"
+			titulo="Encerramento Pendência" icone="">
+			<cfw:panelFloat showMessage="false">
+				<p:messages id="idMessageFormEncerramentoPendencia"
+					style="padding:0px 10px;" />
+
+				<cfw:formInputTextArea labelValue="Descrição" responsive="false"
+					value="#{manterOcorrenciaBean.encerramentoPendencia.descricao}"
+					readonly="#{!((manterOcorrenciaBean.modoOperacao eq 'INCLUSAO' or manterOcorrenciaBean.modoOperacao eq 'ALTERACAO') and manterOcorrenciaBean.ocorrencia.situacaoEmAnalise and manterOcorrenciaBean.encerramentoPendencia.id eq null)}"
+					containerWidth="Container100" maxlength="2000" />
+
+				<cfw:container containerWidth="Container100">
+					<p:dataTable id="tableAnexoEncerramentoPendencia"
+						emptyMessage="Sem Registros" var="anexo"
+						value="#{manterOcorrenciaBean.encerramentoPendencia.anexos}">
+
+						<f:facet name="header">
+							<h:outputText value="Documentos Anexos" />
+						</f:facet>
+
+						<p:column headerText="Data" width="140">
+							<h:outputText value="#{anexo.dataCriacao}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="Usuário"
+							style="white-space: normal; word-wrap: break-word;">
+							<h:outputText value="#{anexo.usuario.fiplanUsuario.nome}" />
+						</p:column>
+
+						<p:column headerText="Anexo"
+							style="white-space: normal; word-wrap: break-word;">
+							<h:outputText value="#{anexo.descricao}" />
+						</p:column>
+
+						<p:column width="90" headerText="Ações">
+							<center>
+								<p:commandButton id="downloadAnexo" immediate="true"
+									ajax="false" icon="ui-icon-edit fa fa-download white Fs10"
+									onclick="PrimeFaces.monitorDownload(start, stop);"
+									title="Download Anexo"
+									actionListener="#{manterOcorrenciaBean.anexoBeanHelper.downloadAnexo(anexo)}">
+									<p:fileDownload
+										value="#{manterOcorrenciaBean.anexoBeanHelper.file}" />
+								</p:commandButton>
+
+								<p:commandButton icon="fa fa-trash white Fs10"
+									action="#{manterOcorrenciaBean.removerAnexoEncerramentoPendencia(anexo)}"
+									process="@([id$=tableAnexoEncerramentoPendencia])"
+									update="@([id$=tableAnexoEncerramentoPendencia]) @([id$=dlgConfirmAnexo])"
+									rendered="#{(manterOcorrenciaBean.modoOperacao eq 'INCLUSAO' or manterOcorrenciaBean.modoOperacao eq 'ALTERACAO') and anexo.id eq null}">
+									<p:confirm header="Excluir Anexo"
+										message="Deseja realmente excluir o anexo?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</center>
+						</p:column>
+					</p:dataTable>
+					<div class="ui-grid-row">
+						<!-- 20971520 = 20 Megabyte	-->
+						<p:fileUpload id="fileuploadAnexo" label="Anexar"
+							cancelLabel="Cancelar" widgetVar="fileuploadAnexo"
+							styleClass="ui-icon-cloud-upload Container100 Responsive100"
+							process="@form" sizeLimit="20971520" auto="true" immediate="true"
+							invalidSizeMessage="Tamanho máximo permitido 20MB "
+							invalidFileMessage="Anexar apenas arquivo do tipo PDF ou Excel"
+							multiple="true" allowTypes="/(\.|\/)(pdf|xls|xlsx)$/"
+							fileUploadListener="#{manterOcorrenciaBean.uploadAnexoEncerramentoPendencia}"
+							rendered="#{(manterOcorrenciaBean.modoOperacao eq 'INCLUSAO' or manterOcorrenciaBean.modoOperacao eq 'ALTERACAO') and manterOcorrenciaBean.ocorrencia.situacaoEmAnalise and manterOcorrenciaBean.medidaIntermediaria.id eq null}"
+							update="@([id$=tableAnexoEncerramentoPendencia])" />
+					</div>
+				</cfw:container>
+
+				<cfw:formSelectOneMenu id="situacaoEncerramentoPendencia"
+					labelValue="Situação" containerWidth="Container33"
+					value="#{manterOcorrenciaBean.encerramentoPendencia.situacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacao}"
+					itemLabel="#{item.desc}" itemValue="#{item}" itemVar="item"
+					readonly="#{!(manterOcorrenciaBean.modoOperacao eq 'ALTERACAO' and manterOcorrenciaBean.ocorrencia.situacaoEmAnalise)}"
+					required="false" />
+
+				<cfw:formCalendar labelValue="Data de Cadastro"
+					containerWidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+					value="#{manterOcorrenciaBean.encerramentoPendencia.dataCriacao}"
+					rendered="#{manterOcorrenciaBean.modoOperacao ne 'INCLUSAO'}"
+					readonly="true" required="true" />
+
+				<cfw:formCalendar labelValue="Data da Última Alteração"
+					containerWidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+					value="#{manterOcorrenciaBean.encerramentoPendencia.dataAtualizacao}"
+					rendered="#{manterOcorrenciaBean.modoOperacao ne 'INCLUSAO'}"
+					readonly="true" />
+			</cfw:panelFloat>
+
+			<cfw:panelButtons id="buttons">
+				<p:outputPanel id="molduraBotoesAnexo"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+
+					<p:commandButton value="Concluir"
+						actionListener="#{manterOcorrenciaBean.closeEncerramentoPendencia}"
+						process="@([id$=dlgFormEncerramentoPendencia])"
+						update="@([id$=panelEncerramentoPendencia]) @([id$=tableEncerramentoPendencia]) @([id$=idMessageFormEncerramentoPendencia])"
+						icon="fa fa-plus white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterOcorrenciaBean.modoOperacao eq 'ALTERACAO' and manterOcorrenciaBean.ocorrencia.situacaoEmAnalise}"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()">
+					</p:commandButton>
+
+					<p:commandButton value="Concluir"
+						actionListener="#{manterOcorrenciaBean.incluirEncerramentoPendencia}"
+						process="@([id$=dlgFormEncerramentoPendencia])"
+						update="@([id$=panelEncerramentoPendencia]) @([id$=tableEncerramentoPendencia]) @([id$=idMessageFormEncerramentoPendencia])"
+						icon="fa fa-plus white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterOcorrenciaBean.modoOperacao eq 'INCLUSAO' and manterOcorrenciaBean.ocorrencia.situacaoEmAnalise}"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()" />
+					
+					<p:commandButton value="Limpar"
+						actionListener="#{manterOcorrenciaBean.limparEncerramentoPendencia}"
+						process="@([id$=dlgFormEncerramentoPendencia])"
+						update="@([id$=panelEncerramentoPendencia]) @([id$=tableEncerramentoPendencia]) @([id$=idMessageFormEncerramentoPendencia])"
+						icon="fa fa-plus white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterOcorrenciaBean.modoOperacao eq 'INCLUSAO' and manterOcorrenciaBean.ocorrencia.situacaoEmAnalise}"
+						onstart="showWaitStatus()" oncomplete="hideWaitStatus()" />
+
+					<p:commandButton value="Cancelar" title="Cancelar" process="@this"
+						update="@([id$=dlgFormEncerramentoPendencia])"
+						actionListener="#{manterOcorrenciaBean.closeEncerramentoPendencia}"
+						icon="fa fa-close white Fs14" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+		</cfw:panel>
+	</p:dialog>
+</ui:composition>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components">
+	<p:confirmDialog id="dlgConfirm" global="true" showEffect="fade"
+		hideEffect="fade" widgetVar="dlgConfirm" responsive="true">
+
+		<cfw:panelButtons id="buttons">
+			<p:outputPanel id="molduraBotoesConfirmar"
+				styleClass="ui-ceprofw-panel-botoes" layout="block">
+
+				<p:commandButton value="Confirmar" type="button"
+					styleClass="ResponsiveButton ui-confirmdialog-yes Fleft"
+					icon="ui-icon-check fa fa-check white Fs14" />
+
+				<p:commandButton value="Cancelar" type="button"
+					styleClass="ResponsiveButton ui-confirmdialog-no Fleft"
+					icon="ui-icon-check fa fa-mail-reply white Fs14" />
+
+			</p:outputPanel>
+		</cfw:panelButtons>
+
+	</p:confirmDialog>
+</ui:composition>

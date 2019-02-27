@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+		<sind:form id="crudForm">
+			<cfw:moldura
+				titulo="#{manterTipoOcorrenciaBean.modoDesc} Tipo Ocorrência"
+				icone="#{manterTipoOcorrenciaBean.modoIcon}">
+				<cfw:panelFloat>
+					<cfw:formInputText id="descricao" labelValue="Descrição"
+						containerWidth="Container33"
+						value="#{manterTipoOcorrenciaBean.tipoOcorrencia.descricao}"
+						maxlength="100"
+						readonly="#{!manterTipoOcorrenciaBean.modoInclusao}"
+						required="true" />
+
+					<cfw:formSelectOneMenu id="situacao" labelValue="Situação"
+						containerWidth="Container33"
+						disabled="#{manterTipoOcorrenciaBean.modoInclusao}"
+						value="#{manterTipoOcorrenciaBean.tipoOcorrencia.situacao}"
+						itemsValue="#{combosEnumHelperBean.dominioSituacao}"
+						itemLabel="#{item.desc}" itemValue="#{item}"
+						readonly="#{!manterTipoOcorrenciaBean.modoAlteracao}"
+						required="true" />
+
+					<cfw:formCalendar labelValue="Data de Cadastro"
+						containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+						value="#{manterTipoOcorrenciaBean.tipoOcorrencia.dataCriacao}"
+						rendered="#{manterTipoOcorrenciaBean.modoAlteracao or manterTipoOcorrenciaBean.modoExclusao or manterTipoOcorrenciaBean.modoVisualizacao}"
+						readonly="true" required="true" />
+
+					<cfw:formCalendar labelValue="Data da Última Alteração"
+						containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+						value="#{manterTipoOcorrenciaBean.tipoOcorrencia.dataAtualizacao}"
+						rendered="#{manterTipoOcorrenciaBean.modoAlteracao or manterTipoOcorrenciaBean.modoExclusao or manterTipoOcorrenciaBean.modoVisualizacao}"
+						readonly="true" />
+				</cfw:panelFloat>
+			</cfw:moldura>
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton id="salvar"
+						actionListener="#{manterTipoOcorrenciaBean.salvar}" value="Salvar"
+						icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton"
+						process="@([id$=crudForm])" update="@([id$=crudForm])"
+						rendered="#{!manterTipoOcorrenciaBean.modoVisualizacao and !manterTipoOcorrenciaBean.modoExclusao}" />
+
+					<p:commandButton id="alterar" action="pretty:alterarTipoOcorrencia"
+						value="Alterar" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton" process="@([id$=crudForm])"
+						update="@([id$=crudForm])"
+						rendered="#{manterTipoOcorrenciaBean.modoVisualizacao and !manterTipoOcorrenciaBean.modoExclusao}" />
+
+					<p:commandButton id="excluir"
+						action="#{manterTipoOcorrenciaBean.excluir}" value="Excluir"
+						icon="fa fa-check white Fs14" update="@form"
+						styleClass="ResponsiveButton"
+						rendered="#{manterTipoOcorrenciaBean.modoExclusao}">
+						<p:confirm header="#{helperBean.mensagemHeaderExclusao}"
+							message="#{helperBean.mensagemConfirmarExclusao}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton id="limpar"
+						actionListener="#{manterTipoOcorrenciaBean.limpar}" value="Limpar"
+						process="@this" update="@([id$=crudForm])" resetValues="true"
+						icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterTipoOcorrenciaBean.id eq null and !manterTipoOcorrenciaBean.modoExclusao}" />
+
+					<p:button id="novaPesquisa" value="Nova Pesquisa"
+						rendered="#{manterTipoOcorrenciaBean.modoVisualizacao and !manterTipoOcorrenciaBean.modoExclusao}"
+						onclick="return parentPopupClose()"
+						icon="fa fa-mail-reply white Fs14" />
+
+					<p:commandButton id="cancelarEdicao" value="Cancelar"
+						rendered="#{manterTipoOcorrenciaBean.modoAlteracao}"
+						action="pretty:visualizarTipoOcorrencia"
+						icon="fa fa-close white Fs14" />
+
+					<p:button id="cancelarExclusao" value="Cancelar"
+						rendered="#{manterTipoOcorrenciaBean.modoExclusao or manterTipoOcorrenciaBean.modoInclusao}"
+						onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+						
+					<p:button id="historico"
+						onclick="return setPathId('/tipoocorrencia/visualizarHistorico',#{manterTipoOcorrenciaBean.tipoOcorrencia.id})"
+						value="Histórico" icon="fa fa-clock-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{!manterTipoOcorrenciaBean.modoInclusao and !manterTipoOcorrenciaBean.modoAlteracao and !manterTipoOcorrenciaBean.modoExclusao}" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

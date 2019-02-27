@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa" 
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{usuarioManterBean.modoDesc} Usuário" icone="#{usuarioManterBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formInputText					
+					id="login"
+					labelValue="Login"
+					containerWidth="Container33"
+					value="#{usuarioManterBean.usuario.login}"
+					maxlength="20"					
+					readonly="true" />
+	
+				<cfw:formInputText
+					id="nome"
+					labelValue="Nome"
+					containerWidth="Container33"
+					value="#{usuarioManterBean.usuario.nome}"
+					maxlength="60"
+					readonly="true" />
+					
+				<cfw:formInputCPF
+					id="cpf"
+					labelValue="CPF"
+					containerWidth="Container33"
+					value="#{usuarioManterBean.usuario.cpf}"
+					maxlength="20"
+					disabled="#{usuarioManterBean.modoVisualizacao}"
+					required="true" />
+	
+				<cfw:formInputText
+					id="email"
+					labelValue="E-mail"
+					containerWidth="Container33"
+					value="#{usuarioManterBean.usuario.email}"
+					maxlength="120"
+					disabled="#{usuarioManterBean.modoVisualizacao}"
+					required="false" />
+					
+				</cfw:panelFloat>
+				  
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">				
+				<p:button value="Fechar" title="Visualização de Usuário" onclick="return window.parent.popup.close()"></p:button>
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+
+</ui:define>
+</ui:composition>

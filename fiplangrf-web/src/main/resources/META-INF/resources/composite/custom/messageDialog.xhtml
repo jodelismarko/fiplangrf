@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:component xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components">
+
+	<cc:interface>
+		<cc:attribute name="widgetVar" required="true" />
+		<cc:attribute name="header" required="false" default="Mensagem" />
+		<cc:attribute name="icone" required="false" />
+		<cc:attribute name="textoMensagem" required="false" />
+		<cc:attribute name="onclickButton" required="false" />
+		<cc:attribute name="visible" required="false" default="false" />
+	</cc:interface>
+
+	<cc:implementation>
+		<h:outputStylesheet library="css" name="components.css" />
+		<p:dialog id="dlg" widgetVar="#{cc.attrs.widgetVar}" modal="true" closable="false" draggable="false" resizable="false"
+					responsive="true" visible="#{cc.attrs.visible}" header="#{cc.attrs.header}" styleClass="messageDialog">
+			<p:messages id="msg" autoUpdate="false" rendered="#{cc.attrs.icone == null and cc.attrs.textoMensagem == null}" />
+			<div class="ui-message">
+				<h:outputText class="icone #{cc.attrs.icone}" rendered="#{cc.attrs.icone != null}" />
+				<h:outputText class="texto" rendered="#{cc.attrs.textoMensagem != null}" value="#{cc.attrs.textoMensagem}" escape="false" />
+			</div>
+			<f:facet name="footer">
+				<p:button id="btn" value="Fechar" onclick="#{cc.attrs.onclickButton}" />
+			</f:facet>
+		</p:dialog>
+	</cc:implementation>
+</ui:component>

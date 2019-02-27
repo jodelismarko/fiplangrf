@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="contents">
+		<style>
+			.centerFlex{
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				height: 158px;
+				padding: 10px 0 10px 10px;
+			}
+			@media (max-width: 960px) and (min-width: 640px) {
+				.centerFlex{
+					height: 138px;
+				}
+			}
+			@media (max-width: 640px) {
+				.centerFlex {
+					height: auto;
+					padding: 5px 10px;
+				}
+				.Fs17 {
+					font-size: 15px !important;
+				}
+			}
+		</style>
+		<sind:form id="crudForm">
+			<cfw:moldura titulo="#{usuarioAlterarSenhaBean.modoDesc} Senha" icone="#{usuarioAlterarSenhaBean.modoIcon}">
+					<cfw:panelFloat>
+						<cfw:formInputText id="login" labelValue="Login"
+							containerWidth="Container20"
+							value="#{usuarioAlterarSenhaBean.usuario.login}" maxlength="20"
+							readonly="true" />
+	
+						<cfw:formInputText id="nome" labelValue="Nome"
+							containerWidth="Container80"
+							value="#{usuarioAlterarSenhaBean.usuario.nome}" maxlength="60"
+							readonly="true" />
+	
+						<cfw:formInputCPF id="cpf" labelValue="CPF"
+							containerWidth="Container30"
+							value="#{usuarioAlterarSenhaBean.usuario.cpf}" maxlength="20"
+							readonly="true" />
+	
+						<cfw:formInputText id="email" labelValue="E-mail"
+							containerWidth="Container40"
+							value="#{usuarioAlterarSenhaBean.usuario.email}" maxlength="120"
+							readonly="true" />
+	
+						<cfw:formInputText id="situacao" labelValue="Situação"
+							containerWidth="Container30"
+							value="#{usuarioAlterarSenhaBean.usuario.situacao.desc}"
+							readonly="true" />
+
+					</cfw:panelFloat>
+					<cfw:separator />
+					<cfw:container containerWidth="Container40" responsive="true" styleClass="ShowOnDesktop" />
+					<cfw:container containerWidth="Container40" responsive="true" style="float:right">
+						<div class="centerFlex">
+							<div>
+								<span class="FontAdamantiumBold Fs17 DispBlock Blue">A senha deve ter:</span>
+								<div class="EmptyBox10"></div>
+								<span class="DispBlock">- no mínimo 8 caracteres.</span>
+								<span class="DispBlock">- no mínimo um número.</span>
+								<span class="DispBlock">- no mínimo uma letra maiúscula.</span>
+								<span class="DispBlock">- no mínimo um caractere especial.</span>
+							</div>
+						</div>
+					</cfw:container>
+					<cfw:panelFloat showMessage="false" containerWidth="Container20" responsive="true" style="float:right">
+						<cfw:formInputPassword id="senhaAtual" labelValue="Senha atual"
+							containerWidth="Container100" responsive="false"
+							value="#{usuarioAlterarSenhaBean.senhaAtual}" maxlength="120"
+							disabled="#{usuarioAlterarSenhaBean.modoVisualizacao}"
+							required="true" feedback="false" />
+						<cfw:formInputPassword id="senha1" labelValue="Nova senha"
+							containerWidth="Container100" responsive="false"
+							value="#{usuarioAlterarSenhaBean.senha1}" maxlength="120"
+							disabled="#{usuarioAlterarSenhaBean.modoVisualizacao}"
+							required="true" minlength="8"
+							promptLabel="Entre com a nova senha" />
+						<cfw:formInputPassword id="senha2" labelValue="Confirme sua senha"
+							containerWidth="Container100" responsive="false"
+							value="#{usuarioAlterarSenhaBean.senha2}" maxlength="120"
+							disabled="#{usuarioAlterarSenhaBean.modoVisualizacao}"
+							required="true" minlength="8" promptLabel="Confirme a nova senha" />
+					</cfw:panelFloat>
+			</cfw:moldura>
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton id="salvar"
+						action="#{usuarioAlterarSenhaBean.salvar}" value="Salvar"
+						update="@form" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{!usuarioAlterarSenhaBean.modoVisualizacao and !usuarioAlterarSenhaBean.modoExclusao}" />
+					<p:commandButton id="Fechar" action="pretty:home" value="Fechar"
+						update="@form" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{usuarioAlterarSenhaBean.modoVisualizacao and !usuarioAlterarSenhaBean.modoExclusao}" />
+					<p:commandButton id="cancelar" action="pretty:home"
+						value="Cancelar" immediate="true"
+						icon="fa fa-mail-reply white Fs14" styleClass="ResponsiveButton"
+						rendered="#{usuarioAlterarSenhaBean.id ne null and (not usuarioAlterarSenhaBean.modoVisualizacao)}" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+		</sind:form>
+
+	</ui:define>
+</ui:composition>

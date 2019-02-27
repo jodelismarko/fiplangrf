@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cabecalho" pageWidth="471" pageHeight="842" whenNoDataType="BlankPage" columnWidth="471" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Error" uuid="b5730ffa-c405-4063-a234-e1be79f6dbf1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Adapter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+	"TB_PARAMETROS_SISTEMA"."CABECALHO_RELATORIOS"
+FROM "TB_PARAMETROS_SISTEMA"]]>
+	</queryString>
+	<field name="CABECALHO_RELATORIOS" class="java.lang.String"/>
+	<detail>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="471" height="54" uuid="e2e1b516-04f0-49b3-93d1-02b364e0b98c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CABECALHO_RELATORIOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

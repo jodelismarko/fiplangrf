@@ -1,0 +1,71 @@
+<ui:composition 
+
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    
+    <!-- TOPBAR START -->
+    <div id="layout-topbar">
+        <a id="menu-button" class="Animated1">
+            <span id="menuline1" class="Animated05"></span>
+            <span id="menuline2" class="Animated05"></span>
+            <span id="menuline3" class="Animated05"></span>
+        </a>
+        
+       <!--  #{initParam['javax.faces.PROJECT_STAGE']} -->
+        <a href="#{request.contextPath}/home">
+            <h:graphicImage name="images/logo-branco.png" id="logo" library="adamantium-layout" />
+        </a>
+        
+        <a id="topmenu-button" class="Animated1">
+        	<i class="icon-list2"></i>
+        </a>
+        
+        <ul id="top-menu">
+             <!-- <li>
+                <a class="menulink Animated05 mostrarTexto semLink">
+                	<i class="icon-user"></i>
+                	<span><h:outputText value="#{usuarioLogado.nome}"/></span>
+                </a>
+             </li> -->
+             <li id="usuario-logado-topmenu">
+                 <a class="usuario-logado">
+                     <span class="profile-image-wrapper">
+                         <p:graphicImage value="#{menuBean.imagemPerfil}" cache="false" />
+                     </span>
+                     <span><h:outputText value="#{usuarioLogado.nomeSobrenome}"/></span>
+                 </a>
+             </li>
+             <li>
+                <a class="menulink Animated05 mostrarTexto" href="#{request.contextPath}/sys/logout">
+                	<i class="fa fa-sign-out"></i>
+                	<span>Sair</span>
+                </a>
+             </li>
+        </ul>
+        
+        <div id="ambiente"></div>
+        
+        <div id="usuario-logado-topbar">
+            <a class="usuario-logado">
+                <span class="profile-image-wrapper">
+                    <p:graphicImage value="#{menuBean.imagemPerfil}" cache="false" />
+                </span>
+                <span><h:outputText value="#{usuarioLogado.nomeSobrenome}"/></span>
+            </a>
+        </div>
+    </div>
+    <!-- TOPBAR END -->
+    
+	<script>
+		var ambiente = "#{applicationScope.ambiente}";
+		if (ambiente == "int") {
+			$("#ambiente").addClass('integra');
+		} else if (ambiente == "hom") {
+			$("#ambiente").addClass('homologa');
+		}
+	</script>
+</ui:composition>

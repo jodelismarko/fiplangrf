@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="contents">
+		<sind:form id="filtrosForm">
+
+			<cfw:dynamicFilter id="filter"
+				model="#{pesquisarNaturezaJuridicaBean.criteria.model}"
+				bean="#{pesquisarNaturezaJuridicaBean}"
+				header="Filtro de Pesquisa de Natureza Jurídica" />
+
+			<cfw:panelButtons>
+				<p:commandButton id="pesquisar"
+					actionListener="#{pesquisarNaturezaJuridicaBean.pesquisar}"
+					update="resultadoForm_resultadoForm" value="Pesquisar"
+					icon="fa fa-search white Fs14" />
+
+				<p:defaultCommand target="pesquisar" />
+
+				<p:commandButton id="limpar"
+					actionListener="#{pesquisarNaturezaJuridicaBean.limpar}"
+					update="@([id$=resultadoForm]) @form" value="Limpar"
+					icon="fa fa-eraser white Fs14" />
+
+				<p:commandButton id="incluir"
+					onclick="return setPathId('/naturezajuridica/incluir', null)"
+					value="Incluir" icon="fa fa-plus white Fs14" />
+			</cfw:panelButtons>
+
+		</sind:form>
+		<sind:form id="resultadoForm" prependId="false">
+			<cfw:dynamicDataTable id="datatable"
+				model="#{pesquisarNaturezaJuridicaBean.criteria.model}"
+				criteria="#{pesquisarNaturezaJuridicaBean.criteria}"
+				value="#{pesquisarNaturezaJuridicaBean.resultadoPesquisa}"
+				header="Resultado de Pesquisa por Natureza Jurídica">
+				<p:column width="60" headerText="Ações" id="action"
+					exportable="false">
+
+					<p:button icon="fa fa-file-text white Fs14"
+						title="Visualizar Natureza Jurídica"
+						onclick="return setPathId('/naturezajuridica/visualizar','#{cfw:encriptaId(entity.id)}')" />
+
+					<p:button icon="fa fa-pencil white Fs14"
+						title="Alterar Natureza Jurídica"
+						onclick="return setPathId('/naturezajuridica/alterar','#{cfw:encriptaId(entity.id)}')" />
+
+					<p:button icon="fa fa-trash white Fs14"
+						title="Excluir Natureza Jurídica"
+						onclick="return setPathId('/naturezajuridica/excluir','#{cfw:encriptaId(entity.id)}')" />
+					
+					<p:button icon="fa fa-clock-o white Fs10"
+						title="Visualizar Histórico"
+						onclick="return setPathId('/naturezajuridica/visualizarHistorico',#{entity.id})" />
+				</p:column>
+			</cfw:dynamicDataTable>
+			<p:remoteCommand name="atualizarPesquisa"
+				actionListener="#{pesquisarNaturezaJuridicaBean.pesquisar}"
+				update="@([id$=resultadoForm])" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

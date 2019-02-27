@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+	<ui:define name="contents">
+		<sind:form id="crudForm">
+			<cfw:moldura titulo="#{manterUsuarioBean.modoDesc} Usuario"
+				icone="#{manterUsuarioBean.modoIcon}">
+
+				<cfw:panelFloat>
+					<cfw:formInputCPF id="cpf" labelValue="CPF"
+						containerWidth="Container33" validationRequired="true"
+						validationGroup="true" value="#{manterUsuarioBean.usuario.cpf}"
+						maxlength="11" disabled="#{not manterUsuarioBean.modoInclusao}"
+						required="true" responsive="true">
+						<p:ajax
+							listener="#{manterUsuarioBean.carregarUsuarioFIPLANByCPF()}"
+							event="change" update="@([id$='cpf']), @([id$='formPanel'])" />
+					</cfw:formInputCPF>
+
+					<p:outputPanel autoUpdate="false" id="formPanel">
+
+						<cfw:formInputText id="nome" labelValue="Nome"
+							containerWidth="Container33"
+							value="#{manterUsuarioBean.usuario.fiplanUsuario.nome}"
+							maxlength="60" disabled="true" />
+
+						<cfw:formInputText id="email" labelValue="E-mail"
+							containerWidth="Container33"
+							value="#{manterUsuarioBean.usuario.fiplanUsuario.email}"
+							maxlength="120" disabled="true" />
+						
+						<cfw:formInputText id="telefoneCelular"
+							labelValue="Telefone Celular" containerWidth="Container33"
+							value="#{manterUsuarioBean.usuario.fiplanUsuario.telefoneCelular}"
+							disabled="true" required="false" />
+
+						<cfw:formCalendar id="dataExpiracao"
+							labelValue="Data de Expiração no FIPLAN"
+							containerWidth="Container33"
+							value="#{manterUsuarioBean.usuario.fiplanUsuario.dataExpiracao}"
+							disabled="true" required="false" />
+
+						<cfw:formInputText id="flagBloqueado"
+							labelValue="Bloqueado no FIPLAN" containerWidth="Container33"
+							value="#{manterUsuarioBean.usuario.fiplanUsuario.flagBloqueado.desc}"
+							disabled="true" required="false" />
+
+						<cfw:formSelectOneMenu id="situacao" labelValue="Situação"
+							containerWidth="Container33"
+							value="#{manterUsuarioBean.usuario.situacao}"
+							readonly="#{!manterUsuarioBean.modoAlteracao}"
+							itemsValue="#{combosEnumHelperBean.dominioSituacao}"
+							itemLabel="#{item.desc}" itemValue="#{item}" required="false" />
+
+						<cfw:formCalendar labelValue="Data de Cadastro"
+							containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+							value="#{manterUsuarioBean.usuario.dataCriacao}"
+							rendered="#{manterUsuarioBean.modoAlteracao or manterUsuarioBean.modoExclusao or manterUsuarioBean.modoVisualizacao}"
+							readonly="true" required="true" />
+
+						<cfw:formCalendar labelValue="Data da Última Alteração"
+							containerwidth="Container33" pattern="dd/MM/yyyy HH:mm:ss"
+							value="#{manterUsuarioBean.usuario.dataAtualizacao}"
+							rendered="#{manterUsuarioBean.modoAlteracao or manterUsuarioBean.modoExclusao or manterUsuarioBean.modoVisualizacao}"
+							readonly="true" />
+
+						<sind:imgCropperFileUpload id="foto" labelValue="Foto"
+							imgValue="#{imageUploadBean.loadImageOnView()}" icon="fa fa-user"
+							aspectRatio="true" containerWidth="Container33"
+							componentHeight="228"
+							btnRemoverListener="#{manterUsuarioBean.removerFoto}"
+							readonly="#{manterUsuarioBean.modoVisualizacao}" />
+					</p:outputPanel>
+				</cfw:panelFloat>
+
+				<div class="pickListContainer">
+					<cfw:fieldDecorator labelValue="Perfis de Acesso"
+						idComponent="perfis" responsive="true"
+						disabled="#{manterUsuarioBean.modoVisualizacao}"
+						containerWidth="Container99">
+						<cfw:formPickList id="perfis" converter="entityConverter"
+							containerWidth="Container99" styleClass="pickListStyle"
+							value="#{manterUsuarioBean.perfilPickList}" var="item"
+							itemValue="#{item}" labelValue="#{item.descricao}"
+							itemLabel="#{item.descricao}" sourceCaption="Disponível"
+							targetCaption="Selecionado"
+							disabled="#{manterUsuarioBean.modoVisualizacao}">
+							<p:ajax event="transfer"
+								listener="#{manterUsuarioBean.onTransferPerfil}" />
+						</cfw:formPickList>
+					</cfw:fieldDecorator>
+				</div>
+			</cfw:moldura>
+
+			<cfw:panelButtons>
+				<p:outputPanel id="molduraBotoes"
+					styleClass="ui-ceprofw-panel-botoes" layout="block">
+					<p:commandButton id="salvar"
+						actionListener="#{manterUsuarioBean.salvar}" value="Salvar"
+						icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton"
+						process="@([id$=crudForm])" update="@([id$=crudForm])"
+						onsuccess="window.parent.atualizarPesquisa()"
+						rendered="#{!manterUsuarioBean.modoVisualizacao and !manterUsuarioBean.modoExclusao}" />
+
+					<p:commandButton id="alterar" action="pretty:alterarUsuario"
+						value="Alterar" icon="fa fa-floppy-o white Fs14"
+						styleClass="ResponsiveButton" process="@([id$=crudForm])"
+						update="@([id$=crudForm])"
+						rendered="#{manterUsuarioBean.modoVisualizacao and !manterUsuarioBean.modoExclusao}" />
+
+					<p:commandButton id="excluir" action="#{manterUsuarioBean.excluir}"
+						value="Excluir" icon="fa fa-check white Fs14" update="@form"
+						styleClass="ResponsiveButton"
+						rendered="#{manterUsuarioBean.modoExclusao}">
+						<p:confirm header="#{helperBean.mensagemHeaderExclusao}"
+							message="#{helperBean.mensagemConfirmarExclusao}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton id="limpar"
+						actionListener="#{manterUsuarioBean.limpar}" value="Limpar"
+						process="@this" update="@([id$=crudForm])" resetValues="true"
+						icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton"
+						rendered="#{manterUsuarioBean.id eq null and !manterUsuarioBean.modoExclusao}" />
+
+					<p:button id="novaPesquisa" value="Nova Pesquisa"
+						rendered="#{manterUsuarioBean.modoVisualizacao and !manterUsuarioBean.modoExclusao}"
+						onclick="return parentPopupClose()"
+						icon="fa fa-mail-reply white Fs14" />
+
+					<p:commandButton id="cancelarEdicao" value="Cancelar"
+						rendered="#{manterUsuarioBean.modoAlteracao}"
+						action="pretty:visualizarUsuario" icon="fa fa-close white Fs14" />
+
+					<p:button id="cancelarExclusao" value="Cancelar"
+						rendered="#{manterUsuarioBean.modoExclusao or manterUsuarioBean.modoInclusao}"
+						onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+
+					<p:button id="historico"
+						onclick="return setPathId('/usuario/visualizarHistorico',#{manterUsuarioBean.usuario.id})"
+						value="Histórico" icon="fa fa-clock-o white Fs14"
+						styleClass="ResponsiveButton"
+						rendered="#{!manterUsuarioBean.modoInclusao}" />
+				</p:outputPanel>
+			</cfw:panelButtons>
+			<ui:include src="/pages/common/confirmDialog.xhtml" />
+		</sind:form>
+	</ui:define>
+</ui:composition>

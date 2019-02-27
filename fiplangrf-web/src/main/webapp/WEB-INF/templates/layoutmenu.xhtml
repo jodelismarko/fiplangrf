@@ -1,0 +1,135 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/adamantium"
+	xmlns:mti="http://mti.mt.gov.br/ui"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa">
+
+	<p:importConstants var="cons"
+		type="br.gov.mt.mti.fiplangrf.common.util.Constantes" />
+	<div class="layout-menu-cover-left Animated05" id="layout-menu-cover">
+		<sind:form id="menuform">
+			<p:remoteCommand name="#{cons.RC_PERMISSAO}"
+				actionListener="#{menuBean.setPermissao}" async="false"
+				oncomplete="redirectSys(xhr, status, args)" />
+			<p:idleMonitor id="monitor" timeout="5000"
+				onidle="rmLogout([{name:'ajxIdleMonitor', value:'true'}])"
+				onactive="rmLogout([{name:'ajxIdleMonitor', value:'true'}])" />
+			<p:remoteCommand name="rmLogout"
+				actionListener="#{menuBean.handleExpiredSession()}"
+				oncomplete="handleLogoutExpired(xhr, status, args)" async="true"
+				ignoreAutoUpdate="true" />
+
+			<div class="search-input">
+				<p:inputText id="menuPesquisa" placeholder="Pesquisar"
+					value="#{menuBean.textoBusca}" autocomplete="off"
+					onblur="updatePesquisa();">
+					<i class="fa fa-search"></i>
+					<i id="limparBtn" class="icon-close"></i>
+				</p:inputText>
+				<p:remoteCommand name="updatePesquisa" process="menuPesquisa"
+					async="true" />
+			</div>
+			<pm:menu id="menu">
+				<!-- <p:submenu label="MTI" styleClass="subMenu" icon="fa fa-folder-o">
+					<p:submenu label="Relatórios" styleClass="subMenu"
+						icon="fa fa-folder-o">
+						<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+							permissao="relatorio.relatorioExemploBean"
+							value="Relatório Exemplo" outcome="pretty:relatorioExemploBean" />
+					</p:submenu>
+				</p:submenu> -->
+
+				<p:submenu label="Gestão e Monitoramento de Adimplência"
+					styleClass="subMenu" icon="fa fa-folder-o">
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.ocorrencia" value="Ocorrência"
+						outcome="pretty:pesquisarOcorrencia" />
+					
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.revisao"
+						value="Revisão" outcome="pretty:pesquisarRevisao" />
+				</p:submenu>
+
+				<p:submenu label="Tabelas Básicas" styleClass="subMenu"
+					icon="fa fa-folder-o">
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.tipoOcorrencia" value="Tipo Ocorrência"
+						outcome="pretty:pesquisarTipoOcorrencia" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.grupoPendencia" value="Grupo Pendências"
+						outcome="pretty:pesquisarGrupoPendencia" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.subGrupoPendencia" value="Subgrupo Pendências"
+						outcome="pretty:pesquisarSubGrupoPendencia" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.tipoPendencia" value="Tipo Pendência"
+						outcome="pretty:pesquisarTipoPendencia" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.tipoAdministracao" value="Tipo Administração"
+						outcome="pretty:pesquisarTipoAdministracao" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.naturezaJuridica" value="Natureza Jurídica"
+						outcome="pretty:pesquisarNaturezaJuridica" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.cnae" value="CNAE"
+						outcome="pretty:pesquisarCNAE" />
+						
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.unidadeAdministrativa"
+						value="Unidade Administrativa"
+						outcome="pretty:pesquisarUnidadeAdministrativa" />
+						
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+							permissao="pesquisar.usuario" value="Usuário"
+							outcome="pretty:pesquisarUsuario" />
+						
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+							permissao="pesquisar.perfil" value="Perfil de Acesso"
+							outcome="pretty:pesquisarPerfil" />
+				</p:submenu>
+
+				<p:submenu label="Sistema" styleClass="subMenu"
+					icon="fa fa-folder-o">
+					<p:submenu label="Cadastros" styleClass="subMenu"
+						icon="fa fa-folder-o">
+						
+						<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+							permissao="pesquisar.funcionalidade" value="Funcionalidade"
+							outcome="pretty:pesquisarFuncionalidade" />
+						
+						<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+							permissao="pesquisar.permissao" value="Permissão"
+							outcome="pretty:pesquisarPermissao" />
+					</p:submenu>
+					<mti:menuItem icon="fa fa-eye" styleClass="menuItem"
+						permissao="audit.log" value="Log do Sistema"
+						outcome="pretty:pesquisarLog" />
+					<p:menuitem icon="fa fa-sign-out" styleClass="menuItem"
+						value="Sair" url="/sys/logout" />
+				</p:submenu>
+			</pm:menu>
+
+			<script>
+				function handleLogoutExpired(xhr, status, args){
+					if(args.#{cons.RETURNED_VALUE} == '#{cons.LOGOUT}'){
+						PF("#{cons.LOGOUT_DIALOG}").show();
+					}
+				}
+
+				function redirectSys(xhr, status, args){
+					//window.location=args.urlSys;
+					return setPathId(args.urlSys, null);
+				}
+			</script>
+		</sind:form>
+	</div>
+</ui:composition>
