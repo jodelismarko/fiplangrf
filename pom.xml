@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>br.gov.mt.cepromat.ceprofw</groupId>
 		<artifactId>cepro-fw-dependencies</artifactId>
@@ -103,6 +105,13 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.9</version>
+		</dependency>
+
 
 
 	</dependencies>
@@ -151,7 +160,7 @@
 				<wildfly-portname>9990</wildfly-portname>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>homologacao-topetinho-canela</id>
 			<properties>
@@ -254,11 +263,11 @@
 
 		</plugins>
 	</build>
-  <modules>
-    <module>fiplangrf-app</module>
-    <module>fiplangrf-common</module>
-    <module>fiplangrf-model</module>
-    <module>fiplangrf-service</module>
-    <module>fiplangrf-web</module>
-  </modules>
+	<modules>
+		<module>fiplangrf-app</module>
+		<module>fiplangrf-common</module>
+		<module>fiplangrf-model</module>
+		<module>fiplangrf-service</module>
+		<module>fiplangrf-web</module>
+	</modules>
 </project>

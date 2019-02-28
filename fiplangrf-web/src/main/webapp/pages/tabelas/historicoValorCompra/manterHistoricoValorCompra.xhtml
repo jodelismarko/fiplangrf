@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterHistoricoValorCompraBean.modoDesc} Historico Valor Compra " icone="#{manterHistoricoValorCompraBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formCalendar
+					id="dataValorComplementar"
+					labelValue="Data Valor Complementar "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorCompraBean.historicoValorCompra.dataValorComplementar}"
+					readonly="#{manterHistoricoValorCompraBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputText
+					id="justificativa"
+					labelValue="Justificativa "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorCompraBean.historicoValorCompra.justificativa}"
+					maxlength="500"
+					readonly="#{manterHistoricoValorCompraBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="valorComplementar"
+					labelValue="Valor Complementar "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorCompraBean.historicoValorCompra.valorComplementar}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterHistoricoValorCompraBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputText
+					id="usuario"
+					labelValue="Usuario "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorCompraBean.historicoValorCompra.usuario}"
+					readonly="#{manterHistoricoValorCompraBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="recursoFinanceiro"
+					labelValue="Recurso Financeiro "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorCompraBean.historicoValorCompra.recursoFinanceiro}"
+					converter="entityConverter"
+					itemsValue="#{manterHistoricoValorCompraBean.listaRecursoFinanceiro}"
+					itemVar="recursoFinanceiro"
+					itemLabel="#{recursoFinanceiro}"
+					readonly="#{manterHistoricoValorCompraBean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterHistoricoValorCompraBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterHistoricoValorCompraBean.modoVisualizacao and !manterHistoricoValorCompraBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterHistoricoValorCompraBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterHistoricoValorCompraBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterHistoricoValorCompraBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterHistoricoValorCompraBean.id eq null and !manterHistoricoValorCompraBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

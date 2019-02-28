@@ -10,6 +10,25 @@
         <property key="disablePersistenceGeneration">true</property>
         <property key="forceGlobalResourcesGeneration">false</property>
     </generator-properties>
-    <entity-includes/>
-    <entity-excludes/>
+    <entity-includes>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.Anexo</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.Detalhamento</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.DocumentoFinanceiro</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.HistoricoValorCompra</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.HistoricoValorDetalhamento</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.NLA</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiro</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiroView</include>
+    </entity-includes>
+    <entity-excludes>
+        <exclude>br.gov.mt.mti.fiplangrf.model.auditoria.CustomRevisionEntity</exclude>
+        <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Permissao</exclude>
+        <exclude>br.gov.mt.mti.fiplangrf.model.dominio.ItemDominio</exclude>
+        <exclude>br.gov.mt.mti.fiplangrf.model.dominio.Dominio</exclude>
+        <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Funcionalidade</exclude>
+        <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Perfil</exclude>
+        <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Usuario</exclude>
+    </entity-excludes>
 </ceprofw-generator>

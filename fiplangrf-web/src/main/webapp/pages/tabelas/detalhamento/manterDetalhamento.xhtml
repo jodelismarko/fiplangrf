@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterDetalhamentoBean.modoDesc} Detalhamento " icone="#{manterDetalhamentoBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formInputNumber
+					id="valorDisponivel"
+					labelValue="Valor Disponivel "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.valorDisponivel}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputNumber
+					id="valorDetalhado"
+					labelValue="Valor Detalhado "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.valorDetalhado}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputNumber
+					id="valorNLA"
+					labelValue="Valor NLA "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.valorNLA}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagLimiteEmprestimo"
+					labelValue="Flag Limite Emprestimo "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagLimiteEmprestimo}"
+					itemsValue="#{combosEnumHelperBean.dominioSimNao}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="numeroNLA"
+					labelValue="Numero NLA "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.numeroNLA}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagRestoPagar"
+					labelValue="Flag Resto Pagar "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagRestoPagar}"
+					itemsValue="#{combosEnumHelperBean.dominioSimNao}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagGrupoControleTeto"
+					labelValue="Flag Grupo Controle Teto "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagGrupoControleTeto}"
+					itemsValue="#{combosEnumHelperBean.dominioGrupoControleTF}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="valorRepassar"
+					labelValue="Valor Repassar "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.valorRepassar}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagOperacaoNLA"
+					labelValue="Flag Operacao NLA "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagOperacaoNLA}"
+					itemsValue="#{combosEnumHelperBean.dominioTipoOperacaoNLA}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagNLA"
+					labelValue="Flag NLA "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagNLA}"
+					itemsValue="#{combosEnumHelperBean.dominioSimNao}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagARR"
+					labelValue="Flag ARR "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagARR}"
+					itemsValue="#{combosEnumHelperBean.dominioSimNao}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagARRDevolucao"
+					labelValue="Flag ARR Devolucao "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagARRDevolucao}"
+					itemsValue="#{combosEnumHelperBean.dominioSimNao}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagRepasseRecebido"
+					labelValue="Flag Repasse Recebido "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagRepasseRecebido}"
+					itemsValue="#{combosEnumHelperBean.dominioSimNao}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagRepasseConcedido"
+					labelValue="Flag Repasse Concedido "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagRepasseConcedido}"
+					itemsValue="#{combosEnumHelperBean.dominioSimNao}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputText
+					id="usuario"
+					labelValue="Usuario "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.usuario}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagSituacao"
+					labelValue="Flag Situacao "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.flagSituacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoRegistro}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="recursoFinanceiro"
+					labelValue="Recurso Financeiro "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.recursoFinanceiro}"
+					converter="entityConverter"
+					itemsValue="#{manterDetalhamentoBean.listaRecursoFinanceiro}"
+					itemVar="recursoFinanceiro"
+					itemLabel="#{recursoFinanceiro}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="fonteRecurso"
+					labelValue="Fonte Recurso "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoBean.detalhamento.fonteRecurso}"
+					converter="entityConverter"
+					itemsValue="#{manterDetalhamentoBean.listaFonteRecurso}"
+					itemVar="fonteRecurso"
+					itemLabel="#{fonteRecurso}"
+					readonly="#{manterDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterDetalhamentoBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterDetalhamentoBean.modoVisualizacao and !manterDetalhamentoBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterDetalhamentoBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterDetalhamentoBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterDetalhamentoBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterDetalhamentoBean.id eq null and !manterDetalhamentoBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

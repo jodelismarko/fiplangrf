@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterHistoricoValorDetalhamentoBean.modoDesc} Historico Valor Detalhamento " icone="#{manterHistoricoValorDetalhamentoBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formCalendar
+					id="dataOperacao"
+					labelValue="Data Operacao "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorDetalhamentoBean.historicoValorDetalhamento.dataOperacao}"
+					readonly="#{manterHistoricoValorDetalhamentoBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputNumber
+					id="valorDetalhado"
+					labelValue="Valor Detalhado "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorDetalhamentoBean.historicoValorDetalhamento.valorDetalhado}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterHistoricoValorDetalhamentoBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputNumber
+					id="valorNLA"
+					labelValue="Valor NLA "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorDetalhamentoBean.historicoValorDetalhamento.valorNLA}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterHistoricoValorDetalhamentoBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagOperacaoNLA"
+					labelValue="Flag Operacao NLA "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorDetalhamentoBean.historicoValorDetalhamento.flagOperacaoNLA}"
+					itemsValue="#{combosEnumHelperBean.dominioTipoOperacaoNLA}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterHistoricoValorDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputText
+					id="usuario"
+					labelValue="Usuario "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorDetalhamentoBean.historicoValorDetalhamento.usuario}"
+					readonly="#{manterHistoricoValorDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="detalhamento"
+					labelValue="Detalhamento "
+					containerWidth="Container33"
+					value="#{manterHistoricoValorDetalhamentoBean.historicoValorDetalhamento.detalhamento}"
+					converter="entityConverter"
+					itemsValue="#{manterHistoricoValorDetalhamentoBean.listaDetalhamento}"
+					itemVar="detalhamento"
+					itemLabel="#{detalhamento}"
+					readonly="#{manterHistoricoValorDetalhamentoBean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterHistoricoValorDetalhamentoBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterHistoricoValorDetalhamentoBean.modoVisualizacao and !manterHistoricoValorDetalhamentoBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterHistoricoValorDetalhamentoBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterHistoricoValorDetalhamentoBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterHistoricoValorDetalhamentoBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterHistoricoValorDetalhamentoBean.id eq null and !manterHistoricoValorDetalhamentoBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>
