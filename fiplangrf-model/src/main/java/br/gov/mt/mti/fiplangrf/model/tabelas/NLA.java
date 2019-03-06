@@ -46,7 +46,7 @@ public class NLA extends BaseEntity<Long>{
 	@Id
 	@Column(name = "IDEN_NLA", length = 8)
 	@SequenceGenerator(name = "NLA_SEQ", sequenceName = "DHUSQ027_NLA", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NLA_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "NLA_SEQ")
 	private Long id;
 	
 	@Column(name = "FLAG_TIPO_NLA", length = 11)

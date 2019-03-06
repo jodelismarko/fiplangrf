@@ -4,11 +4,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-	<persistence-unit name="fiplangmaDS"
+	<persistence-unit name="fiplangrfDS"
 		transaction-type="JTA">
 
 		<!-- Oracle DataSource -->
-		<jta-data-source>java:jboss/datasources/fiplangmaDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/fiplangrfDS</jta-data-source>
 
 		<class>br.gov.mt.mti.fiplangrf.model.auditoria.CustomRevisionEntity</class>
 		<class>br.gov.mt.mti.fiplangrf.model.security.user.Usuario</class>
@@ -21,7 +21,7 @@
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria</class>
 
 		<!-- Tabelas Básicas -->
-<!-- 		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Anexo</class>
+<!--    <class>br.gov.mt.mti.fiplangrf.model.tabelas.Anexo</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.Detalhamento</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.DocumentoFinanceiro</class>
@@ -36,9 +36,9 @@
 
 		<properties>
 
-			<!-- Criar / Atualizar schema 
+			<!-- Criar / Atualizar schema
 			<property name="hibernate.hbm2ddl.auto" value="none" />
-			<property name="hibernate.hbm2ddl.import_files" value="data.sql"/> -->
+			<property name="hibernate.hbm2ddl.import_files" value="data.sql"/>  -->
 			
 			<!-- Misc configuration -->
 			<property name="hibernate.show_sql" value="true" />
@@ -57,13 +57,13 @@
 			<property name="hibernate.cache.region.factory_class"
 				value="org.jboss.as.jpa.hibernate5.infinispan.SharedInfinispanRegionFactory" />
 
-			<!-- Oracle Datasource configuration-->
+			<!-- Oracle Datasource configuration 
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.Oracle10gDialect" /> 
+				value="org.hibernate.dialect.Oracle10gDialect" /> -->
 
-			<!-- MySQL Datasource configuration 
+			<!-- MySQL Datasource configuration -->
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.MySQL5InnoDBDialect" /> -->
+				value="org.hibernate.dialect.MySQLDialect" />
 
 			<!-- <property name="hibernate.ejb.use_class_enhancer" value="true"/> -->
 

@@ -52,7 +52,7 @@ public class Detalhamento extends BaseEntity<Long> implements Comparable<Detalha
 	@Id
 	@Column(name = "IDEN_DETALHAMENTO", length = 8)
 	@SequenceGenerator(name = "DETALHAMENTO_SEQ", sequenceName = "DHUSQ019_DETALHAMENTO", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DETALHAMENTO_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "DETALHAMENTO_SEQ")
 	private Long id;
 
 	@Column(name = "VALR_DISPONIVEL_DETALHAR", precision = 15, scale = 2, nullable = false)

@@ -51,7 +51,7 @@ public class RecursoFinanceiro extends BaseEntity<Long> {
 	@Id
 	@Column(name = "IDEN_RECURSO_FINC", length = 8)
 	@SequenceGenerator(name = "RECURSO_FINANCEIRO_SEQ", sequenceName = "DHUSQ017_RECURSO_FINANCEIRO", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RECURSO_FINANCEIRO_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "RECURSO_FINANCEIRO_SEQ")
 	private Long id;
 
 	@Column(name = "EXER_RECURSO_FINC", length = 4, nullable = false)

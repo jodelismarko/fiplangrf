@@ -33,7 +33,7 @@ public class Permissao extends BaseVersionedEntity<Long> {
 	@Id
 	@Column(name = "IDEN_PERMISSAO", length = 10)
 	@SequenceGenerator(name = "PERMISSAO_SEQUENCE", sequenceName = "DHWSQ028_PERMISSAO", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERMISSAO_SEQUENCE")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "PERMISSAO_SEQUENCE")
 	private Long id;
 
 	@GeneratorFieldOptions(defaultLabel = "nome", filterable = true)

@@ -40,7 +40,7 @@ public class CustomRevisionEntity implements BaseModel<Long>, Serializable {
 
 	@Id
 	@SequenceGenerator(name = "AUDITORIA_SEQ", sequenceName = "DHWSQ999_AUDITORIA", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AUDITORIA_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "AUDITORIA_SEQ")
 	@Column(name = "IDEN_AUDITORIA", precision = 10, scale = 0, nullable = false)
 	@RevisionNumber
 	private Long id;

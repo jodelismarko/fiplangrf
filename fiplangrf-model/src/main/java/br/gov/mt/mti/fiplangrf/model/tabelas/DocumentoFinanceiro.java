@@ -44,7 +44,7 @@ public class DocumentoFinanceiro extends BaseEntity<Long> {
 	@Id
 	@Column(name = "IDEN_DOC_FINANCEIRO", length = 8)
 	@SequenceGenerator(name = "DOC_FINANC_SEQ", sequenceName = "DHUSQ020_DOC_FINANC", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DOC_FINANC_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "DOC_FINANC_SEQ")
 	private Long id;
 	
 	@Column(name = "TIPO_DOCUMENTO", length = 50, nullable = false)

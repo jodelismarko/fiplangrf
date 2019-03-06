@@ -37,7 +37,7 @@ public class HistoricoValorDetalhamento extends BaseEntity<Long> implements Comp
 	@Id
 	@Column(name = "IDEN_HIST_VALR_DET", length = 8)
 	@SequenceGenerator(name = "HIST_VALOR_DET_SEQ", sequenceName = "DHUSQ023_HIST_VALOR_DET", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HIST_VALOR_DET_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "HIST_VALOR_DET_SEQ")
 	private Long id;
 	
 	@Column(name="DATA_OPERACAO", nullable=false)
