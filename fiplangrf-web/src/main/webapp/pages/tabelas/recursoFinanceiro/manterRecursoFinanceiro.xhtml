@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterRecursoFinanceiroBean.modoDesc} Recurso Financeiro " icone="#{manterRecursoFinanceiroBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formInputNumber
+					id="execRecursoFinanceiro"
+					labelValue="Exec Recurso Financeiro "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroBean.recursoFinanceiro.execRecursoFinanceiro}"
+					readonly="#{manterRecursoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputText
+					id="unidadeOrcamentaria"
+					labelValue="Unidade Orcamentaria "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroBean.recursoFinanceiro.unidadeOrcamentaria}"
+					readonly="#{manterRecursoFinanceiroBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="mesRecursoFinanceiro"
+					labelValue="Mes Recurso Financeiro "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroBean.recursoFinanceiro.mesRecursoFinanceiro}"
+					itemsValue="#{combosEnumHelperBean.dominioMes}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterRecursoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputNumber
+					id="valorProgramado"
+					labelValue="Valor Programado "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroBean.recursoFinanceiro.valorProgramado}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterRecursoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagStatus"
+					labelValue="Flag Status "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroBean.recursoFinanceiro.flagStatus}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoCadastroRF}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterRecursoFinanceiroBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagSituacao"
+					labelValue="Flag Situacao "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroBean.recursoFinanceiro.flagSituacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoRegistro}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterRecursoFinanceiroBean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterRecursoFinanceiroBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterRecursoFinanceiroBean.modoVisualizacao and !manterRecursoFinanceiroBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterRecursoFinanceiroBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterRecursoFinanceiroBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterRecursoFinanceiroBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterRecursoFinanceiroBean.id eq null and !manterRecursoFinanceiroBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

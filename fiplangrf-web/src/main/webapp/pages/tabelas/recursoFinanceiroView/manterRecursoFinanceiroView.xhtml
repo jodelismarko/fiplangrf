@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterRecursoFinanceiroViewBean.modoDesc} Recurso Financeiro View " icone="#{manterRecursoFinanceiroViewBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formInputNumber
+					id="execRecursoFinanceiro"
+					labelValue="Exec Recurso Financeiro "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.execRecursoFinanceiro}"
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="codigo"
+					labelValue="Codigo "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.codigo}"
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="mesRecursoFinanceiro"
+					labelValue="Mes Recurso Financeiro "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.mesRecursoFinanceiro}"
+					itemsValue="#{combosEnumHelperBean.dominioMes}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="valorProgramado"
+					labelValue="Valor Programado "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.valorProgramado}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="valorComplementar"
+					labelValue="Valor Complementar "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.valorComplementar}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="valorTotal"
+					labelValue="Valor Total "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.valorTotal}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="idUsuario"
+					labelValue="Id Usuario "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.idUsuario}"
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagStatus"
+					labelValue="Flag Status "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.flagStatus}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoCadastroRF}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="flagSituacao"
+					labelValue="Flag Situacao "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.flagSituacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoRegistro}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="valorTotalRepassado"
+					labelValue="Valor Total Repassado "
+					containerWidth="Container33"
+					value="#{manterRecursoFinanceiroViewBean.recursoFinanceiroView.valorTotalRepassado}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterRecursoFinanceiroViewBean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterRecursoFinanceiroViewBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterRecursoFinanceiroViewBean.modoVisualizacao and !manterRecursoFinanceiroViewBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterRecursoFinanceiroViewBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterRecursoFinanceiroViewBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterRecursoFinanceiroViewBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterRecursoFinanceiroViewBean.id eq null and !manterRecursoFinanceiroViewBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterNLABean.modoDesc} NLA " icone="#{manterNLABean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formSelectOneMenu
+					id="flagTipoCredor"
+					labelValue="Flag Tipo Credor "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.flagTipoCredor}"
+					itemsValue="#{combosEnumHelperBean.dominioTipoNLA}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="numeroNLA"
+					labelValue="Numero NLA "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.numeroNLA}"
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputNumber
+					id="valorNLA"
+					labelValue="Valor NLA "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.valorNLA}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="true" />
+				<cfw:formCalendar
+					id="dataNLA"
+					labelValue="Data NLA "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.dataNLA}"
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputText
+					id="descricaoMotivoErro"
+					labelValue="Descricao Motivo Erro "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.descricaoMotivoErro}"
+					maxlength="1000"
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="false" />
+				<cfw:formInputNumber
+					id="numeroNLAEstorno"
+					labelValue="Numero NLA Estorno "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.numeroNLAEstorno}"
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="false" />
+				<cfw:formCalendar
+					id="dataNLAEstorno"
+					labelValue="Data NLA Estorno "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.dataNLAEstorno}"
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagSituacaoNLA"
+					labelValue="Flag Situacao NLA "
+					containerWidth="Container33"
+					value="#{manterNLABean.nLA.flagSituacaoNLA}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoDoc}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterNLABean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterNLABean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterNLABean.modoVisualizacao and !manterNLABean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterNLABean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterNLABean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterNLABean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterNLABean.id eq null and !manterNLABean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

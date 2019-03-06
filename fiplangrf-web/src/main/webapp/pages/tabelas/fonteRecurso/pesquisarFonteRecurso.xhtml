@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/main.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="filtrosForm">
+		<cfw:dynamicFilter id="filter" model="#{pesquisarFonteRecursoBean.criteria.model}" bean="#{pesquisarFonteRecursoBean}" header="Filtro de Pesquisa de Fonte Recurso " />
+		<cfw:panelButtons>
+			<p:commandButton id="pesquisar" actionListener="#{pesquisarFonteRecursoBean.pesquisar}" update="resultadoForm_resultadoForm" value="Pesquisar" icon="fa fa-search white Fs14" />
+			<p:defaultCommand target="pesquisar" />
+			<p:commandButton id="limpar" actionListener="#{pesquisarFonteRecursoBean.limpar}" update="@([id$=resultadoForm]) @form" value="Limpar" icon="fa fa-eraser white Fs14" />
+			<p:commandButton id="incluir" onclick="return setPathId('/fonterecurso/incluir', null)" value="Incluir" icon="fa fa-plus white Fs14" />
+		</cfw:panelButtons>
+	</sind:form>
+	<sind:form id="resultadoForm" prependId="false">
+		<cfw:dynamicDataTable id="datatable" model="#{pesquisarFonteRecursoBean.criteria.model}" criteria="#{pesquisarFonteRecursoBean.criteria}"
+			value="#{pesquisarFonteRecursoBean.resultadoPesquisa}" header="Resultado de Pesquisa por Fonte Recurso ">
+			<p:column width="130" headerText="Ações" id="action" exportable="false">
+				<p:button icon="fa fa-file-text white Fs14" title="Visualizar Fonte Recurso "
+					onclick="return setPathId('/fonterecurso/visualizar','#{cfw:encriptaId(entity.id)}')" />
+				<p:button icon="fa fa-trash white Fs14" title="Excluir Fonte Recurso "
+					onclick="return setPathId('/fonterecurso/excluir','#{cfw:encriptaId(entity.id)}')" />
+				<p:button icon="fa fa-pencil white Fs14" title="Alterar Fonte Recurso "
+					onclick="return setPathId('/fonterecurso/alterar','#{cfw:encriptaId(entity.id)}')" />
+			</p:column>
+		</cfw:dynamicDataTable>
+		<p:remoteCommand name="atualizarPesquisa" actionListener="#{pesquisarFonteRecursoBean.pesquisar}" update="@([id$=resultadoForm])" />
+	</sind:form>
+</ui:define>
+</ui:composition>

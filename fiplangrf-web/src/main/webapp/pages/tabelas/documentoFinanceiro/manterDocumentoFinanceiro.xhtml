@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterDocumentoFinanceiroBean.modoDesc} Documento Financeiro " icone="#{manterDocumentoFinanceiroBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formSelectOneMenu
+					id="tipoDocumento"
+					labelValue="Tipo Documento "
+					containerWidth="Container33"
+					value="#{manterDocumentoFinanceiroBean.documentoFinanceiro.tipoDocumento}"
+					itemsValue="#{combosEnumHelperBean.dominioTipoDocumentoRF}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDocumentoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputText
+					id="numeroDocumento"
+					labelValue="Numero Documento "
+					containerWidth="Container33"
+					value="#{manterDocumentoFinanceiroBean.documentoFinanceiro.numeroDocumento}"
+					maxlength="20"
+					readonly="#{manterDocumentoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputNumber
+					id="valorDocumento"
+					labelValue="Valor Documento "
+					containerWidth="Container33"
+					value="#{manterDocumentoFinanceiroBean.documentoFinanceiro.valorDocumento}"
+					decimalPlaces="2"
+					decimalSeparator=","
+					thousandSeparator="."
+					readonly="#{manterDocumentoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formCalendar
+					id="dataDocumento"
+					labelValue="Data Documento "
+					containerWidth="Container33"
+					value="#{manterDocumentoFinanceiroBean.documentoFinanceiro.dataDocumento}"
+					readonly="#{manterDocumentoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagSituacaoDocumento"
+					labelValue="Flag Situacao Documento "
+					containerWidth="Container33"
+					value="#{manterDocumentoFinanceiroBean.documentoFinanceiro.flagSituacaoDocumento}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoDoc}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDocumentoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputText
+					id="usuario"
+					labelValue="Usuario "
+					containerWidth="Container33"
+					value="#{manterDocumentoFinanceiroBean.documentoFinanceiro.usuario}"
+					readonly="#{manterDocumentoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="detalhamento"
+					labelValue="Detalhamento "
+					containerWidth="Container33"
+					value="#{manterDocumentoFinanceiroBean.documentoFinanceiro.detalhamento}"
+					converter="entityConverter"
+					itemsValue="#{manterDocumentoFinanceiroBean.listaDetalhamento}"
+					itemVar="detalhamento"
+					itemLabel="#{detalhamento}"
+					readonly="#{manterDocumentoFinanceiroBean.modoVisualizacao}"
+					required="true" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterDocumentoFinanceiroBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterDocumentoFinanceiroBean.modoVisualizacao and !manterDocumentoFinanceiroBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterDocumentoFinanceiroBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterDocumentoFinanceiroBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterDocumentoFinanceiroBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterDocumentoFinanceiroBean.id eq null and !manterDocumentoFinanceiroBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>
