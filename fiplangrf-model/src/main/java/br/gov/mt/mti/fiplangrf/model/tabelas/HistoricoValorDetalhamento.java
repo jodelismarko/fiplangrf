@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
 
+import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioTipoOperacaoNLA;
 import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 import lombok.Data;
@@ -29,7 +30,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @Table(name = "DHUTB023_HIST_VALOR_DET")
 @EqualsAndHashCode(callSuper = false)
-public class HistoricoValorDetalhamento implements Comparable<HistoricoValorDetalhamento> {
+public class HistoricoValorDetalhamento extends BaseEntity<Long> implements Comparable<HistoricoValorDetalhamento> {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "IDEN_HIST_VALR_DET", length = 8)

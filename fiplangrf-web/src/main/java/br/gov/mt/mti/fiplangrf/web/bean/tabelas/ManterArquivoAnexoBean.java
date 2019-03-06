@@ -28,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
 		@URLMapping(id = "excluirArquivoAnexo", pattern = "/arquivoanexo/excluir/#{id:manterArquivoAnexoBean.idCriptogradado}", viewId = "/pages/tabelas/arquivoAnexo/manterArquivoAnexo.jsf")})
 public class ManterArquivoAnexoBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -425736749887516750L;
+	private static final long serialVersionUID = -485316673971900994L;
 
 	@Inject
 	private Logger LOGGER;

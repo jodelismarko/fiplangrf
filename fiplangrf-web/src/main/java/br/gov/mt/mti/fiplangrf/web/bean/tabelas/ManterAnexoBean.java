@@ -33,7 +33,7 @@ import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 		@URLMapping(id = "excluirAnexo", pattern = "/anexo/excluir/#{id:manterAnexoBean.idCriptogradado}", viewId = "/pages/tabelas/anexo/manterAnexo.jsf")})
 public class ManterAnexoBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 316914095808540328L;
+	private static final long serialVersionUID = -596803624640530296L;
 
 	@Inject
 	private Logger LOGGER;

@@ -21,7 +21,7 @@ import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractPesquisaBean;
 @URLMapping(id = "pesquisarArquivoAnexo", pattern = "/arquivoanexo/pesquisar", viewId = "/pages/tabelas/arquivoAnexo/pesquisarArquivoAnexo.jsf")
 public class PesquisarArquivoAnexoBean extends AbstractPesquisaBean<ArquivoAnexoCriteria> {
 
-	private static final long serialVersionUID = -722032750408441667L;
+	private static final long serialVersionUID = -826471093225306947L;
 
 	@Inject
 	private Logger LOGGER;

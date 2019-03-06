@@ -35,7 +35,7 @@ import br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso;
 		@URLMapping(id = "excluirDetalhamento", pattern = "/detalhamento/excluir/#{id:manterDetalhamentoBean.idCriptogradado}", viewId = "/pages/tabelas/detalhamento/manterDetalhamento.jsf")})
 public class ManterDetalhamentoBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 353716567712533400L;
+	private static final long serialVersionUID = -25946639338275424L;
 
 	@Inject
 	private Logger LOGGER;

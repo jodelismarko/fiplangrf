@@ -24,6 +24,5 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/c3712668/Downloads/joda-time-2.9.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

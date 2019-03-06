@@ -21,7 +21,7 @@ import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractPesquisaBean;
 @URLMapping(id = "pesquisarHistoricoValorCompra", pattern = "/historicovalorcompra/pesquisar", viewId = "/pages/tabelas/historicoValorCompra/pesquisarHistoricoValorCompra.jsf")
 public class PesquisarHistoricoValorCompraBean extends AbstractPesquisaBean<HistoricoValorCompraCriteria> {
 
-	private static final long serialVersionUID = 97913289348518906L;
+	private static final long serialVersionUID = 67219834662950826L;
 
 	@Inject
 	private Logger LOGGER;

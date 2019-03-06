@@ -21,7 +21,7 @@ import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractPesquisaBean;
 @URLMapping(id = "pesquisarNLA", pattern = "/nla/pesquisar", viewId = "/pages/tabelas/nLA/pesquisarNLA.jsf")
 public class PesquisarNLABean extends AbstractPesquisaBean<NLACriteria> {
 
-	private static final long serialVersionUID = 217600171132610833L;
+	private static final long serialVersionUID = 222775424379399959L;
 
 	@Inject
 	private Logger LOGGER;

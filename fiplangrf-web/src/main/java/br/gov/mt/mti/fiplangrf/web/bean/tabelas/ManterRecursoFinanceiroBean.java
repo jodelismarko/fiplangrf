@@ -29,7 +29,7 @@ import br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria;
 		@URLMapping(id = "excluirRecursoFinanceiro", pattern = "/recursofinanceiro/excluir/#{id:manterRecursoFinanceiroBean.idCriptogradado}", viewId = "/pages/tabelas/recursoFinanceiro/manterRecursoFinanceiro.jsf")})
 public class ManterRecursoFinanceiroBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 948235512469182676L;
+	private static final long serialVersionUID = -907719407810205725L;
 
 	@Inject
 	private Logger LOGGER;

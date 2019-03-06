@@ -33,7 +33,7 @@ import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 		@URLMapping(id = "excluirDocumentoFinanceiro", pattern = "/documentofinanceiro/excluir/#{id:manterDocumentoFinanceiroBean.idCriptogradado}", viewId = "/pages/tabelas/documentoFinanceiro/manterDocumentoFinanceiro.jsf")})
 public class ManterDocumentoFinanceiroBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -793775289438193802L;
+	private static final long serialVersionUID = -545974575234390395L;
 
 	@Inject
 	private Logger LOGGER;

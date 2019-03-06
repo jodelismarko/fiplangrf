@@ -33,7 +33,7 @@ import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 		@URLMapping(id = "excluirHistoricoValorDetalhamento", pattern = "/historicovalordetalhamento/excluir/#{id:manterHistoricoValorDetalhamentoBean.idCriptogradado}", viewId = "/pages/tabelas/historicoValorDetalhamento/manterHistoricoValorDetalhamento.jsf")})
 public class ManterHistoricoValorDetalhamentoBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -297287146546597017L;
+	private static final long serialVersionUID = 424878584947442279L;
 
 	@Inject
 	private Logger LOGGER;

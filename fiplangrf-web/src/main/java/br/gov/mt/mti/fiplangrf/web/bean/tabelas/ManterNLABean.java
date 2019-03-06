@@ -28,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
 		@URLMapping(id = "excluirNLA", pattern = "/nla/excluir/#{id:manterNLABean.idCriptogradado}", viewId = "/pages/tabelas/nLA/manterNLA.jsf")})
 public class ManterNLABean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -166471252342602998L;
+	private static final long serialVersionUID = 612988225062626106L;
 
 	@Inject
 	private Logger LOGGER;

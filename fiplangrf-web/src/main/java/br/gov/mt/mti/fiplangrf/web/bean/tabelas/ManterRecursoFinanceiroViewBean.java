@@ -28,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
 		@URLMapping(id = "excluirRecursoFinanceiroView", pattern = "/recursofinanceiroview/excluir/#{id:manterRecursoFinanceiroViewBean.idCriptogradado}", viewId = "/pages/tabelas/recursoFinanceiroView/manterRecursoFinanceiroView.jsf")})
 public class ManterRecursoFinanceiroViewBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 514933244195229478L;
+	private static final long serialVersionUID = -141755910074091837L;
 
 	@Inject
 	private Logger LOGGER;

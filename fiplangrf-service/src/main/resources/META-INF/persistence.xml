@@ -9,7 +9,6 @@
 
 		<!-- Oracle DataSource -->
 		<jta-data-source>java:jboss/datasources/fiplangmaDS</jta-data-source>
-		<!-- <jta-data-source>java:jboss/datasources/fiplangrf_homDS</jta-data-source> -->
 
 		<class>br.gov.mt.mti.fiplangrf.model.auditoria.CustomRevisionEntity</class>
 		<class>br.gov.mt.mti.fiplangrf.model.security.user.Usuario</class>
@@ -22,6 +21,17 @@
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria</class>
 
 		<!-- Tabelas Básicas -->
+<!-- 		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Anexo</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.Detalhamento</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.DocumentoFinanceiro</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.HistoricoValorCompra</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.HistoricoValorDetalhamento</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.NLA</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiro</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiroView</class>
+ -->
 
 
 		<properties>
@@ -29,6 +39,7 @@
 			<!-- Criar / Atualizar schema 
 			<property name="hibernate.hbm2ddl.auto" value="none" />
 			<property name="hibernate.hbm2ddl.import_files" value="data.sql"/> -->
+			
 			<!-- Misc configuration -->
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
