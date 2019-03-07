@@ -7,14 +7,7 @@ INSERT INTO DHWTB017_PERFIL_ACESSO (IDEN_PERFIL_ACESSO,DATA_ATUALIZACAO,DATA_CRI
     
 INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '36329059918', null, 'admin@master.com.br', 'Usuario Master Dev', '65981330233', '6536537852');
 INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '04267231125', null, 'jilds@outlook.com', 'Jonathan Inacio Lima da Silva', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '47870477010', null, 'usuario1@email.com', 'Usuario 1', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '28868756005', null, 'usuario2@email.com', 'Usuario 2', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '98044538003', null, 'usuario3@email.com', 'Usuario 3', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '29025094058', null, 'usuario4@email.com', 'Usuario 4', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '00573046026', null, 'usuario5@email.com', 'Usuario 5', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '08773720046', null, 'usuario6@email.com', 'Usuario 6', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '36932220024', null, 'usuario7@email.com', 'Usuario 7', '65981330233', '6536537852');
-INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '00539211192', null, 'jodelismarko@gmail.com', 'Jodelismarko Mamoré de Melo', '00539211192', '00539211192');
+INSERT INTO acwvw0464 (nr_cpf, dt_expiracao, ds_email, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '00539211192', null, 'jodelismarko@gmail.com', 'Jodelismarko Mamoré de Melo', '65992898361', '65992898361');
 
 INSERT INTO DHWTB027_FUNCIONALIDADE (IDEN_FUNCIONALIDADE,data_atualizacao,data_criacao,versao,descricao,nome,FLAG_SITUACAO) VALUES (1,null,sysdate(),0,'Funcionalidade Incluir Usuario','ROLE_INCLUIR_USUARIO','ATIVO');
 INSERT INTO DHWTB027_FUNCIONALIDADE (IDEN_FUNCIONALIDADE,data_atualizacao,data_criacao,versao,descricao,nome,FLAG_SITUACAO) VALUES (2,null,sysdate(),0,'Funcionalidade Consultar Usuario','ROLE_CONSULTAR_USUARIO','ATIVO');
