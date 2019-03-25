@@ -54,7 +54,7 @@ public class Usuario extends BaseVersionedEntity<Long> {
 	@Column(name = "IDEN_USUARIO")
 	@SequenceGenerator(name = "USUARIO_SEQ", sequenceName = "DHWSQ018_USUARIO", allocationSize = 1, initialValue = 1)
 	@GeneratorFieldOptions(defaultLabel = "Código", filterable = true)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "USUARIO_SEQ")
 	private Long codigo;
 
 	@GeneratorFieldOptions(defaultLabel = "Login", filterable = true)
