@@ -24,6 +24,9 @@ public class FIPLANUsuario implements Serializable {
 	@Column(name = "DS_NOME", insertable = false, updatable = false)
 	private String nome;
 
+	@Column(name = "FLG_USR_BLOQUEADO", insertable = false, updatable = false)
+	private String flagBloqueado;
+
 	@Column(name = "DS_EMAIL", insertable = false, updatable = false)
 	private String email;
 

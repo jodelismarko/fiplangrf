@@ -27,7 +27,7 @@ public class ArquivoAnexo   extends BaseEntity<Long> {
 	@Id
 	@Column(name="IDEN_ANEXO_ARQUIVO", length=8)
     @SequenceGenerator(name = "ARQUIVO_ANEXO_SEQ", sequenceName = "DHUSQ011_ANEXO_ARQUIVO", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ARQUIVO_ANEXO_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ARQUIVO_ANEXO_SEQ")
 	private Long id;
 
 	@Lob	

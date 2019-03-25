@@ -41,7 +41,7 @@ public class Funcionalidade extends BaseVersionedEntity<Long> implements Compara
 	@Id
 	@Column(name = "IDEN_FUNCIONALIDADE", length = 10)
 	@SequenceGenerator(name = "FUNCIONALIDADE_SEQUENCE", sequenceName = "DHWSQ027_FUNCIONALIDADE", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "FUNCIONALIDADE_SEQUENCE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FUNCIONALIDADE_SEQUENCE")
 	private Long id;
 
 	@GeneratorFieldOptions(defaultLabel = "nome", filterable = true)

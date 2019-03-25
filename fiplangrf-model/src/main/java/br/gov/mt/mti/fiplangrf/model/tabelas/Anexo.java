@@ -38,7 +38,7 @@ public class Anexo extends BaseEntity<Long> {
 	@Id
 	@Column(name = "IDEN_ANEXO", length = 8)
 	@SequenceGenerator(name = "ANEXO_SEQ", sequenceName = "DHUSQ010_ANEXO", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ANEXO_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ANEXO_SEQ")
 	private Long id;
 
 	@GeneratorFieldOptions(defaultLabel = "Nome do Documento")

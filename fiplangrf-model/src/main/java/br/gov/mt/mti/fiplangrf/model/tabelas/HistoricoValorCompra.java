@@ -40,7 +40,7 @@ public class HistoricoValorCompra extends BaseEntity<Long> implements Comparable
 	@Id
 	@Column(name = "IDEN_HIST_VALR_COMP", length = 8)
 	@SequenceGenerator(name = "HIST_VALR_COM_SEQ", sequenceName = "DHUSQ018_HIST_VALR_COM", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "HIST_VALR_COM_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HIST_VALR_COM_SEQ")
 	private Long id;
 
 	@Temporal(TemporalType.TIMESTAMP)

@@ -33,34 +33,56 @@
 					async="true" />
 			</div>
 			<pm:menu id="menu">
-				
+
 				<p:submenu label="GRF Conta Única" styleClass="subMenu"
 					icon="fa fa-folder-o">
-				<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
-							value="Recurso Financeiro"
-							outcome="pretty:pesquisarRecursoFinanceiroView" />
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						value="Recurso Financeiro"
+						outcome="pretty:pesquisarRecursoFinanceiroView" />
 				</p:submenu>
-				
+
 				<p:submenu label="Tabelas Básicas" styleClass="subMenu"
 					icon="fa fa-folder-o">
-				<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
-							permissao="pesquisar.usuario" value="Usuário"
-							outcome="pretty:pesquisarUsuario" />
-						
 					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
-							permissao="pesquisar.perfil" value="Perfil de Acesso"
-							outcome="pretty:pesquisarPerfil" />
+						value="Detalhamento" outcome="pretty:pesquisarDetalhamento" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						value="Fonte de Recurso" outcome="pretty:pesquisarFonteRecurso" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						value="NLA" outcome="pretty:pesquisarNLA" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						value="Documento Financeiro"
+						outcome="pretty:pesquisarDocumentoFinanceiro" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.recursoFinanceiro" value="Recurso Financeiro"
+						outcome="pretty:pesquisarRecursoFinanceiro" />
+
+
+				</p:submenu>
+
+				<p:submenu label="Usuário" styleClass="subMenu"
+					icon="fa fa-folder-o">
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.usuario" value="Usuário"
+						outcome="pretty:pesquisarUsuario" />
+
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
+						permissao="pesquisar.perfil" value="Perfil de Acesso"
+						outcome="pretty:pesquisarPerfil" />
 				</p:submenu>
 
 				<p:submenu label="Sistema" styleClass="subMenu"
 					icon="fa fa-folder-o">
 					<p:submenu label="Cadastros" styleClass="subMenu"
 						icon="fa fa-folder-o">
-						
+
 						<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
 							permissao="pesquisar.funcionalidade" value="Funcionalidade"
 							outcome="pretty:pesquisarFuncionalidade" />
-						
+
 						<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
 							permissao="pesquisar.permissao" value="Permissão"
 							outcome="pretty:pesquisarPermissao" />

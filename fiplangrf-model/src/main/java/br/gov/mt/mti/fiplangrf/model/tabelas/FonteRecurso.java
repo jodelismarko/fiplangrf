@@ -30,7 +30,7 @@ public class FonteRecurso extends BaseEntity<Long> {
 	@Id
 	@Column(name = "IDEN_FONTE_RECURSO", length = 8)
 	@SequenceGenerator(name = "FONTE_RECURSO_SEQ", sequenceName = "DHUSQ021_FONTE_RECURSO", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "FONTE_RECURSO_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FONTE_RECURSO_SEQ")
 	private Long id;
 
 	@Column(name = "CODG_FONTE_RECURSO", length = 4, nullable = false)

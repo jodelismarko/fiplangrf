@@ -41,7 +41,7 @@ public class Perfil extends BaseVersionedEntity<Long> {
 	@Id
 	@Column(name = "IDEN_PERFIL_ACESSO", length = 10)
 	@SequenceGenerator(name = "PERFIL_ACESSO_SEQ", sequenceName = "DHWSQ017_PERFIL_ACESSO", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "PERFIL_ACESSO_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERFIL_ACESSO_SEQ")
 	private Long id;
 	
 	@GeneratorFieldOptions(defaultLabel = "Descrição", filterable=true)
