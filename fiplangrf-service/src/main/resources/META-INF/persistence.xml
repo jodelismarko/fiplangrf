@@ -20,19 +20,6 @@
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUsuario</class>
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria</class>
 
-		<!-- Tabelas Básicas -->
-    	<class>br.gov.mt.mti.fiplangrf.model.tabelas.Anexo</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.Detalhamento</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.DocumentoFinanceiro</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.HistoricoValorCompra</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.HistoricoValorDetalhamento</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.NLA</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiro</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiroView</class>
-
-
 		<properties>
 
 <!-- 			Criar / Atualizar schema  -->
@@ -59,10 +46,6 @@
 			<!-- Oracle Datasource configuration -->
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.Oracle10gDialect" /> 
-
-			<!-- MySQL Datasource configuration 
-			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.MySQLDialect" />  -->
 
 			<!-- <property name="hibernate.ejb.use_class_enhancer" value="true"/> -->
 
