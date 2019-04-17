@@ -17,12 +17,11 @@ import br.gov.mt.cepromat.ceprofw.common.util.CriptografiaUtil;
 import br.gov.mt.cepromat.ceprofw.core.service.exception.BusinessException;
 import br.gov.mt.mti.fiplangrf.common.util.ButtonScript;
 import br.gov.mt.mti.fiplangrf.model.tabelas.HistoricoValorCompra;
+import br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiro;
 import br.gov.mt.mti.fiplangrf.service.tabelas.HistoricoValorCompraService;
 import br.gov.mt.mti.fiplangrf.service.tabelas.RecursoFinanceiroService;
 import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractManterBean;
 import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
-import br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiro;
-import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 
 @Named("manterHistoricoValorCompraBean")
 @ViewScoped

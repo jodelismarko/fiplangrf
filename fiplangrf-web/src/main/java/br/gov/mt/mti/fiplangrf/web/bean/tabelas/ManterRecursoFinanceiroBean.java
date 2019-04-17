@@ -18,7 +18,6 @@ import br.gov.mt.mti.fiplangrf.model.tabelas.RecursoFinanceiro;
 import br.gov.mt.mti.fiplangrf.service.tabelas.RecursoFinanceiroService;
 import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractManterBean;
 import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
-import br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria;
 
 @Named("manterRecursoFinanceiroBean")
 @ViewScoped

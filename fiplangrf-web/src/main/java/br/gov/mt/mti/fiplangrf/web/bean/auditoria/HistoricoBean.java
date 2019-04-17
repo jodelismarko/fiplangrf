@@ -12,6 +12,7 @@ import lombok.Setter;
 
 
 
+@SuppressWarnings("rawtypes")
 public abstract class HistoricoBean<PK> extends BaseBean {
 
     

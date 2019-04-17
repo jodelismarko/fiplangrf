@@ -17,12 +17,11 @@ import br.gov.mt.cepromat.ceprofw.common.util.CriptografiaUtil;
 import br.gov.mt.cepromat.ceprofw.core.service.exception.BusinessException;
 import br.gov.mt.mti.fiplangrf.common.util.ButtonScript;
 import br.gov.mt.mti.fiplangrf.model.tabelas.Anexo;
+import br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo;
 import br.gov.mt.mti.fiplangrf.service.tabelas.AnexoService;
 import br.gov.mt.mti.fiplangrf.service.tabelas.ArquivoAnexoService;
 import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractManterBean;
 import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
-import br.gov.mt.mti.fiplangrf.model.tabelas.ArquivoAnexo;
-import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 
 @Named("manterAnexoBean")
 @ViewScoped

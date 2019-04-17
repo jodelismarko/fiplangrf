@@ -1,10 +1,7 @@
 package br.gov.mt.mti.fiplangrf.web.security.provider;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,9 +23,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
 	private UserDetailsService userDetailsService;
-	
-	@Autowired
-	private HttpSession httpSession;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {

@@ -16,13 +16,12 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 import br.gov.mt.cepromat.ceprofw.common.util.CriptografiaUtil;
 import br.gov.mt.cepromat.ceprofw.core.service.exception.BusinessException;
 import br.gov.mt.mti.fiplangrf.common.util.ButtonScript;
+import br.gov.mt.mti.fiplangrf.model.tabelas.Detalhamento;
 import br.gov.mt.mti.fiplangrf.model.tabelas.DocumentoFinanceiro;
-import br.gov.mt.mti.fiplangrf.service.tabelas.DocumentoFinanceiroService;
 import br.gov.mt.mti.fiplangrf.service.tabelas.DetalhamentoService;
+import br.gov.mt.mti.fiplangrf.service.tabelas.DocumentoFinanceiroService;
 import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractManterBean;
 import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
-import br.gov.mt.mti.fiplangrf.model.tabelas.Detalhamento;
-import br.gov.mt.mti.fiplangrf.model.security.user.Usuario;
 
 @Named("manterDocumentoFinanceiroBean")
 @ViewScoped
