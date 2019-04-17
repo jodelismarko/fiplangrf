@@ -6,6 +6,6 @@
 **/.project
 **/.tern-project
 **/.classpath
-/fiplangci-web/src/main/webapp/resources/gmap/yellow.svg
+/fiplangrf-web/src/main/webapp/resources/gmap/yellow.svg
 /*.~sql
 
