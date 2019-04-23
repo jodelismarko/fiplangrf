@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterItemDespesaBean.modoDesc} Item Despesa " icone="#{manterItemDespesaBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formInputText
+					id="descricaoItemDespesa"
+					labelValue="Descrição"
+					containerWidth="Container33"
+					value="#{manterItemDespesaBean.itemDespesa.descricaoItemDespesa}"
+					maxlength="100"
+					readonly="#{manterItemDespesaBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagNaturezaDespesa"
+					labelValue="Flag Natureza Despesa "
+					containerWidth="Container33"
+					value="#{manterItemDespesaBean.itemDespesa.flagNaturezaDespesa}"
+					itemsValue="#{combosEnumHelperBean.dominioNaturezaDespesa}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterItemDespesaBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagSituacao"
+					labelValue="Flag Situacao "
+					containerWidth="Container33"
+					value="#{manterItemDespesaBean.itemDespesa.flagSituacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoRegistro}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterItemDespesaBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="grupoContoleDespesa"
+					labelValue="Grupo Contole Despesa "
+					containerWidth="Container33"
+					value="#{manterItemDespesaBean.itemDespesa.grupoContoleDespesa}"
+					converter="entityConverter"
+					itemsValue="#{manterItemDespesaBean.listaGrupoContoleDespesa}"
+					itemVar="grupoContoleDespesa"
+					itemLabel="#{grupoContoleDespesa}"
+					readonly="#{manterItemDespesaBean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterItemDespesaBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterItemDespesaBean.modoVisualizacao and !manterItemDespesaBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterItemDespesaBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterItemDespesaBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterItemDespesaBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterItemDespesaBean.id eq null and !manterItemDespesaBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

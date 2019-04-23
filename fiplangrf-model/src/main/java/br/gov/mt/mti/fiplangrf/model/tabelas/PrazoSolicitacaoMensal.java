@@ -59,6 +59,6 @@ public class PrazoSolicitacaoMensal extends BaseEntity<Long> {
 	@NotAudited
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDEN_PLAN_ANUAL_PRAZO", nullable = true, foreignKey = @ForeignKey(name = "DHRFK015_DHRTB014_PLAN_ANUAL_PRAZO"))
-	private PlanoAnualPrazo planAnualPrazo;
+	private PlanejamentoAnualPrazos planAnualPrazo;
 	
 }
