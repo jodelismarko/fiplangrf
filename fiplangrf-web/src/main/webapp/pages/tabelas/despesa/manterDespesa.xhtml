@@ -40,17 +40,6 @@
 					itemValue="#{item}"
 					readonly="#{manterDespesaBean.modoVisualizacao}"
 					required="true" />
-				<cfw:formSelectOneMenu
-					id="detalheProvisaoDespesa"
-					labelValue="Detalhe Provisao Despesa "
-					containerWidth="Container33"
-					value="#{manterDespesaBean.despesa.detalheProvisaoDespesa}"
-					converter="entityConverter"
-					itemsValue="#{manterDespesaBean.listaDetalheProvisaoDespesa}"
-					itemVar="detalheProvisaoDespesa"
-					itemLabel="#{detalheProvisaoDespesa}"
-					readonly="#{manterDespesaBean.modoVisualizacao}"
-					required="false" />
 			</cfw:panelFloat>
 		</cfw:moldura>
 		<cfw:panelButtons>

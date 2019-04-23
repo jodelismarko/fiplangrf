@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -63,11 +64,15 @@ public class GrupoControleDespesa extends BaseEntity<Long>{
 	@Column(name = "FLAG_SITUACAO", length = 7, columnDefinition = "VARCHAR2(7)", nullable = false )
 	@Type(type = DominioSituacaoRegistro.NOME)
 	private DominioSituacaoRegistro flagSituacao;
+
+	@NotAudited
+	@OneToMany( mappedBy = "grupoControleDespesa", fetch = FetchType.LAZY )
+	private Set<ItemDespesa> itensDespesa = new HashSet<ItemDespesa>();
 	
 	@NotAudited
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDEN_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK011_DHRTB010_DESPESA"))
-	private Despesa despesa;
+	private Despesa despesaGrupoControle;
 	
 	@NotAudited
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

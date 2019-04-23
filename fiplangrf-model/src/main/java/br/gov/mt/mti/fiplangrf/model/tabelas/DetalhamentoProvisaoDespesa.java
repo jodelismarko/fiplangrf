@@ -1,15 +1,14 @@
 package br.gov.mt.mti.fiplangrf.model.tabelas;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -32,7 +31,7 @@ import lombok.ToString;
 @Table(name = "DHRTB009_DETAL_PROV_DESPESA")
 @EqualsAndHashCode(callSuper = false , of = {"id", "descricaoDetalheProvisao"})
 @ToString(callSuper = false, of = {"id", "descricaoDetalheProvisao", "flagSituacao"})
-public class DetalheProvisaoDespesa extends BaseEntity<Long> {
+public class DetalhamentoProvisaoDespesa extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 4573553459092155003L;
 	
@@ -51,7 +50,8 @@ public class DetalheProvisaoDespesa extends BaseEntity<Long> {
 	private DominioSituacaoRegistro flagSituacao;
 	
 	@NotAudited
-	@OneToMany( mappedBy = "despesa", fetch = FetchType.LAZY )
-	private Set<Despesa> despesas = new HashSet<Despesa>();
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "IDEN_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK009_DHRTB010_DESPESA"))
+	private Despesa despesaDetalProvisao;
 
 }

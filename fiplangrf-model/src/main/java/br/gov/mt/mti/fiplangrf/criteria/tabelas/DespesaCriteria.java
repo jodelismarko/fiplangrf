@@ -7,7 +7,6 @@ import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
 import br.gov.mt.mti.fiplangrf.model.tabelas.Despesa;
 import br.gov.mt.mti.fiplangrf.dominio.DominioIndicativoProvisao;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
-import br.gov.mt.mti.fiplangrf.model.tabelas.DetalheProvisaoDespesa;
 
 public class DespesaCriteria extends DynamicSearchCriteria<Despesa> {
 
@@ -19,9 +18,6 @@ public class DespesaCriteria extends DynamicSearchCriteria<Despesa> {
 
 	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
 	private DominioSituacaoRegistro flagSituacao;
-
-	@FilterFieldOption(label = "Detalhe Provisao Despesa ", property = "detalheProvisaoDespesa", type = FieldType.LIST)
-	private DetalheProvisaoDespesa detalheProvisaoDespesa;
 
 	public DespesaCriteria() {
 		super(Despesa.class);
@@ -51,21 +47,12 @@ public class DespesaCriteria extends DynamicSearchCriteria<Despesa> {
 		this.flagSituacao = flagSituacao;
 	}
 
-	public DetalheProvisaoDespesa getDetalheProvisaoDespesa() {
-		return detalheProvisaoDespesa;
-	}
-
-	public void setDetalheProvisaoDespesa(DetalheProvisaoDespesa detalheProvisaoDespesa) {
-		this.detalheProvisaoDespesa = detalheProvisaoDespesa;
-	}
-
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
 			.append("descricaoDespesa", descricaoDespesa)
 			.append("flagIndicativoProvisao", flagIndicativoProvisao)
 			.append("flagSituacao", flagSituacao)
-			.append("detalheProvisaoDespesa", detalheProvisaoDespesa)
 			.toString();
 	}
 

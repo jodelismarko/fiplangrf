@@ -32,7 +32,7 @@ import br.gov.mt.mti.fiplangrf.model.tabelas.Despesa;
 		@URLMapping(id = "excluirGrupoControleDespesa", pattern = "/grupocontroledespesa/excluir/#{id:manterGrupoControleDespesaBean.idCriptogradado}", viewId = "/pages/tabelas/grupoControleDespesa/manterGrupoControleDespesa.jsf")})
 public class ManterGrupoControleDespesaBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 641867465760273004L;
+	private static final long serialVersionUID = -966985652764925380L;
 
 	@Inject
 	private Logger LOGGER;
@@ -53,7 +53,7 @@ public class ManterGrupoControleDespesaBean extends AbstractManterBean {
 
 	private GrupoControleDespesa grupoControleDespesa;
 
-	private List<Despesa> listaDespesa;
+	private List<Despesa> listaDespesaGrupoControle;
 
 	@Inject
 	private DespesaService despesaService;
@@ -69,7 +69,7 @@ public class ManterGrupoControleDespesaBean extends AbstractManterBean {
 	public void limpar() {
 		grupoControleDespesa = new GrupoControleDespesa();
 		LOGGER.debug("Carregando lista de Despesa");
-		listaDespesa = despesaService.findAll();
+		listaDespesaGrupoControle = despesaService.findAll();
 	}
 
 	@URLAction(mappingId = "incluirGrupoControleDespesa", onPostback = false)
@@ -143,12 +143,12 @@ public class ManterGrupoControleDespesaBean extends AbstractManterBean {
 		this.grupoControleDespesa = grupoControleDespesa;
 	}
 
-	public List<Despesa> getListaDespesa() {
-		return listaDespesa;
+	public List<Despesa> getListaDespesaGrupoControle() {
+		return listaDespesaGrupoControle;
 	}
 
-	public void setListaDespesa(List<Despesa> listaDespesa) {
-		this.listaDespesa = listaDespesa;
+	public void setListaDespesaGrupoControle(List<Despesa> listaDespesaGrupoControle) {
+		this.listaDespesaGrupoControle = listaDespesaGrupoControle;
 	}
 
 }

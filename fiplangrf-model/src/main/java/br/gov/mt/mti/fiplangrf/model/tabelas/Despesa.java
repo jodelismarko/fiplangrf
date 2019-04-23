@@ -6,12 +6,9 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -59,13 +56,13 @@ public class Despesa extends BaseEntity<Long> {
 	private DominioSituacaoRegistro flagSituacao;
 	
 	@NotAudited
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDEN_DETAL_PROV_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK010_DHRTB009_DETAL_PROV_DESPESA"))
-	private DetalheProvisaoDespesa detalheProvisaoDespesa;
-	
+	@OneToMany( mappedBy = "despesaDetalProvisao", fetch = FetchType.LAZY )
+	private Set<DetalhamentoProvisaoDespesa> detalProvisaoDespesa = new HashSet<DetalhamentoProvisaoDespesa>();
+
 	@NotAudited
-	@OneToMany( mappedBy = "despesa", fetch = FetchType.LAZY )
-	private Set<GrupoControleDespesa> grupoControleDespesa = new HashSet<GrupoControleDespesa>();
+	@OneToMany( mappedBy = "despesaGrupoControle", fetch = FetchType.LAZY )
+	private Set<GrupoControleDespesa> GruposControleDespesa = new HashSet<GrupoControleDespesa>();
+
 	
 
 }

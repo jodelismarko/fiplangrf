@@ -20,21 +20,23 @@
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUsuario</class>
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria</class>
 		
-		<!--  Tabelas Básicas -->
+		<!-- Tabelas Básicas  -->
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.Despesa</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.DetalheDespesa</class>
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.DetalheProvisaoDespesa</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoDespesa</class>
+        <class>br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoProvisaoDespesa</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.GrupoControleDespesa</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.ItemDespesa</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.PlanejamentoAnualPrazos</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.PrazoSolicitacaoMensal</class>
 
+
 		<properties>
 
 			<!-- Criar / Atualizar schema -->
 			<property name="hibernate.hbm2ddl.auto" value="create" />
-			<property name="hibernate.hbm2ddl.import_files" value="dataNovo.sql"/>
+			<property name="hibernate.hbm2ddl.import_files" value="data.sql"/>
+			
 			<!-- Misc configuration -->
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />

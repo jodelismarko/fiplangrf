@@ -10,20 +10,21 @@
         <property key="disablePersistenceGeneration">true</property>
         <property key="forceGlobalResourcesGeneration">false</property>
     </generator-properties>
-    <entity-includes/>
+    <entity-includes>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.Despesa</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.DetalheDespesa</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.DetalheProvisaoDespesa</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.GrupoControleDespesa</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.ItemDespesa</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.PlanejamentoAnualPrazos</include>
+        <include>br.gov.mt.mti.fiplangrf.model.tabelas.PrazoSolicitacaoMensal</include>
+    </entity-includes>
     <entity-excludes>
         <exclude>br.gov.mt.mti.fiplangrf.model.auditoria.CustomRevisionEntity</exclude>
         <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Permissao</exclude>
         <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Funcionalidade</exclude>
         <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Perfil</exclude>
         <exclude>br.gov.mt.mti.fiplangrf.model.security.user.Usuario</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.Despesa</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.DetalheDespesa</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.DetalheProvisaoDespesa</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.GrupoControleDespesa</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.ItemDespesa</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.PlanejamentoAnualPrazos</exclude>
-        <exclude>br.gov.mt.mti.fiplangrf.model.tabelas.PrazoSolicitacaoMensal</exclude>
     </entity-excludes>
 </ceprofw-generator>

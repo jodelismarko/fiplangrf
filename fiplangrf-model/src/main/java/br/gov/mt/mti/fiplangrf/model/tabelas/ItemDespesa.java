@@ -56,7 +56,8 @@ public class ItemDespesa extends BaseEntity<Long> {
 	
 	@NotAudited
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDEN_GRUPO_CONTROLE_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK013_DHRTB011_GP_CTRL_DESP"))
-	private GrupoControleDespesa grupoContoleDespesa;
-
+	@JoinColumn(name = "IDEN_ITEM_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK013_DHRTB011_GP_CTRL_DESP"))
+	private GrupoControleDespesa grupoControleDespesa;
+	
+	
 }

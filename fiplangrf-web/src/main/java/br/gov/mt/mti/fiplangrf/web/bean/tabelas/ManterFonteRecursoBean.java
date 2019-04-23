@@ -28,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
 		@URLMapping(id = "excluirFonteRecurso", pattern = "/fonterecurso/excluir/#{id:manterFonteRecursoBean.idCriptogradado}", viewId = "/pages/tabelas/fonteRecurso/manterFonteRecurso.jsf")})
 public class ManterFonteRecursoBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -130851312757640116L;
+	private static final long serialVersionUID = -352069410684282222L;
 
 	@Inject
 	private Logger LOGGER;

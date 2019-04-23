@@ -28,6 +28,12 @@
 			    				      @Parameter(name = MTIFWGenericEnumUserType.ENUM_CLASS_VALUE_METHOD, value = DominioSituacao.METHOD)}),
 			    
 			    @TypeDef(
+			    		name = DominioSituacaoRegistro.NOME, 
+			    		typeClass = MTIFWGenericEnumUserType.class, 
+			    		parameters = {@Parameter(name = MTIFWGenericEnumUserType.ENUM_CLASS_NAME_PARAM, value = DominioSituacaoRegistro.NOME),
+			    				@Parameter(name = MTIFWGenericEnumUserType.ENUM_CLASS_VALUE_METHOD, value = DominioSituacaoRegistro.METHOD)}),
+			    
+			    @TypeDef(
 			    		name = DominioTipoPermissao.NOME, 
 			    		typeClass = MTIFWGenericEnumUserType.class, 
 			    		parameters = {@Parameter(name = MTIFWGenericEnumUserType.ENUM_CLASS_NAME_PARAM, value = DominioTipoPermissao.NOME),
@@ -60,6 +66,7 @@ import br.gov.mt.mti.fiplangrf.dominio.DominioMes;
 import br.gov.mt.mti.fiplangrf.dominio.DominioNaturezaDespesa;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSimNao;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacao;
+import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import br.gov.mt.mti.fiplangrf.dominio.DominioTetoFinanceiroFiplan;
 import br.gov.mt.mti.fiplangrf.dominio.DominioTipoPermissao;
 import br.gov.mt.mti.fiplangrf.dominio.MTIFWGenericEnumUserType;
