@@ -28,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
 		@URLMapping(id = "excluirFonteRecurso", pattern = "/fonterecurso/excluir/#{id:manterFonteRecursoBean.idCriptogradado}", viewId = "/pages/tabelas/fonteRecurso/manterFonteRecurso.jsf")})
 public class ManterFonteRecursoBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 715634534953108714L;
+	private static final long serialVersionUID = -130851312757640116L;
 
 	@Inject
 	private Logger LOGGER;
@@ -93,10 +93,9 @@ public class ManterFonteRecursoBean extends AbstractManterBean {
 	}
 
 	public void salvar() throws BusinessException {
-		boolean inclusao = fonteRecurso.getId() == null;
 		LOGGER.debug("Persistindo FonteRecurso: {}", fonteRecurso);
 		fonteRecursoService.saveOrUpdate(fonteRecurso);
-		if (inclusao) {
+		if (fonteRecurso.isNew()) {
 			showMainMsgDialog(BeanMessageConstants.MSG_INCLUIR_SUCESSO);
 		} else {
 			showMainMsgDialog(BeanMessageConstants.MSG_ALTERAR_SUCESSO, ButtonScript.ATUALIZAR_PESQUISA);

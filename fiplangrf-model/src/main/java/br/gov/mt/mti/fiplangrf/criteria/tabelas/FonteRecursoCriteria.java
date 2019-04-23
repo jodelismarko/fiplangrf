@@ -12,8 +12,8 @@ public class FonteRecursoCriteria extends DynamicSearchCriteria<FonteRecurso> {
 	@FilterFieldOption(label = "Codg Fonte Recurso ", property = "codgFonteRecurso", type = FieldType.INTEGER)
 	private Integer codgFonteRecurso;
 
-	@FilterFieldOption(label = "Nome Resumido Fonte Recurso ", property = "nomeResumidoFonteRecurso", type = FieldType.TEXT)
-	private String nomeResumidoFonteRecurso;
+	@FilterFieldOption(label = "Descricao Fonte Recurso ", property = "descricaoFonteRecurso", type = FieldType.TEXT)
+	private String descricaoFonteRecurso;
 
 	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
 	private DominioSituacaoRegistro flagSituacao;
@@ -30,12 +30,12 @@ public class FonteRecursoCriteria extends DynamicSearchCriteria<FonteRecurso> {
 		this.codgFonteRecurso = codgFonteRecurso;
 	}
 
-	public String getNomeResumidoFonteRecurso() {
-		return nomeResumidoFonteRecurso;
+	public String getDescricaoFonteRecurso() {
+		return descricaoFonteRecurso;
 	}
 
-	public void setNomeResumidoFonteRecurso(String nomeResumidoFonteRecurso) {
-		this.nomeResumidoFonteRecurso = nomeResumidoFonteRecurso;
+	public void setDescricaoFonteRecurso(String descricaoFonteRecurso) {
+		this.descricaoFonteRecurso = descricaoFonteRecurso;
 	}
 
 	public DominioSituacaoRegistro getFlagSituacao() {
@@ -50,7 +50,7 @@ public class FonteRecursoCriteria extends DynamicSearchCriteria<FonteRecurso> {
 	public String toString() {
 		return new ToStringBuilder(this)
 			.append("codgFonteRecurso", codgFonteRecurso)
-			.append("nomeResumidoFonteRecurso", nomeResumidoFonteRecurso)
+			.append("descricaoFonteRecurso", descricaoFonteRecurso)
 			.append("flagSituacao", flagSituacao)
 			.toString();
 	}

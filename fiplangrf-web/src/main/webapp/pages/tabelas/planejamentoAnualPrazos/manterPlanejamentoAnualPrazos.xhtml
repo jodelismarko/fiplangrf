@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterPlanejamentoAnualPrazosBean.modoDesc} Planejamento Anual Prazos " icone="#{manterPlanejamentoAnualPrazosBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formInputNumber
+					id="numeroExercicio"
+					labelValue="Numero Exercicio "
+					containerWidth="Container33"
+					value="#{manterPlanejamentoAnualPrazosBean.planejamentoAnualPrazos.numeroExercicio}"
+					readonly="#{manterPlanejamentoAnualPrazosBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagSituacao"
+					labelValue="Flag Situacao "
+					containerWidth="Container33"
+					value="#{manterPlanejamentoAnualPrazosBean.planejamentoAnualPrazos.flagSituacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoRegistro}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterPlanejamentoAnualPrazosBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formCalendar
+					id="dataInicioEstimativa"
+					labelValue="Data Inicio Estimativa "
+					containerWidth="Container33"
+					value="#{manterPlanejamentoAnualPrazosBean.planejamentoAnualPrazos.dataInicioEstimativa}"
+					readonly="#{manterPlanejamentoAnualPrazosBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formCalendar
+					id="dataFimEstimativa"
+					labelValue="Data Fim Estimativa "
+					containerWidth="Container33"
+					value="#{manterPlanejamentoAnualPrazosBean.planejamentoAnualPrazos.dataFimEstimativa}"
+					readonly="#{manterPlanejamentoAnualPrazosBean.modoVisualizacao}"
+					required="true" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterPlanejamentoAnualPrazosBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterPlanejamentoAnualPrazosBean.modoVisualizacao and !manterPlanejamentoAnualPrazosBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterPlanejamentoAnualPrazosBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterPlanejamentoAnualPrazosBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterPlanejamentoAnualPrazosBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterPlanejamentoAnualPrazosBean.id eq null and !manterPlanejamentoAnualPrazosBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

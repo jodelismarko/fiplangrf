@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterPrazoSolicitacaoMensalBean.modoDesc} Prazo Solicitacao Mensal " icone="#{manterPrazoSolicitacaoMensalBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formSelectOneMenu
+					id="flagMes"
+					labelValue="Flag Mes "
+					containerWidth="Container33"
+					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.flagMes}"
+					itemsValue="#{combosEnumHelperBean.dominioMes}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterPrazoSolicitacaoMensalBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formCalendar
+					id="dataInicioSolic"
+					labelValue="Data Inicio Solic "
+					containerWidth="Container33"
+					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.dataInicioSolic}"
+					readonly="#{manterPrazoSolicitacaoMensalBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formCalendar
+					id="dataFimSolic"
+					labelValue="Data Fim Solic "
+					containerWidth="Container33"
+					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.dataFimSolic}"
+					readonly="#{manterPrazoSolicitacaoMensalBean.modoVisualizacao}"
+					required="false" />
+				<cfw:formSelectOneMenu
+					id="planAnualPrazo"
+					labelValue="Plan Anual Prazo "
+					containerWidth="Container33"
+					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.planAnualPrazo}"
+					converter="entityConverter"
+					itemsValue="#{manterPrazoSolicitacaoMensalBean.listaPlanAnualPrazo}"
+					itemVar="planAnualPrazo"
+					itemLabel="#{planAnualPrazo}"
+					readonly="#{manterPrazoSolicitacaoMensalBean.modoVisualizacao}"
+					required="false" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterPrazoSolicitacaoMensalBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterPrazoSolicitacaoMensalBean.modoVisualizacao and !manterPrazoSolicitacaoMensalBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterPrazoSolicitacaoMensalBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterPrazoSolicitacaoMensalBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterPrazoSolicitacaoMensalBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterPrazoSolicitacaoMensalBean.id eq null and !manterPrazoSolicitacaoMensalBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>
