@@ -30,7 +30,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "DHWTB999_AUDITORIA")
+@Table(name = "DHRTB999_AUDITORIA")
 @Data
 @EqualsAndHashCode(callSuper = false, of = {"dataOperacao"})
 @RevisionEntity(CustomEnversListener.class)
