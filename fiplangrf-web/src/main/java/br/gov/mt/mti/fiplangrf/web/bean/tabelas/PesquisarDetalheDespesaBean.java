@@ -12,7 +12,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMapping;
 
 import br.gov.mt.cepromat.ceprofw.web.common.LazyObjectDataModel;
 import br.gov.mt.mti.fiplangrf.criteria.tabelas.DetalheDespesaCriteria;
-import br.gov.mt.mti.fiplangrf.model.tabelas.DetalheDespesa;
+import br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoDespesa;
 import br.gov.mt.mti.fiplangrf.service.tabelas.DetalheDespesaService;
 import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractPesquisaBean;
 
@@ -30,7 +30,7 @@ public class PesquisarDetalheDespesaBean extends AbstractPesquisaBean<DetalheDes
 
 	public static final String PERMISSAO_PESQUISAR_DETALHEDESPESA= "pesquisar.detalheDespesa";
 
-	private LazyObjectDataModel<DetalheDespesa> resultadoPesquisa;
+	private LazyObjectDataModel<DetalhamentoDespesa> resultadoPesquisa;
 
 	@Inject
 	private DetalheDespesaService detalheDespesaService;
@@ -48,14 +48,14 @@ public class PesquisarDetalheDespesaBean extends AbstractPesquisaBean<DetalheDes
 
 	public void pesquisar(ActionEvent event) {
 		LOGGER.debug("Pesquisando registros de DetalheDespesa: {}", getCriteria());
-		resultadoPesquisa = new LazyObjectDataModel<DetalheDespesa>(detalheDespesaService, getCriteria());
+		resultadoPesquisa = new LazyObjectDataModel<DetalhamentoDespesa>(detalheDespesaService, getCriteria());
 	}
 
-	public LazyObjectDataModel<DetalheDespesa> getResultadoPesquisa() {
+	public LazyObjectDataModel<DetalhamentoDespesa> getResultadoPesquisa() {
 		return resultadoPesquisa;
 	}
 
-	public void setResultadoPesquisa(LazyObjectDataModel<DetalheDespesa> resultadoPesquisa) {
+	public void setResultadoPesquisa(LazyObjectDataModel<DetalhamentoDespesa> resultadoPesquisa) {
 		this.resultadoPesquisa = resultadoPesquisa;
 	}
 

@@ -73,7 +73,7 @@ public class GrupoControleDespesa extends BaseEntity<Long>{
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "DHRTB016_DET_DESP_GP_CTRL_DESP", joinColumns = {
 			@JoinColumn(name = "IDEN_GP_CTRL_DESP") }, inverseJoinColumns = { @JoinColumn(name = "IDEN_DET_DESPESA") })
-	private Set<DetalheDespesa> detalheDespesas = new HashSet<>();
+	private Set<DetalhamentoDespesa> detalheDespesas = new HashSet<>();
 	
 	@NotAudited
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

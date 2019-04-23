@@ -14,7 +14,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 import br.gov.mt.cepromat.ceprofw.common.util.CriptografiaUtil;
 import br.gov.mt.cepromat.ceprofw.core.service.exception.BusinessException;
 import br.gov.mt.mti.fiplangrf.common.util.ButtonScript;
-import br.gov.mt.mti.fiplangrf.model.tabelas.DetalheDespesa;
+import br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoDespesa;
 import br.gov.mt.mti.fiplangrf.service.tabelas.DetalheDespesaService;
 import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractManterBean;
 import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
@@ -47,7 +47,7 @@ public class ManterDetalheDespesaBean extends AbstractManterBean {
 
 	private Long id;
 
-	private DetalheDespesa detalheDespesa;
+	private DetalhamentoDespesa detalheDespesa;
 
 	@Inject
 	private DetalheDespesaService detalheDespesaService;
@@ -58,7 +58,7 @@ public class ManterDetalheDespesaBean extends AbstractManterBean {
 	}
 
 	public void limpar() {
-		detalheDespesa = new DetalheDespesa();
+		detalheDespesa = new DetalhamentoDespesa();
 	}
 
 	@URLAction(mappingId = "incluirDetalheDespesa", onPostback = false)
@@ -124,11 +124,11 @@ public class ManterDetalheDespesaBean extends AbstractManterBean {
 		this.id = CriptografiaUtil.decripta(id);
 	}
 
-	public DetalheDespesa getDetalheDespesa() {
+	public DetalhamentoDespesa getDetalheDespesa() {
 		return detalheDespesa;
 	}
 
-	public void setDetalheDespesa(DetalheDespesa detalheDespesa) {
+	public void setDetalheDespesa(DetalhamentoDespesa detalheDespesa) {
 		this.detalheDespesa = detalheDespesa;
 	}
 

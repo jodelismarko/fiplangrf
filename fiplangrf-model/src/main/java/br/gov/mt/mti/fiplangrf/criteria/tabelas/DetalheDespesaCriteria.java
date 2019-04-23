@@ -4,10 +4,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.*;
 import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
-import br.gov.mt.mti.fiplangrf.model.tabelas.DetalheDespesa;
+import br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoDespesa;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 
-public class DetalheDespesaCriteria extends DynamicSearchCriteria<DetalheDespesa> {
+public class DetalheDespesaCriteria extends DynamicSearchCriteria<DetalhamentoDespesa> {
 
 	@FilterFieldOption(label = "Codigo Det Despesa ", property = "codigoDetDespesa", type = FieldType.INTEGER)
 	private Integer codigoDetDespesa;
@@ -19,7 +19,7 @@ public class DetalheDespesaCriteria extends DynamicSearchCriteria<DetalheDespesa
 	private DominioSituacaoRegistro flagSituacao;
 
 	public DetalheDespesaCriteria() {
-		super(DetalheDespesa.class);
+		super(DetalhamentoDespesa.class);
 	}
 
 	public Integer getCodigoDetDespesa() {

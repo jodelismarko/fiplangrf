@@ -26,7 +26,7 @@ import lombok.ToString;
 @Table(name = "DHRTB006_DET_DESPESA")
 @EqualsAndHashCode(callSuper = false , of = {"id", "codigoDetDespesa"})
 @ToString(callSuper = false, of = {"id", "codigoDetDespesa", "descricaoDetDespesa", "flagSituacao"})
-public class DetalheDespesa extends BaseEntity<Long> {
+public class DetalhamentoDespesa extends BaseEntity<Long> {
 	
 	private static final long serialVersionUID = -4735651967996160395L;
 	
