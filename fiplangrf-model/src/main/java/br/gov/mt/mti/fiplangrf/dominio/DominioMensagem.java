@@ -26,25 +26,8 @@ public enum DominioMensagem {
 	MSG_ALTERADA_SUCESSO(30002,"Registro alterado com sucesso."),
 	MSG_EXCLUIR_SUCESSO(30003,"Registro excluído com sucesso."), 
 	MSG_TITULO_EXCLUSAO(1, "Exclusão de Registro Permanente"),
-	MSG_CONFIRMAR_EXCLUSAO(2, "Deseja realmente excluir esse registro?"),
-	
-	/*Regras de Negócio*/
-	MSG_INFORMAR_CNAE_UNIDADE_ADMINISTRATIVA(20001,"É obrigatório informar pelo menos um CNAE principal."),
-	MSG_INFORMAR_ACAO_COORDENADORIA(20002,"É obrigatório informar pelo menos uma Ação Coordenadoria."),
-	MSG_ENVIAR_PARA_REGULARIZACAO(20003, "Deseja realmente enviar a ocorrência para regularização?"),
-	MSG_OCORRENCIA_ENVIADA_PARA_ELABORACAO(20004, "A Ocorrência Foi Encaminhada para Elaboração!"),
-	MSG_OCORRENCIA_ENVIADA_PARA_REGULARIZACAO(20005, "A Ocorrência Foi Encaminhada para Regularização!"),
-	MSG_OCORRENCIA_ENVIADA_PARA_ANALISE(30021, "Ocorrência Encaminhada para Análise com Sucesso"),
-	MSG_FINALIZAR_OCORRENCIA(20006, "Deseja Realmente Finalizar a Ocorrência? Após Finalização da mesma não será possível realizar mais nenhuma ação!"),
-	MSG_ENVIAR_PARA_ANALISE(20007, "Deseja Realmente enviar a ocorrência para análise?"),
-	MSG_OCORRENCIA_SUSPENSA(20008, "A Ocorrência Foi Suspensa!"),
-	MSG_OCORRENCIA_REATIVADA(20009, "A Ocorrência Foi Reativada!"),
-	MSG_ENCERRAMENTO_PENDENCIA(20010, "É Obrigatório informar pelo menos um Encerramento de Pendência."),
-	MSG_INFORMAR_UO_UC(20011, "É obrigatório informar pelo menos uma Unidade Orçamentária Permitida ou uma Unidade Conveniada Permitida."),
-	MSG_ATUALIZAR_REVISAO(20012, "Deseja Realmente Atualizar a Revisão da Ocorrência?"),
-	MSG_OCORRENCIA_REGULARIZADA(20013, "A Ocorrência Foi Regularizada!"),
-	MSG_UO_INVALIDA(20014, "É Obrigatório Informar uma Unidade Orçamentária Ativa, a selecionada não foi encontrada!");
-	;
+	MSG_CONFIRMAR_EXCLUSAO(2, "Deseja realmente excluir esse registro?");
+
 	// @formatter:on
 
 	public static final String NOME = "DominioMensagem";
