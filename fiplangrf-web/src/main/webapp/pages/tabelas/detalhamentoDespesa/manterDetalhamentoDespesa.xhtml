@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cfw="http://ceprofw.cepromat.mt.gov.br/components"
+	xmlns:sind="http://ceprofw.cepromat.mt.gov.br/sindesa"
+	template="/WEB-INF/templates/mainPopup.xhtml">
+
+<ui:define name="contents">
+	<sind:form id="crudForm">
+		<cfw:moldura titulo="#{manterDetalhamentoDespesaBean.modoDesc} Detalhamento Despesa " icone="#{manterDetalhamentoDespesaBean.modoIcon}">
+			<cfw:panelFloat>
+				<cfw:formInputNumber
+					id="codigoDetDespesa"
+					labelValue="Codigo Det Despesa "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoDespesaBean.detalhamentoDespesa.codigoDetDespesa}"
+					readonly="#{manterDetalhamentoDespesaBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formInputText
+					id="descricaoDetDespesa"
+					labelValue="Descrição"
+					containerWidth="Container33"
+					value="#{manterDetalhamentoDespesaBean.detalhamentoDespesa.descricaoDetDespesa}"
+					maxlength="100"
+					readonly="#{manterDetalhamentoDespesaBean.modoVisualizacao}"
+					required="true" />
+				<cfw:formSelectOneMenu
+					id="flagSituacao"
+					labelValue="Flag Situacao "
+					containerWidth="Container33"
+					value="#{manterDetalhamentoDespesaBean.detalhamentoDespesa.flagSituacao}"
+					itemsValue="#{combosEnumHelperBean.dominioSituacaoRegistro}"
+					itemLabel="#{item.desc}"
+					itemValue="#{item}"
+					readonly="#{manterDetalhamentoDespesaBean.modoVisualizacao}"
+					required="true" />
+			</cfw:panelFloat>
+		</cfw:moldura>
+		<cfw:panelButtons>
+			<p:outputPanel id="molduraBotoes" styleClass="ui-ceprofw-panel-botoes" layout="block">
+				<p:commandButton id="salvar" action="#{manterDetalhamentoDespesaBean.salvar}" value="Salvar" process="@([id$=crudForm])" update="@([id$=crudForm])" icon="fa fa-floppy-o white Fs14" styleClass="ResponsiveButton" rendered="#{!manterDetalhamentoDespesaBean.modoVisualizacao and !manterDetalhamentoDespesaBean.modoExclusao}" />
+				<p:commandButton id="excluir" action="#{manterDetalhamentoDespesaBean.excluir}" value="Confirmar" update="@form" icon="fa fa-check white Fs14" styleClass="ResponsiveButton" rendered="#{manterDetalhamentoDespesaBean.modoExclusao}" />
+				<p:commandButton id="limpar" actionListener="#{manterDetalhamentoDespesaBean.limpar}" value="Limpar" process="@this" update="@form" resetValues="true" icon="fa fa-eraser white Fs14" styleClass="ResponsiveButton" rendered="#{manterDetalhamentoDespesaBean.id eq null and !manterDetalhamentoDespesaBean.modoExclusao}" />
+				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
+			</p:outputPanel>
+		</cfw:panelButtons>
+	</sind:form>
+</ui:define>
+</ui:composition>

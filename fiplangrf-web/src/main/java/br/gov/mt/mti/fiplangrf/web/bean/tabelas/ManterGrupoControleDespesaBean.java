@@ -32,7 +32,7 @@ import br.gov.mt.mti.fiplangrf.model.tabelas.Despesa;
 		@URLMapping(id = "excluirGrupoControleDespesa", pattern = "/grupocontroledespesa/excluir/#{id:manterGrupoControleDespesaBean.idCriptogradado}", viewId = "/pages/tabelas/grupoControleDespesa/manterGrupoControleDespesa.jsf")})
 public class ManterGrupoControleDespesaBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -966985652764925380L;
+	private static final long serialVersionUID = 970502875291029101L;
 
 	@Inject
 	private Logger LOGGER;

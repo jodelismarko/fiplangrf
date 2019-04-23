@@ -21,7 +21,7 @@ import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractPesquisaBean;
 @URLMapping(id = "pesquisarFonteRecurso", pattern = "/fonterecurso/pesquisar", viewId = "/pages/tabelas/fonteRecurso/pesquisarFonteRecurso.jsf")
 public class PesquisarFonteRecursoBean extends AbstractPesquisaBean<FonteRecursoCriteria> {
 
-	private static final long serialVersionUID = 627187839335014365L;
+	private static final long serialVersionUID = 943579184294697681L;
 
 	@Inject
 	private Logger LOGGER;

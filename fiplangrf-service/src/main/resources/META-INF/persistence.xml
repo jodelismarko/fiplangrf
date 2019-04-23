@@ -20,8 +20,8 @@
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUsuario</class>
 		<class>br.gov.mt.mti.fiplangrf.model.fiplan.FIPLANUnidadeOrcamentaria</class>
 		
-		<!-- Tabelas Básicas  -->
-        <class>br.gov.mt.mti.fiplangrf.model.tabelas.Despesa</class>
+		<!-- Tabelas Básicas -->
+		<class>br.gov.mt.mti.fiplangrf.model.tabelas.Despesa</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoDespesa</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoProvisaoDespesa</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.FonteRecurso</class>
@@ -29,7 +29,6 @@
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.ItemDespesa</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.PlanejamentoAnualPrazos</class>
         <class>br.gov.mt.mti.fiplangrf.model.tabelas.PrazoSolicitacaoMensal</class>
-
 
 		<properties>
 

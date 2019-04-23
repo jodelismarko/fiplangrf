@@ -28,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
 		@URLMapping(id = "excluirPlanejamentoAnualPrazos", pattern = "/planejamentoanualprazos/excluir/#{id:manterPlanejamentoAnualPrazosBean.idCriptogradado}", viewId = "/pages/tabelas/planejamentoAnualPrazos/manterPlanejamentoAnualPrazos.jsf")})
 public class ManterPlanejamentoAnualPrazosBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -19215103802315336L;
+	private static final long serialVersionUID = 292136291154367677L;
 
 	@Inject
 	private Logger LOGGER;

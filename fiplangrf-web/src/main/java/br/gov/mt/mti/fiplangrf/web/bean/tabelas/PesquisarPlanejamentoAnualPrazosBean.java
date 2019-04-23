@@ -21,7 +21,7 @@ import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractPesquisaBean;
 @URLMapping(id = "pesquisarPlanejamentoAnualPrazos", pattern = "/planejamentoanualprazos/pesquisar", viewId = "/pages/tabelas/planejamentoAnualPrazos/pesquisarPlanejamentoAnualPrazos.jsf")
 public class PesquisarPlanejamentoAnualPrazosBean extends AbstractPesquisaBean<PlanejamentoAnualPrazosCriteria> {
 
-	private static final long serialVersionUID = 100739085220340343L;
+	private static final long serialVersionUID = -793321321778426844L;
 
 	@Inject
 	private Logger LOGGER;
