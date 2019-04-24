@@ -12,7 +12,7 @@ public enum DominioIndicativoProvisao {
 	NAO("NAO", "Não");
 	// @formatter:on
 
-	public static final String NOME = "DominioSimNao";
+	public static final String NOME = "DominioIndicativoProvisao";
 	public static final String METHOD = "getCharCod";
 
 	private String desc;

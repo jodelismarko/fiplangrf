@@ -16,8 +16,8 @@ public class DetalhamentoProvisaoDespesaCriteria extends DynamicSearchCriteria<D
 	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
 	private DominioSituacaoRegistro flagSituacao;
 
-	@FilterFieldOption(label = "Despesa Detal Provisao ", property = "despesaDetalProvisao", type = FieldType.LIST)
-	private Despesa despesaDetalProvisao;
+	@FilterFieldOption(label = "Despesa ", property = "despesa", type = FieldType.LIST)
+	private Despesa despesa;
 
 	public DetalhamentoProvisaoDespesaCriteria() {
 		super(DetalhamentoProvisaoDespesa.class);
@@ -39,12 +39,12 @@ public class DetalhamentoProvisaoDespesaCriteria extends DynamicSearchCriteria<D
 		this.flagSituacao = flagSituacao;
 	}
 
-	public Despesa getDespesaDetalProvisao() {
-		return despesaDetalProvisao;
+	public Despesa getDespesa() {
+		return despesa;
 	}
 
-	public void setDespesaDetalProvisao(Despesa despesaDetalProvisao) {
-		this.despesaDetalProvisao = despesaDetalProvisao;
+	public void setDespesa(Despesa despesa) {
+		this.despesa = despesa;
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class DetalhamentoProvisaoDespesaCriteria extends DynamicSearchCriteria<D
 		return new ToStringBuilder(this)
 			.append("descricaoDetalheProvisao", descricaoDetalheProvisao)
 			.append("flagSituacao", flagSituacao)
-			.append("despesaDetalProvisao", despesaDetalProvisao)
+			.append("despesa", despesa)
 			.toString();
 	}
 

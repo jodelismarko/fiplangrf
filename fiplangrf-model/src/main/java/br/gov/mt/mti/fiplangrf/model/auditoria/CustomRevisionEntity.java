@@ -95,4 +95,10 @@ public class CustomRevisionEntity implements BaseModel<Long>, Serializable {
 	@Override
 	public void setDataAtualizacao(Date dataAtualizacao) {
 	}
+
+	@Override
+	public String getLabel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

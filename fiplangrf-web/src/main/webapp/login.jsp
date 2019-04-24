@@ -46,7 +46,7 @@
 	href="resources/jquery/jquery-ui-1.11.4/jquery-ui.theme.css">
 <link rel="stylesheet"
 	href="resources/jquery/jquery-ui-1.11.4/jquery-ui.structure.css">
-<title>Fiplan - GMA</title>
+<title>Fiplan - GRF</title>
 
 
 

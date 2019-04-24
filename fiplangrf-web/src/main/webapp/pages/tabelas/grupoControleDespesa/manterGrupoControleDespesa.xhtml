@@ -49,14 +49,14 @@
 					readonly="#{manterGrupoControleDespesaBean.modoVisualizacao}"
 					required="true" />
 				<cfw:formSelectOneMenu
-					id="despesaGrupoControle"
-					labelValue="Despesa Grupo Controle "
+					id="despesa"
+					labelValue="Despesa "
 					containerWidth="Container33"
-					value="#{manterGrupoControleDespesaBean.grupoControleDespesa.despesaGrupoControle}"
+					value="#{manterGrupoControleDespesaBean.grupoControleDespesa.despesa}"
 					converter="entityConverter"
-					itemsValue="#{manterGrupoControleDespesaBean.listaDespesaGrupoControle}"
-					itemVar="despesaGrupoControle"
-					itemLabel="#{despesaGrupoControle}"
+					itemsValue="#{manterGrupoControleDespesaBean.listaDespesa}"
+					itemVar="despesa"
+					itemLabel="#{despesa}"
 					readonly="#{manterGrupoControleDespesaBean.modoVisualizacao}"
 					required="false" />
 			</cfw:panelFloat>

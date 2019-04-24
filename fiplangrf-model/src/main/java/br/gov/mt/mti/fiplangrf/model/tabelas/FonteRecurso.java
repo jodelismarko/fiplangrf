@@ -41,7 +41,7 @@ public class FonteRecurso extends BaseVersionedEntity<Long> {
 	@Column(name = "DESC_DESCRICAO", length = 100, nullable = false)
 	private String descricaoFonteRecurso;
 
-	@Column(name = "FLAG_SITUACAO", length = 7, columnDefinition = "VARCHAR2(7)")
+	@Column(name = "FLAG_SITUACAO", length = 7, nullable = false, columnDefinition = "VARCHAR2(7)")
 	@Type(type = DominioSituacaoRegistro.NOME)
 	private DominioSituacaoRegistro flagSituacao = DominioSituacaoRegistro.ATIVO;
 

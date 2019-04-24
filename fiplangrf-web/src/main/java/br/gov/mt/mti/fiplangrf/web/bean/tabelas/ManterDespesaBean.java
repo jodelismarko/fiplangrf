@@ -28,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
 		@URLMapping(id = "excluirDespesa", pattern = "/despesa/excluir/#{id:manterDespesaBean.idCriptogradado}", viewId = "/pages/tabelas/despesa/manterDespesa.jsf")})
 public class ManterDespesaBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = -226773071014302604L;
+	private static final long serialVersionUID = 267054975496144592L;
 
 	@Inject
 	private Logger LOGGER;

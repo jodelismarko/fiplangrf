@@ -32,9 +32,14 @@
 
 		<properties>
 
-			<!-- Criar / Atualizar schema 
+			<!-- Criar / Atualizar schema  -->
 			<property name="hibernate.hbm2ddl.auto" value="create" />
-			<property name="hibernate.hbm2ddl.import_files" value="data.sql"/> -->
+			<property name="hibernate.hbm2ddl.charset_name" value="UTF-8" />
+			<property name="hibernate.hbm2ddl.import_files" value="data.sql"/>
+			
+			<!-- Criar / Unicode  -->
+			<property name="hibernate.connection.characterEncoding" value="UTF-8"  />
+        	<property name="hibernate.connection.useUnicode" value="UTF-8" />
 			
 			<!-- Misc configuration -->
 			<property name="hibernate.show_sql" value="true" />

@@ -1,15 +1,11 @@
--- USUÁRO FIPLAN
 INSERT INTO ACWVW0464 (nr_cpf, dt_expiracao, ds_email,flg_usr_bloqueado, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '36329059918', null, 'admin@master.com.br','N', 'Usuario Master Dev', '65981330233', '6536537852');
 INSERT INTO ACWVW0464 (nr_cpf, dt_expiracao, ds_email,flg_usr_bloqueado, ds_nome, nr_tel_cel, nr_tel_com ) VALUES ( '539211192', null, 'jodelismarko@gmail.com','N', 'Jodelismarko Mamoré de Melo', '65992898361', '65992898361');
 
--- USUÁRIO SISTEMA
 INSERT INTO DHWTB018_USUARIO ( iden_usuario, data_atualizacao, data_criacao, versao, data_ultimo_acesso, numr_cpf, flag_situacao) VALUES (DHWSQ018_USUARIO.nextval, NULL, SYSDATE, 0, NULL, '36329059918', 'ATIVO');
 INSERT INTO DHWTB018_USUARIO ( iden_usuario, data_atualizacao, data_criacao, versao, data_ultimo_acesso, numr_cpf, flag_situacao) VALUES (DHWSQ018_USUARIO.nextval, NULL, SYSDATE, 0, NULL, '539211192', 'ATIVO');
 
--- PERFIL
 INSERT INTO DHWTB017_PERFIL_ACESSO (IDEN_PERFIL_ACESSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO, DESC_PERFIL_ACESSO,FLAG_SITUACAO) VALUES (DHWSQ017_PERFIL_ACESSO.nextval,null,SYSDATE,0,'Perfil de Acesso Master','ATIVO')
-
--- VINCULAR PERFIL AOS USUÁRIOS
+    
 INSERT INTO DHWTB025_USUARIO_PERFIL(IDEN_USUARIO, IDEN_PERFIL_ACESSO) VALUES (1,1);
 INSERT INTO DHWTB025_USUARIO_PERFIL(IDEN_USUARIO, IDEN_PERFIL_ACESSO) VALUES (2,1);
 
@@ -240,6 +236,40 @@ INSERT INTO DHWTB028_PERMISSAO (IDEN_PERMISSAO,data_atualizacao,data_criacao,ver
 INSERT INTO DHWTB028_PERMISSAO (IDEN_PERMISSAO,data_atualizacao,data_criacao,versao,action,descricao,nome,tipo_permissao) VALUES (DHWSQ028_PERMISSAO.nextval,null,sysdate,0,'br.gov.mt.mti.fiplangrf.service.tabelas.PrazoSolicitacaoMensalService.save','Incluir Prazo de Solicitação Mensal','br.gov.mt.mti.fiplangrf.service.tabelas.PrazoSolicitacaoMensalService.save','ACAO');
 INSERT INTO DHWTB028_PERMISSAO (IDEN_PERMISSAO,data_atualizacao,data_criacao,versao,action,descricao,nome,tipo_permissao) VALUES (DHWSQ028_PERMISSAO.nextval,null,sysdate,0,'br.gov.mt.mti.fiplangrf.service.tabelas.PrazoSolicitacaoMensalService.delete','Excluir Prazo de Solicitação Mensal','br.gov.mt.mti.fiplangrf.service.tabelas.PrazoSolicitacaoMensalService.delete','ACAO');
 INSERT INTO DHWTB028_PERMISSAO (IDEN_PERMISSAO,data_atualizacao,data_criacao,versao,action,descricao,nome,tipo_permissao) VALUES (DHWSQ028_PERMISSAO.nextval,null,sysdate,0,'br.gov.mt.mti.fiplangrf.service.tabelas.PrazoSolicitacaoMensalService.find','Pesquisar Prazo de Solicitação Mensal','br.gov.mt.mti.fiplangrf.service.tabelas.PrazoSolicitacaoMensalService.find','ACAO');
+
+-- FONTE DE RECURSO
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,100,'Recursos Ordinários do Tesouro','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,108,'Recursos de Alienação de Bens','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,115,'Recursos de Contribuições para Seguridade Social de outros Poderes','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,122,'Recursos do FUNDEB','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,151,'Recursos de Operações de Crédito','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,192,'Recursos de Repasses Constitucionais','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,193,'Recursos de Convênios','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,194,'Recursos de Incentivos','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,195,'Recursos de Transferências da União','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,196,'Recursos de Fundos Especiais Administrados pelo Órgão','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,240,'Recursos Próprios','ATIVO');
+INSERT INTO DHRTB008_FONTE_RECURSO (IDEN_FONTE_RECURSO,DATA_ATUALIZACAO,DATA_CRIACAO,VERSAO,CODG_FONTE_RECURSO,DESC_DESCRICAO,FLAG_SITUACAO) VALUES(DHUSQ008_FONTE_RECURSO.nextval,null,sysdate,0,250,'Recursos de Contribuições dos Órgãos e Servidores para a Previdência Social','ATIVO');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 --Incluir usuário

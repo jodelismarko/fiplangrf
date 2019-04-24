@@ -58,7 +58,7 @@ public class GrupoControleDespesa extends BaseVersionedEntity<Long>{
 	private String descricaoGrupoControleDespesa;
 	
 	@Column(name = "FLAG_TETO_FINANCEIRO_FIPLAN", length = 7, columnDefinition = "VARCHAR2(3)", nullable = false )
-	@Type(type = DominioSituacaoRegistro.NOME)
+	@Type(type = DominioTetoFinanceiroFiplan.NOME)
 	private DominioTetoFinanceiroFiplan flagTetoFinanceiroFiplan;
 	
 	@Column(name = "FLAG_SITUACAO", length = 7, columnDefinition = "VARCHAR2(7)", nullable = false )

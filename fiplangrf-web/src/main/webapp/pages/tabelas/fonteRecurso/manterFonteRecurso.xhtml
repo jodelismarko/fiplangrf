@@ -29,14 +29,14 @@
 					required="true" />
 				<cfw:formSelectOneMenu
 					id="flagSituacao"
-					labelValue="Flag Situacao "
+					labelValue="Situacao "
 					containerWidth="Container33"
 					value="#{manterFonteRecursoBean.fonteRecurso.flagSituacao}"
 					itemsValue="#{combosEnumHelperBean.dominioSituacaoRegistro}"
 					itemLabel="#{item.desc}"
 					itemValue="#{item}"
 					readonly="#{manterFonteRecursoBean.modoVisualizacao}"
-					required="false" />
+					required="true" />
 			</cfw:panelFloat>
 		</cfw:moldura>
 		<cfw:panelButtons>
@@ -47,6 +47,7 @@
 				<p:button value="Fechar" onclick="return parentPopupClose()" icon="fa fa-close white Fs14" />
 			</p:outputPanel>
 		</cfw:panelButtons>
+		<ui:include src="/pages/common/confirmDialog.xhtml" />
 	</sind:form>
 </ui:define>
 </ui:composition>

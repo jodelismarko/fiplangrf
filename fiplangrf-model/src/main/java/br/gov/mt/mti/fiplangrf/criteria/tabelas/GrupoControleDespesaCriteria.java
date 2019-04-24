@@ -24,8 +24,8 @@ public class GrupoControleDespesaCriteria extends DynamicSearchCriteria<GrupoCon
 	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
 	private DominioSituacaoRegistro flagSituacao;
 
-	@FilterFieldOption(label = "Despesa Grupo Controle ", property = "despesaGrupoControle", type = FieldType.LIST)
-	private Despesa despesaGrupoControle;
+	@FilterFieldOption(label = "Despesa ", property = "despesa", type = FieldType.LIST)
+	private Despesa despesa;
 
 	public GrupoControleDespesaCriteria() {
 		super(GrupoControleDespesa.class);
@@ -63,12 +63,12 @@ public class GrupoControleDespesaCriteria extends DynamicSearchCriteria<GrupoCon
 		this.flagSituacao = flagSituacao;
 	}
 
-	public Despesa getDespesaGrupoControle() {
-		return despesaGrupoControle;
+	public Despesa getDespesa() {
+		return despesa;
 	}
 
-	public void setDespesaGrupoControle(Despesa despesaGrupoControle) {
-		this.despesaGrupoControle = despesaGrupoControle;
+	public void setDespesa(Despesa despesa) {
+		this.despesa = despesa;
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class GrupoControleDespesaCriteria extends DynamicSearchCriteria<GrupoCon
 			.append("descricaoGrupoControleDespesa", descricaoGrupoControleDespesa)
 			.append("flagTetoFinanceiroFiplan", flagTetoFinanceiroFiplan)
 			.append("flagSituacao", flagSituacao)
-			.append("despesaGrupoControle", despesaGrupoControle)
+			.append("despesa", despesa)
 			.toString();
 	}
 

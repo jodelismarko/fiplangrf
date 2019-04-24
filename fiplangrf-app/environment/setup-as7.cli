@@ -1,7 +1,7 @@
 connect
 batch
 
-/subsystem=datasources/data-source=fiplangma:add(jndi-name=java:jboss/datasources/fiplangma, pool-name=fiplangma, driver-name=ojdbc6.jar, driver-class=oracle.jdbc.driver.OracleDriver, connection-url=jdbc:oracle:thin:@URL:1521:SID, user-name=public, password=PASSWORD)
-/subsystem=datasources/data-source=fiplangma:enable(persistent=true)
+/subsystem=datasources/data-source=fiplangrf:add(jndi-name=java:jboss/datasources/fiplangrf, pool-name=fiplangrf, driver-name=ojdbc6.jar, driver-class=oracle.jdbc.driver.OracleDriver, connection-url=jdbc:oracle:thin:@URL:1521:SID, user-name=public, password=PASSWORD)
+/subsystem=datasources/data-source=fiplangrf:enable(persistent=true)
 run-batch
 :reload

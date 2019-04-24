@@ -47,7 +47,7 @@ public class ItemDespesa extends BaseVersionedEntity<Long> {
 	private String descricaoItemDespesa;
 	
 	@Column(name = "FLAG_NATUREZA_DESPESA", length = 7, columnDefinition = "VARCHAR2(3)", nullable = false )
-	@Type(type = DominioSituacaoRegistro.NOME)
+	@Type(type = DominioNaturezaDespesa.NOME)
 	private DominioNaturezaDespesa flagNaturezaDespesa;
 	
 	@Column(name = "FLAG_SITUACAO", length = 7, columnDefinition = "VARCHAR2(7)", nullable = false )

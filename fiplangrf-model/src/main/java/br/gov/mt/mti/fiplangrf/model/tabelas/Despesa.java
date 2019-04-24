@@ -50,10 +50,12 @@ public class Despesa extends  BaseVersionedEntity<Long> {
 	@Column(name = "DESC_DESPESA", length = 50, nullable = false)
 	private String descricaoDespesa;
 	
+	@GeneratorFieldOptions(defaultLabel = "Indicativo Provisão", filterable = true)
 	@Column(name = "FLAG_INDICATIVO_PROVISAO", length = 7, columnDefinition = "VARCHAR2(3)", nullable = false )
-	@Type(type = DominioSituacaoRegistro.NOME)
+	@Type(type = DominioIndicativoProvisao.NOME)
 	private DominioIndicativoProvisao flagIndicativoProvisao;
 	
+	@GeneratorFieldOptions(defaultLabel = "Situação", filterable = true)
 	@Column(name = "FLAG_SITUACAO", length = 7, columnDefinition = "VARCHAR2(7)", nullable = false )
 	@Type(type = DominioSituacaoRegistro.NOME)
 	private DominioSituacaoRegistro flagSituacao;

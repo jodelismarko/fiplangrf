@@ -21,7 +21,7 @@ import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractPesquisaBean;
 @URLMapping(id = "pesquisarDetalhamentoProvisaoDespesa", pattern = "/detalhamentoprovisaodespesa/pesquisar", viewId = "/pages/tabelas/detalhamentoProvisaoDespesa/pesquisarDetalhamentoProvisaoDespesa.jsf")
 public class PesquisarDetalhamentoProvisaoDespesaBean extends AbstractPesquisaBean<DetalhamentoProvisaoDespesaCriteria> {
 
-	private static final long serialVersionUID = 860514100408974522L;
+	private static final long serialVersionUID = -382467298464385285L;
 
 	@Inject
 	private Logger LOGGER;

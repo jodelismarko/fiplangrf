@@ -31,14 +31,14 @@
 					readonly="#{manterDetalhamentoProvisaoDespesaBean.modoVisualizacao}"
 					required="true" />
 				<cfw:formSelectOneMenu
-					id="despesaDetalProvisao"
-					labelValue="Despesa Detal Provisao "
+					id="despesa"
+					labelValue="Despesa "
 					containerWidth="Container33"
-					value="#{manterDetalhamentoProvisaoDespesaBean.detalhamentoProvisaoDespesa.despesaDetalProvisao}"
+					value="#{manterDetalhamentoProvisaoDespesaBean.detalhamentoProvisaoDespesa.despesa}"
 					converter="entityConverter"
-					itemsValue="#{manterDetalhamentoProvisaoDespesaBean.listaDespesaDetalProvisao}"
-					itemVar="despesaDetalProvisao"
-					itemLabel="#{despesaDetalProvisao}"
+					itemsValue="#{manterDetalhamentoProvisaoDespesaBean.listaDespesa}"
+					itemVar="despesa"
+					itemLabel="#{despesa}"
 					readonly="#{manterDetalhamentoProvisaoDespesaBean.modoVisualizacao}"
 					required="false" />
 			</cfw:panelFloat>

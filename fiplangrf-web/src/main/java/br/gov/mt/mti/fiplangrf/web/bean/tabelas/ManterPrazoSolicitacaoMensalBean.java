@@ -32,7 +32,7 @@ import br.gov.mt.mti.fiplangrf.model.tabelas.PlanejamentoAnualPrazos;
 		@URLMapping(id = "excluirPrazoSolicitacaoMensal", pattern = "/prazosolicitacaomensal/excluir/#{id:manterPrazoSolicitacaoMensalBean.idCriptogradado}", viewId = "/pages/tabelas/prazoSolicitacaoMensal/manterPrazoSolicitacaoMensal.jsf")})
 public class ManterPrazoSolicitacaoMensalBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 276780714116670736L;
+	private static final long serialVersionUID = 462409300596560389L;
 
 	@Inject
 	private Logger LOGGER;
