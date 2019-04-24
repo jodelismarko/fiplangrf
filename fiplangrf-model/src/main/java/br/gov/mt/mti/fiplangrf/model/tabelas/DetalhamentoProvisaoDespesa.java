@@ -1,15 +1,15 @@
 package br.gov.mt.mti.fiplangrf.model.tabelas;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,7 +19,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
 import br.gov.mt.cepromat.ceprofw.common.gerador.suporte.GeneratorFieldOptions;
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,11 +28,11 @@ import lombok.ToString;
 @Entity
 @Data
 @Audited
-@AuditTable(value = "DHRTB009_DETAL_PROV_DESPESA")
+@AuditTable(value = "DHRTB009_DET_PROV_DESPESA_AUD")
 @Table(name = "DHRTB009_DETAL_PROV_DESPESA")
 @EqualsAndHashCode(callSuper = false , of = {"id", "descricaoDetalheProvisao"})
 @ToString(callSuper = false, of = {"id", "descricaoDetalheProvisao", "flagSituacao"})
-public class DetalheProvisaoDespesa extends BaseEntity<Long> {
+public class DetalhamentoProvisaoDespesa extends BaseVersionedEntity<Long> {
 
 	private static final long serialVersionUID = 4573553459092155003L;
 	
@@ -51,7 +51,8 @@ public class DetalheProvisaoDespesa extends BaseEntity<Long> {
 	private DominioSituacaoRegistro flagSituacao;
 	
 	@NotAudited
-	@OneToMany( mappedBy = "despesa", fetch = FetchType.LAZY )
-	private Set<Despesa> despesas = new HashSet<Despesa>();
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+	@JoinColumn(name = "IDEN_DESPESA",  foreignKey = @ForeignKey(name = "DHRFK009_DHRTB010_DESPESA"))
+	private Despesa despesa;
 
 }

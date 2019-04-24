@@ -12,7 +12,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,10 +22,10 @@ import lombok.ToString;
 @Data
 @Audited
 @AuditTable(value = "DHRTB008_FONTE_RECURSO_AUD")
-@Table(name = "DHRTB008_FONTE_RECURSO_AUD")
+@Table(name = "DHRTB008_FONTE_RECURSO")
 @EqualsAndHashCode(callSuper = false, of = { "id", "codgFonteRecurso" })
 @ToString(callSuper = false, of = { "id", "codgFonteRecurso", "descricaoFonteRecurso", "flagSituacao" })
-public class FonteRecurso extends BaseEntity<Long> {
+public class FonteRecurso extends BaseVersionedEntity<Long> {
 
 	private static final long serialVersionUID = 1628826645600804917L;
 
@@ -41,7 +41,7 @@ public class FonteRecurso extends BaseEntity<Long> {
 	@Column(name = "DESC_DESCRICAO", length = 100, nullable = false)
 	private String descricaoFonteRecurso;
 
-	@Column(name = "FLAG_SITUACAO", length = 7, columnDefinition = "VARCHAR2(7)")
+	@Column(name = "FLAG_SITUACAO", length = 7, nullable = false, columnDefinition = "VARCHAR2(7)")
 	@Type(type = DominioSituacaoRegistro.NOME)
 	private DominioSituacaoRegistro flagSituacao = DominioSituacaoRegistro.ATIVO;
 

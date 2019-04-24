@@ -5,14 +5,14 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
 import br.gov.mt.cepromat.ceprofw.core.service.PaginableService;
-import br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoProvisaoDespesa;
+import br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoDespesa;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class DetalheProvisaoDespesaService extends PaginableService<DetalhamentoProvisaoDespesa, Long> {
+public class DetalhamentoDespesaService extends PaginableService<DetalhamentoDespesa, Long> {
 
-	protected DetalheProvisaoDespesaService() {
-		super(DetalhamentoProvisaoDespesa.class);
+	protected DetalhamentoDespesaService() {
+		super(DetalhamentoDespesa.class);
 	}
 
 }

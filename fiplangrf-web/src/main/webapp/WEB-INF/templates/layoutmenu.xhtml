@@ -34,21 +34,15 @@
 			</div>
 			<pm:menu id="menu">
 
-				<p:submenu label="GRF Conta Única" styleClass="subMenu"
-					icon="fa fa-folder-o">
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem"
-						value="Recurso Financeiro" />
-				</p:submenu>
-
 				<p:submenu label="Tabelas Básicas" styleClass="subMenu" icon="fa fa-folder-o">
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Despesa"  />
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Detalhamento da Despesa"  />
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Detalhamento de Provisão de Despesa" />
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Itens da Despesa"/>
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Fonte de Recurso" />
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Grupos de Controle da Despesa"/>
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Planejamento Anual de Prazos"/>
-					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" value="Prazos de Solicitação Mensal"/>
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.despesa" outcome="pretty:pesquisarDespesa" value="Despesa"  />
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.detalhamentoDespesa" outcome="pretty:pesquisarDetalhamentoDespesa" value="Detalhamento da Despesa"  />
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.detalhamentoProvisaoDespesa" outcome="pretty:pesquisarDetalhamentoProvisaoDespesa" value="Detalhamento de Provisão de Despesa" />
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.itemDespesa" outcome="pretty:pesquisarItemDespesa" value="Itens da Despesa"/>
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.fonteRecurso" outcome="pretty:pesquisarFonteRecurso" value="Fonte de Recurso" />
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.grupoControleDespesa" outcome="pretty:pesquisarGrupoControleDespesa" value="Grupos de Controle da Despesa"/>
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.planejamentoAnualPrazos" outcome="pretty:pesquisarPlanejamentoAnualPrazos" value="Planejamento Anual de Prazos"/>
+					<mti:menuItem icon="fa fa-file-text-o" styleClass="menuItem" permissao="pesquisar.prazoSolicitacaoMensal" outcome="pretty:pesquisarPrazoSolicitacaoMensal" value="Prazo de Solicitação Mensal"/>
 				</p:submenu>
 
 				<p:submenu label="Usuário" styleClass="subMenu"

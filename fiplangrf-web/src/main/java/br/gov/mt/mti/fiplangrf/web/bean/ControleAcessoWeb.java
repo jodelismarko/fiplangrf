@@ -5,18 +5,16 @@ import java.io.Serializable;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 import br.gov.mt.mti.fiplangrf.common.util.Constantes;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoCNAE;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoDespesa;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoDetalhamentoDespesa;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoDetalhamentoProvisaoDespesa;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoFonteRecurso;
 import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoFuncionalidade;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoGrupoPendencia;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoNaturezaJuridica;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoOcorrencia;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoGrupoControleDespesa;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoItemDespesa;
 import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoPerfil;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoRevisao;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoSubGrupoPendencia;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoTipoAdministracao;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoTipoOcorrencia;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoTipoPendencia;
-import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoUnidadeAdministrativa;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoPlanejamentoAnualPrazos;
+import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoPrazoSolicitacaoMensal;
 import br.gov.mt.mti.fiplangrf.web.bean.acesso.AcessoUsuario;
 
 public class ControleAcessoWeb extends AbstractControleAcessoWeb implements Serializable {
@@ -39,15 +37,13 @@ public class ControleAcessoWeb extends AbstractControleAcessoWeb implements Seri
 		new AcessoUsuario(http).aplicar();
 		new AcessoFuncionalidade(http).aplicar();
 		new AcessoPerfil(http).aplicar();
-		new AcessoCNAE(http).aplicar();
-		new AcessoNaturezaJuridica(http).aplicar();
-		new AcessoTipoOcorrencia(http).aplicar();
-		new AcessoTipoAdministracao(http).aplicar();
-		new AcessoGrupoPendencia(http).aplicar();
-		new AcessoSubGrupoPendencia(http).aplicar();
-		new AcessoTipoPendencia(http).aplicar();
-		new AcessoUnidadeAdministrativa(http).aplicar();
-		new AcessoOcorrencia(http).aplicar();
-		new AcessoRevisao(http).aplicar();
+		new AcessoDespesa(http).aplicar();
+		new AcessoDetalhamentoProvisaoDespesa(http).aplicar();
+		new AcessoPrazoSolicitacaoMensal(http).aplicar();
+		new AcessoPlanejamentoAnualPrazos(http).aplicar();
+		new AcessoDetalhamentoDespesa(http).aplicar();
+		new AcessoGrupoControleDespesa(http).aplicar();
+		new AcessoItemDespesa(http).aplicar();
+		new AcessoFonteRecurso(http).aplicar();
 	}
 }

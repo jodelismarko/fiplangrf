@@ -8,9 +8,7 @@ import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.gov.mt.cepromat.ceprofw.common.model.DominioInterface;
-
-public enum DominioSituacaoRegistro implements DominioInterface<DominioSituacaoRegistro> {
+public enum DominioSituacaoRegistro {
 
 	// @formatter:off
 	ATIVO("ATIVO","Ativo"),

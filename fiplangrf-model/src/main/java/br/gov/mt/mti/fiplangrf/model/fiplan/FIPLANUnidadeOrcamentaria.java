@@ -90,4 +90,10 @@ public class FIPLANUnidadeOrcamentaria implements BaseModel<Long>, Comparable<FI
 
 		return this.descricaoUnidadeOrcamentaria.compareToIgnoreCase(other.descricaoUnidadeOrcamentaria);
 	}
+
+	@Override
+	public String getLabel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

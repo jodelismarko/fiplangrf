@@ -275,7 +275,7 @@ var removerAcento = (function () {
 $(document).ready(function() {
 	// limpa o cookie que armazena o estado
 	// do menu ao carregar a pagina inicial
-	if(window.location.pathname == '/fiplangma/home') {
+	if(window.location.pathname == '/fiplangrf/home') {
 		$.removeCookie('adamantium_expandeditems', {path:'/'});
 		$.removeCookie('layout_menu_static_inactive', {path:'/'});
 	}

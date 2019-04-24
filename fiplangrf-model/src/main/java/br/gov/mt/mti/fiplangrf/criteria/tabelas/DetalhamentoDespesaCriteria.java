@@ -7,7 +7,7 @@ import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
 import br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoDespesa;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 
-public class DetalheDespesaCriteria extends DynamicSearchCriteria<DetalhamentoDespesa> {
+public class DetalhamentoDespesaCriteria extends DynamicSearchCriteria<DetalhamentoDespesa> {
 
 	@FilterFieldOption(label = "Codigo Det Despesa ", property = "codigoDetDespesa", type = FieldType.INTEGER)
 	private Integer codigoDetDespesa;
@@ -18,7 +18,7 @@ public class DetalheDespesaCriteria extends DynamicSearchCriteria<DetalhamentoDe
 	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
 	private DominioSituacaoRegistro flagSituacao;
 
-	public DetalheDespesaCriteria() {
+	public DetalhamentoDespesaCriteria() {
 		super(DetalhamentoDespesa.class);
 	}
 

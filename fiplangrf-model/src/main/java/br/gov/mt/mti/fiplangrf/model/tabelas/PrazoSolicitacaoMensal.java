@@ -21,7 +21,7 @@ import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioMes;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,11 +30,11 @@ import lombok.ToString;
 @Entity
 @Data
 @Audited
-@AuditTable(value = "DHRTB015_PRAZO_SOL_REP_MENSAL")
-@Table(name = "DHRTB015_PRAZO_SOL_REP_MENSAL")
+@AuditTable(value = "DHRTB015_PRAZO_SOL_MENSAL_AUD")
+@Table(name = "DHRTB015_PRAZO_SOL_MENSAL")
 @EqualsAndHashCode(callSuper = false , of = {"id", "flagMes","dataInicioSolic","dataFimSolic" })
 @ToString(callSuper = false, of = {"id", "flagMes", "dataInicioSolic", "dataFimSolic"})
-public class PrazoSolicitacaoMensal extends BaseEntity<Long> {
+public class PrazoSolicitacaoMensal extends BaseVersionedEntity<Long> {
 	
 	private static final long serialVersionUID = -5336207809435953655L;
 
@@ -58,7 +58,7 @@ public class PrazoSolicitacaoMensal extends BaseEntity<Long> {
 	
 	@NotAudited
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDEN_PLAN_ANUAL_PRAZO", nullable = true, foreignKey = @ForeignKey(name = "DHRFK015_DHRTB014_PLAN_ANUAL_PRAZO"))
+	@JoinColumn(name = "IDEN_PLAN_ANUAL_PRAZO", foreignKey = @ForeignKey(name = "DHRFK015_DHRTB014_PLANE_PRAZO"))
 	private PlanejamentoAnualPrazos planAnualPrazo;
 	
 }

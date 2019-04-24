@@ -1,7 +1,5 @@
 package br.gov.mt.mti.fiplangrf.web.bean.tabelas;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -18,10 +16,8 @@ import br.gov.mt.cepromat.ceprofw.core.service.exception.BusinessException;
 import br.gov.mt.mti.fiplangrf.common.util.ButtonScript;
 import br.gov.mt.mti.fiplangrf.model.tabelas.Despesa;
 import br.gov.mt.mti.fiplangrf.service.tabelas.DespesaService;
-import br.gov.mt.mti.fiplangrf.service.tabelas.DetalheProvisaoDespesaService;
 import br.gov.mt.mti.fiplangrf.web.bean.base.AbstractManterBean;
 import br.gov.mt.mti.fiplangrf.web.common.BeanMessageConstants;
-import br.gov.mt.mti.fiplangrf.model.tabelas.DetalheProvisaoDespesa;
 
 @Named("manterDespesaBean")
 @ViewScoped
@@ -32,7 +28,7 @@ import br.gov.mt.mti.fiplangrf.model.tabelas.DetalheProvisaoDespesa;
 		@URLMapping(id = "excluirDespesa", pattern = "/despesa/excluir/#{id:manterDespesaBean.idCriptogradado}", viewId = "/pages/tabelas/despesa/manterDespesa.jsf")})
 public class ManterDespesaBean extends AbstractManterBean {
 
-	private static final long serialVersionUID = 64293476369101592L;
+	private static final long serialVersionUID = 267054975496144592L;
 
 	@Inject
 	private Logger LOGGER;
@@ -53,11 +49,6 @@ public class ManterDespesaBean extends AbstractManterBean {
 
 	private Despesa despesa;
 
-	private List<DetalheProvisaoDespesa> listaDetalheProvisaoDespesa;
-
-	@Inject
-	private DetalheProvisaoDespesaService detalheProvisaoDespesaService;
-
 	@Inject
 	private DespesaService despesaService;
 
@@ -68,8 +59,6 @@ public class ManterDespesaBean extends AbstractManterBean {
 
 	public void limpar() {
 		despesa = new Despesa();
-		LOGGER.debug("Carregando lista de DetalheProvisaoDespesa");
-		listaDetalheProvisaoDespesa = detalheProvisaoDespesaService.findAll();
 	}
 
 	@URLAction(mappingId = "incluirDespesa", onPostback = false)
@@ -141,14 +130,6 @@ public class ManterDespesaBean extends AbstractManterBean {
 
 	public void setDespesa(Despesa despesa) {
 		this.despesa = despesa;
-	}
-
-	public List<DetalheProvisaoDespesa> getListaDetalheProvisaoDespesa() {
-		return listaDetalheProvisaoDespesa;
-	}
-
-	public void setListaDetalheProvisaoDespesa(List<DetalheProvisaoDespesa> listaDetalheProvisaoDespesa) {
-		this.listaDetalheProvisaoDespesa = listaDetalheProvisaoDespesa;
 	}
 
 }

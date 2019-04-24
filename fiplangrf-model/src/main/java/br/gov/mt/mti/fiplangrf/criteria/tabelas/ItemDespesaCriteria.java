@@ -20,8 +20,8 @@ public class ItemDespesaCriteria extends DynamicSearchCriteria<ItemDespesa> {
 	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
 	private DominioSituacaoRegistro flagSituacao;
 
-	@FilterFieldOption(label = "Grupo Contole Despesa ", property = "grupoContoleDespesa", type = FieldType.LIST)
-	private GrupoControleDespesa grupoContoleDespesa;
+	@FilterFieldOption(label = "Grupo Controle Despesa ", property = "grupoControleDespesa", type = FieldType.LIST)
+	private GrupoControleDespesa grupoControleDespesa;
 
 	public ItemDespesaCriteria() {
 		super(ItemDespesa.class);
@@ -51,12 +51,12 @@ public class ItemDespesaCriteria extends DynamicSearchCriteria<ItemDespesa> {
 		this.flagSituacao = flagSituacao;
 	}
 
-	public GrupoControleDespesa getGrupoContoleDespesa() {
-		return grupoContoleDespesa;
+	public GrupoControleDespesa getGrupoControleDespesa() {
+		return grupoControleDespesa;
 	}
 
-	public void setGrupoContoleDespesa(GrupoControleDespesa grupoContoleDespesa) {
-		this.grupoContoleDespesa = grupoContoleDespesa;
+	public void setGrupoControleDespesa(GrupoControleDespesa grupoControleDespesa) {
+		this.grupoControleDespesa = grupoControleDespesa;
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class ItemDespesaCriteria extends DynamicSearchCriteria<ItemDespesa> {
 			.append("descricaoItemDespesa", descricaoItemDespesa)
 			.append("flagNaturezaDespesa", flagNaturezaDespesa)
 			.append("flagSituacao", flagSituacao)
-			.append("grupoContoleDespesa", grupoContoleDespesa)
+			.append("grupoControleDespesa", grupoControleDespesa)
 			.toString();
 	}
 

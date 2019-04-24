@@ -21,7 +21,7 @@ import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,16 +30,16 @@ import lombok.ToString;
 @Entity
 @Data
 @Audited
-@AuditTable(value = "DHRTB014_PLAN_ANUAL_PRAZO")
+@AuditTable(value = "DHRTB014_PLAN_ANUAL_PRAZO_AUD")
 @Table(name = "DHRTB014_PLAN_ANUAL_PRAZO")
 @EqualsAndHashCode(callSuper = false , of = {"id", "numeroExercicio"})
 @ToString(callSuper = false, of = {"id", "numeroExercicio", "dataInicioEstimativa", "dataFimEstimativa", "flagSituacao"})
-public class PlanejamentoAnualPrazos extends BaseEntity<Long> {
+public class PlanejamentoAnualPrazos extends BaseVersionedEntity<Long> {
 
 	private static final long serialVersionUID = 2569530138113062548L;
 
 	@Id
-	@Column(name = "IDEN_PLAN_ANUAL_PRAZO", length = 8)
+	@Column(name = "IDEN_PLAN_ANUAL_PRAZO_AUD", length = 8)
 	@SequenceGenerator(name = "PLAN_ANUAL_PRAZO_SEQ", sequenceName = "DHRSQ014_PLAN_ANUAL_PRAZO", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PLAN_ANUAL_PRAZO_SEQ")
 	private Long id;

@@ -23,7 +23,7 @@
 			<artifactId>cepro-fw-core</artifactId>
 		</dependency>
 
-		<!-- fiplangma Modules -->
+		<!-- fiplangrf Modules -->
 
 		<dependency>
 			<groupId>br.gov.mt.mti.fiplangrf</groupId>

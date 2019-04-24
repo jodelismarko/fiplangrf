@@ -9,9 +9,9 @@ import br.gov.mt.mti.fiplangrf.model.tabelas.DetalhamentoProvisaoDespesa;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class DetalheProvisaoDespesaService extends PaginableService<DetalhamentoProvisaoDespesa, Long> {
+public class DetalhamentoProvisaoDespesaService extends PaginableService<DetalhamentoProvisaoDespesa, Long> {
 
-	protected DetalheProvisaoDespesaService() {
+	protected DetalhamentoProvisaoDespesaService() {
 		super(DetalhamentoProvisaoDespesa.class);
 	}
 
