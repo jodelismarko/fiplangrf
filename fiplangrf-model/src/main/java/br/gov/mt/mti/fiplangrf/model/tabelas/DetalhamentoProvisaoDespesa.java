@@ -1,5 +1,6 @@
 package br.gov.mt.mti.fiplangrf.model.tabelas;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +19,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
 import br.gov.mt.cepromat.ceprofw.common.gerador.suporte.GeneratorFieldOptions;
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,11 +28,11 @@ import lombok.ToString;
 @Entity
 @Data
 @Audited
-@AuditTable(value = "DHRTB009_DETAL_PROV_DESPESA")
+@AuditTable(value = "DHRTB009_DET_PROV_DESPESA_AUD")
 @Table(name = "DHRTB009_DETAL_PROV_DESPESA")
 @EqualsAndHashCode(callSuper = false , of = {"id", "descricaoDetalheProvisao"})
 @ToString(callSuper = false, of = {"id", "descricaoDetalheProvisao", "flagSituacao"})
-public class DetalhamentoProvisaoDespesa extends BaseEntity<Long> {
+public class DetalhamentoProvisaoDespesa extends BaseVersionedEntity<Long> {
 
 	private static final long serialVersionUID = 4573553459092155003L;
 	
@@ -50,8 +51,8 @@ public class DetalhamentoProvisaoDespesa extends BaseEntity<Long> {
 	private DominioSituacaoRegistro flagSituacao;
 	
 	@NotAudited
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDEN_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK009_DHRTB010_DESPESA"))
-	private Despesa despesaDetalProvisao;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+	@JoinColumn(name = "IDEN_DESPESA",  foreignKey = @ForeignKey(name = "DHRFK009_DHRTB010_DESPESA"))
+	private Despesa despesa;
 
 }

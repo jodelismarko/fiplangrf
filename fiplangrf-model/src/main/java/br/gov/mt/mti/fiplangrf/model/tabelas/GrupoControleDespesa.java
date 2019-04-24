@@ -26,7 +26,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
 import br.gov.mt.cepromat.ceprofw.common.gerador.suporte.GeneratorFieldOptions;
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import br.gov.mt.mti.fiplangrf.dominio.DominioTetoFinanceiroFiplan;
 import lombok.Data;
@@ -36,11 +36,11 @@ import lombok.ToString;
 @Entity
 @Data
 @Audited
-@AuditTable(value = "DHRTB011_GP_CTRL_DESP")
+@AuditTable(value = "DHRTB011_GP_CTRL_DESP_AUD")
 @Table(name = "DHRTB011_GP_CTRL_DESP")
 @EqualsAndHashCode(callSuper = false , of = {"id", "codigoGrupoControleDespesa"})
 @ToString(callSuper = false, of = {"id", "codigoGrupoControleDespesa", "descricaoGrupoControleDespesa","flagTetoFinanceiroFiplan", "flagSituacao"})
-public class GrupoControleDespesa extends BaseEntity<Long>{
+public class GrupoControleDespesa extends BaseVersionedEntity<Long>{
 
 	private static final long serialVersionUID = 576922170431686209L;
 	
@@ -70,9 +70,9 @@ public class GrupoControleDespesa extends BaseEntity<Long>{
 	private Set<ItemDespesa> itensDespesa = new HashSet<ItemDespesa>();
 	
 	@NotAudited
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDEN_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK011_DHRTB010_DESPESA"))
-	private Despesa despesaGrupoControle;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+	@JoinColumn(name = "IDEN_DESPESA", foreignKey = @ForeignKey(name = "DHRFK011_DHRTB010_DESPESA"))
+	private Despesa despesa;
 	
 	@NotAudited
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -13,7 +13,7 @@ import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import br.gov.mt.cepromat.ceprofw.common.gerador.suporte.GeneratorFieldOptions;
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,11 +22,11 @@ import lombok.ToString;
 @Entity
 @Data
 @Audited
-@AuditTable(value = "DHRTB006_DET_DESPESA")
+@AuditTable(value = "DHRTB006_DET_DESPESA_AUD")
 @Table(name = "DHRTB006_DET_DESPESA")
 @EqualsAndHashCode(callSuper = false , of = {"id", "codigoDetDespesa"})
 @ToString(callSuper = false, of = {"id", "codigoDetDespesa", "descricaoDetDespesa", "flagSituacao"})
-public class DetalhamentoDespesa extends BaseEntity<Long> {
+public class DetalhamentoDespesa extends BaseVersionedEntity<Long> {
 	
 	private static final long serialVersionUID = -4735651967996160395L;
 	

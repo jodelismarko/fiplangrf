@@ -18,7 +18,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
 import br.gov.mt.cepromat.ceprofw.common.gerador.suporte.GeneratorFieldOptions;
-import br.gov.mt.cepromat.ceprofw.core.model.BaseEntity;
+import br.gov.mt.cepromat.ceprofw.core.model.BaseVersionedEntity;
 import br.gov.mt.mti.fiplangrf.dominio.DominioNaturezaDespesa;
 import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
 import lombok.Data;
@@ -28,11 +28,11 @@ import lombok.ToString;
 @Entity
 @Data
 @Audited
-@AuditTable(value = "DHRTB013_ITEM_DESPESA")
+@AuditTable(value = "DHRTB013_ITEM_DESPESA_AUD")
 @Table(name = "DHRTB013_ITEM_DESPESA")
 @EqualsAndHashCode(callSuper = false , of = {"id", "descricaoItemDespesa"})
 @ToString(callSuper = false, of = {"id", "descricaoItemDespesa", "flagNaturezaDespesa", "flagSituacao"})
-public class ItemDespesa extends BaseEntity<Long> {
+public class ItemDespesa extends BaseVersionedEntity<Long> {
 
 	private static final long serialVersionUID = -6415462671252585757L;
 	
@@ -56,7 +56,7 @@ public class ItemDespesa extends BaseEntity<Long> {
 	
 	@NotAudited
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDEN_ITEM_DESPESA", nullable = true, foreignKey = @ForeignKey(name = "DHRFK013_DHRTB011_GP_CTRL_DESP"))
+	@JoinColumn(name = "IDEN_ITEM_DESPESA", nullable = true,  insertable = false, updatable = false, foreignKey = @ForeignKey(name = "DHRFK013_DHRTB011_GP_CTRL_DESP"))
 	private GrupoControleDespesa grupoControleDespesa;
 	
 	

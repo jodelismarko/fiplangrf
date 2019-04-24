@@ -14,6 +14,14 @@
 				icone="#{manterUsuarioBean.modoIcon}">
 
 				<cfw:panelFloat>
+				
+					<sind:imgCropperFileUpload id="foto" labelValue="Foto"
+							imgValue="#{imageUploadBean.loadImageOnView()}" icon="fa fa-user"
+							aspectRatio="true" containerWidth="Container33"
+							componentHeight="228"
+							btnRemoverListener="#{manterUsuarioBean.removerFoto}"
+							readonly="#{manterUsuarioBean.modoVisualizacao}" />
+				
 					<cfw:formInputCPF id="cpf" labelValue="CPF"
 						containerWidth="Container33" validationRequired="true"
 						validationGroup="true" value="#{manterUsuarioBean.usuario.cpf}"
@@ -70,13 +78,7 @@
 							value="#{manterUsuarioBean.usuario.dataAtualizacao}"
 							rendered="#{manterUsuarioBean.modoAlteracao or manterUsuarioBean.modoExclusao or manterUsuarioBean.modoVisualizacao}"
 							readonly="true" />
-
-						<sind:imgCropperFileUpload id="foto" labelValue="Foto"
-							imgValue="#{imageUploadBean.loadImageOnView()}" icon="fa fa-user"
-							aspectRatio="true" containerWidth="Container33"
-							componentHeight="228"
-							btnRemoverListener="#{manterUsuarioBean.removerFoto}"
-							readonly="#{manterUsuarioBean.modoVisualizacao}" />
+						
 					</p:outputPanel>
 				</cfw:panelFloat>
 
