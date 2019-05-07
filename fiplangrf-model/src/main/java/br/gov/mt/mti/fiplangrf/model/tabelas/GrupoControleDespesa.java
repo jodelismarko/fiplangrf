@@ -50,11 +50,11 @@ public class GrupoControleDespesa extends BaseVersionedEntity<Long>{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GP_CTRL_DESP_SEQ")
 	private Long id;
 	
-	@Column(name = "CODG_GP_CTRL_DESP", length = 8, precision = 3, nullable = false)
-	private BigInteger codigoGrupoControleDespesa;
+	@Column(name = "CODG_GP_CTRL_DESP", length = 8, nullable = false)
+	private Integer codigoGrupoControleDespesa;
 	
 	@GeneratorFieldOptions(defaultLabel = "Descrição", filterable = true)
-	@Column(name = "DESC_GP_CTRL_DESP", length = 50, nullable = false)
+	@Column(name = "DESC_GP_CTRL_DESP", length = 100, nullable = false)
 	private String descricaoGrupoControleDespesa;
 	
 	@Column(name = "FLAG_TETO_FINANCEIRO_FIPLAN", length = 7, columnDefinition = "VARCHAR2(3)", nullable = false )
@@ -66,11 +66,11 @@ public class GrupoControleDespesa extends BaseVersionedEntity<Long>{
 	private DominioSituacaoRegistro flagSituacao;
 
 	@NotAudited
-	@OneToMany( mappedBy = "grupoControleDespesa", fetch = FetchType.LAZY )
+	@OneToMany( mappedBy = "grupoControleDespesa", fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	private Set<ItemDespesa> itensDespesa = new HashSet<ItemDespesa>();
 	
 	@NotAudited
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
 	@JoinColumn(name = "IDEN_DESPESA", foreignKey = @ForeignKey(name = "DHRFK011_DHRTB010_DESPESA"))
 	private Despesa despesa;
 	

@@ -14,13 +14,13 @@ public class ItemDespesaCriteria extends DynamicSearchCriteria<ItemDespesa> {
 	@FilterFieldOption(label = "Descrição", property = "descricaoItemDespesa", type = FieldType.TEXT)
 	private String descricaoItemDespesa;
 
-	@FilterFieldOption(label = "Flag Natureza Despesa ", property = "flagNaturezaDespesa", type = FieldType.ENUM)
+	@FilterFieldOption(label = "Natureza Despesa ", property = "flagNaturezaDespesa", type = FieldType.ENUM)
 	private DominioNaturezaDespesa flagNaturezaDespesa;
 
-	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
+	@FilterFieldOption(label = "Situacao ", property = "flagSituacao", type = FieldType.ENUM)
 	private DominioSituacaoRegistro flagSituacao;
 
-	@FilterFieldOption(label = "Grupo Controle Despesa ", property = "grupoControleDespesa", type = FieldType.LIST)
+	@FilterFieldOption(label = "Grupo Controle Despesa ", property = "grupoControleDespesa.descricaoGrupoControleDespesa", type = FieldType.LIST)
 	private GrupoControleDespesa grupoControleDespesa;
 
 	public ItemDespesaCriteria() {

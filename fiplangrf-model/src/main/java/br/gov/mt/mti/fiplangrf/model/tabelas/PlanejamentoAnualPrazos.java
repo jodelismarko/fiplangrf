@@ -33,7 +33,7 @@ import lombok.ToString;
 @AuditTable(value = "DHRTB014_PLAN_ANUAL_PRAZO_AUD")
 @Table(name = "DHRTB014_PLAN_ANUAL_PRAZO")
 @EqualsAndHashCode(callSuper = false , of = {"id", "numeroExercicio"})
-@ToString(callSuper = false, of = {"id", "numeroExercicio", "dataInicioEstimativa", "dataFimEstimativa", "flagSituacao"})
+@ToString(callSuper = false, of = {"numeroExercicio"})
 public class PlanejamentoAnualPrazos extends BaseVersionedEntity<Long> {
 
 	private static final long serialVersionUID = 2569530138113062548L;

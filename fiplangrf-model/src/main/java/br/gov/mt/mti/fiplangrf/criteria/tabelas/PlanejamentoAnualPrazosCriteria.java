@@ -1,25 +1,24 @@
 package br.gov.mt.mti.fiplangrf.criteria.tabelas;
 
+import java.util.Date;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.*;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldType;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FilterFieldOption;
 import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
+import br.gov.mt.mti.fiplangrf.criteria.formatter.DateFormatter;
 import br.gov.mt.mti.fiplangrf.model.tabelas.PlanejamentoAnualPrazos;
-import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
-import java.util.Date;
 
 public class PlanejamentoAnualPrazosCriteria extends DynamicSearchCriteria<PlanejamentoAnualPrazos> {
 
-	@FilterFieldOption(label = "Numero Exercicio ", property = "numeroExercicio", type = FieldType.INTEGER)
+	@FilterFieldOption(label = "Numero Exercício ", property = "numeroExercicio", type = FieldType.INTEGER)
 	private Integer numeroExercicio;
 
-	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
-	private DominioSituacaoRegistro flagSituacao;
-
-	@FilterFieldOption(label = "Data Inicio Estimativa ", property = "dataInicioEstimativa", type = FieldType.TEXT)
+	@FilterFieldOption(label = "Início Estimativa ", property = "dataInicioEstimativa", type = FieldType.DATE , formatter= DateFormatter.class)
 	private Date dataInicioEstimativa;
 
-	@FilterFieldOption(label = "Data Fim Estimativa ", property = "dataFimEstimativa", type = FieldType.TEXT)
+	@FilterFieldOption(label = "Fim Estimativa ", property = "dataFimEstimativa", type = FieldType.DATE , formatter= DateFormatter.class)
 	private Date dataFimEstimativa;
 
 	public PlanejamentoAnualPrazosCriteria() {
@@ -32,14 +31,6 @@ public class PlanejamentoAnualPrazosCriteria extends DynamicSearchCriteria<Plane
 
 	public void setNumeroExercicio(Integer numeroExercicio) {
 		this.numeroExercicio = numeroExercicio;
-	}
-
-	public DominioSituacaoRegistro getFlagSituacao() {
-		return flagSituacao;
-	}
-
-	public void setFlagSituacao(DominioSituacaoRegistro flagSituacao) {
-		this.flagSituacao = flagSituacao;
 	}
 
 	public Date getDataInicioEstimativa() {
@@ -62,7 +53,6 @@ public class PlanejamentoAnualPrazosCriteria extends DynamicSearchCriteria<Plane
 	public String toString() {
 		return new ToStringBuilder(this)
 			.append("numeroExercicio", numeroExercicio)
-			.append("flagSituacao", flagSituacao)
 			.append("dataInicioEstimativa", dataInicioEstimativa)
 			.append("dataFimEstimativa", dataFimEstimativa)
 			.toString();

@@ -14,7 +14,7 @@
 			<cfw:panelFloat>
 				<cfw:formSelectOneMenu
 					id="flagMes"
-					labelValue="Flag Mes "
+					labelValue="Mes "
 					containerWidth="Container33"
 					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.flagMes}"
 					itemsValue="#{combosEnumHelperBean.dominioMes}"
@@ -24,27 +24,27 @@
 					required="true" />
 				<cfw:formCalendar
 					id="dataInicioSolic"
-					labelValue="Data Inicio Solic "
+					labelValue="Data Inicio Solicitação "
 					containerWidth="Container33"
 					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.dataInicioSolic}"
 					readonly="#{manterPrazoSolicitacaoMensalBean.modoVisualizacao}"
 					required="false" />
 				<cfw:formCalendar
 					id="dataFimSolic"
-					labelValue="Data Fim Solic "
+					labelValue="Data Fim Solicitação "
 					containerWidth="Container33"
 					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.dataFimSolic}"
 					readonly="#{manterPrazoSolicitacaoMensalBean.modoVisualizacao}"
 					required="false" />
 				<cfw:formSelectOneMenu
 					id="planAnualPrazo"
-					labelValue="Plan Anual Prazo "
+					labelValue="Planejamento Anual de Prazo "
 					containerWidth="Container33"
 					value="#{manterPrazoSolicitacaoMensalBean.prazoSolicitacaoMensal.planAnualPrazo}"
 					converter="entityConverter"
 					itemsValue="#{manterPrazoSolicitacaoMensalBean.listaPlanAnualPrazo}"
 					itemVar="planAnualPrazo"
-					itemLabel="#{planAnualPrazo}"
+					itemLabel="#{planAnualPrazo.numeroExercicio}"
 					readonly="#{manterPrazoSolicitacaoMensalBean.modoVisualizacao}"
 					required="false" />
 			</cfw:panelFloat>

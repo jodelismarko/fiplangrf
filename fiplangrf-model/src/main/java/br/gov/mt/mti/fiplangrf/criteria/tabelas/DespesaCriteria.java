@@ -2,22 +2,19 @@ package br.gov.mt.mti.fiplangrf.criteria.tabelas;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.*;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldType;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FilterFieldOption;
 import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
-import br.gov.mt.mti.fiplangrf.model.tabelas.Despesa;
 import br.gov.mt.mti.fiplangrf.dominio.DominioIndicativoProvisao;
-import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
+import br.gov.mt.mti.fiplangrf.model.tabelas.Despesa;
 
 public class DespesaCriteria extends DynamicSearchCriteria<Despesa> {
 
 	@FilterFieldOption(label = "Descrição", property = "descricaoDespesa", type = FieldType.TEXT)
 	private String descricaoDespesa;
 
-	@FilterFieldOption(label = "Flag Indicativo Provisao ", property = "flagIndicativoProvisao", type = FieldType.ENUM)
+	@FilterFieldOption(label = "Indicativo Provisao ", property = "flagIndicativoProvisao", type = FieldType.ENUM, width="240")
 	private DominioIndicativoProvisao flagIndicativoProvisao;
-
-	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
-	private DominioSituacaoRegistro flagSituacao;
 
 	public DespesaCriteria() {
 		super(Despesa.class);
@@ -39,20 +36,11 @@ public class DespesaCriteria extends DynamicSearchCriteria<Despesa> {
 		this.flagIndicativoProvisao = flagIndicativoProvisao;
 	}
 
-	public DominioSituacaoRegistro getFlagSituacao() {
-		return flagSituacao;
-	}
-
-	public void setFlagSituacao(DominioSituacaoRegistro flagSituacao) {
-		this.flagSituacao = flagSituacao;
-	}
-
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
 			.append("descricaoDespesa", descricaoDespesa)
 			.append("flagIndicativoProvisao", flagIndicativoProvisao)
-			.append("flagSituacao", flagSituacao)
 			.toString();
 	}
 

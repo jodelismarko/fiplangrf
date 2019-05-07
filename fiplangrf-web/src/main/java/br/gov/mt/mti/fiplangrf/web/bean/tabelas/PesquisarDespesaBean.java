@@ -58,5 +58,4 @@ public class PesquisarDespesaBean extends AbstractPesquisaBean<DespesaCriteria> 
 	public void setResultadoPesquisa(LazyObjectDataModel<Despesa> resultadoPesquisa) {
 		this.resultadoPesquisa = resultadoPesquisa;
 	}
-
 }

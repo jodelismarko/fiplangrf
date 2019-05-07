@@ -1,32 +1,34 @@
 package br.gov.mt.mti.fiplangrf.criteria.tabelas;
 
+import java.math.BigInteger;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.*;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldType;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldVisibility;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FilterFieldOption;
 import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
-import br.gov.mt.mti.fiplangrf.model.tabelas.GrupoControleDespesa;
 import br.gov.mt.mti.fiplangrf.dominio.DominioTetoFinanceiroFiplan;
-import br.gov.mt.mti.fiplangrf.dominio.DominioSituacaoRegistro;
-import java.math.BigInteger;
 import br.gov.mt.mti.fiplangrf.model.tabelas.Despesa;
+import br.gov.mt.mti.fiplangrf.model.tabelas.GrupoControleDespesa;
 
 public class GrupoControleDespesaCriteria extends DynamicSearchCriteria<GrupoControleDespesa> {
 
-	@FilterFieldOption(label = "Codigo Grupo Controle Despesa ", property = "codigoGrupoControleDespesa", type = FieldType.TEXT)
+	@FilterFieldOption(label = "Código", property = "codigoGrupoControleDespesa", type = FieldType.TEXT)
 	private BigInteger codigoGrupoControleDespesa;
 
 	@FilterFieldOption(label = "Descrição", property = "descricaoGrupoControleDespesa", type = FieldType.TEXT)
 	private String descricaoGrupoControleDespesa;
 
-	@FilterFieldOption(label = "Flag Teto Financeiro Fiplan ", property = "flagTetoFinanceiroFiplan", type = FieldType.ENUM)
+	@FilterFieldOption(label = "Teto Financeiro Fiplan ", property = "flagTetoFinanceiroFiplan", type = FieldType.ENUM)
 	private DominioTetoFinanceiroFiplan flagTetoFinanceiroFiplan;
 
-	@FilterFieldOption(label = "Flag Situacao ", property = "flagSituacao", type = FieldType.ENUM)
-	private DominioSituacaoRegistro flagSituacao;
-
-	@FilterFieldOption(label = "Despesa ", property = "despesa", type = FieldType.LIST)
+	@FilterFieldOption(label = "Despesa", property = "despesa.descricaoDespesa", type = FieldType.TEXT, fieldVisibility = FieldVisibility.FILTER)
+	private  String despesaFiltro;
+	
+	@FilterFieldOption(label = "Despesa ", property = "despesa.descricaoDespesa", type = FieldType.LIST, fieldVisibility = FieldVisibility.GRID)
 	private Despesa despesa;
-
+	
 	public GrupoControleDespesaCriteria() {
 		super(GrupoControleDespesa.class);
 	}
@@ -55,14 +57,6 @@ public class GrupoControleDespesaCriteria extends DynamicSearchCriteria<GrupoCon
 		this.flagTetoFinanceiroFiplan = flagTetoFinanceiroFiplan;
 	}
 
-	public DominioSituacaoRegistro getFlagSituacao() {
-		return flagSituacao;
-	}
-
-	public void setFlagSituacao(DominioSituacaoRegistro flagSituacao) {
-		this.flagSituacao = flagSituacao;
-	}
-
 	public Despesa getDespesa() {
 		return despesa;
 	}
@@ -77,7 +71,6 @@ public class GrupoControleDespesaCriteria extends DynamicSearchCriteria<GrupoCon
 			.append("codigoGrupoControleDespesa", codigoGrupoControleDespesa)
 			.append("descricaoGrupoControleDespesa", descricaoGrupoControleDespesa)
 			.append("flagTetoFinanceiroFiplan", flagTetoFinanceiroFiplan)
-			.append("flagSituacao", flagSituacao)
 			.append("despesa", despesa)
 			.toString();
 	}

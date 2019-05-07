@@ -1,26 +1,33 @@
 package br.gov.mt.mti.fiplangrf.criteria.tabelas;
 
+import java.util.Date;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.*;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldType;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FieldVisibility;
+import br.gov.mt.cepromat.ceprofw.common.dynamicsearch.FilterFieldOption;
 import br.gov.mt.cepromat.ceprofw.core.jpa.DynamicSearchCriteria;
-import br.gov.mt.mti.fiplangrf.model.tabelas.PrazoSolicitacaoMensal;
+import br.gov.mt.mti.fiplangrf.criteria.formatter.DateFormatter;
 import br.gov.mt.mti.fiplangrf.dominio.DominioMes;
-import java.util.Date;
 import br.gov.mt.mti.fiplangrf.model.tabelas.PlanejamentoAnualPrazos;
+import br.gov.mt.mti.fiplangrf.model.tabelas.PrazoSolicitacaoMensal;
 
 public class PrazoSolicitacaoMensalCriteria extends DynamicSearchCriteria<PrazoSolicitacaoMensal> {
 
-	@FilterFieldOption(label = "Flag Mes ", property = "flagMes", type = FieldType.ENUM)
+	@FilterFieldOption(label = "Mês ", property = "flagMes", type = FieldType.ENUM)
 	private DominioMes flagMes;
 
-	@FilterFieldOption(label = "Data Inicio Solic ", property = "dataInicioSolic", type = FieldType.TEXT)
+	@FilterFieldOption(label = "Início Solicitação ", property = "dataInicioSolic", type = FieldType.DATE , formatter= DateFormatter.class)
 	private Date dataInicioSolic;
 
-	@FilterFieldOption(label = "Data Fim Solic ", property = "dataFimSolic", type = FieldType.TEXT)
+	@FilterFieldOption(label = "Fim Solicitação ", property = "dataFimSolic", type = FieldType.DATE , formatter= DateFormatter.class)
 	private Date dataFimSolic;
 
-	@FilterFieldOption(label = "Plan Anual Prazo ", property = "planAnualPrazo", type = FieldType.LIST)
+	@FilterFieldOption(label = "Planejamento Anual de Prazo", property = "planAnualPrazo.numeroExercicio", type = FieldType.INTEGER, fieldVisibility = FieldVisibility.FILTER)
+	private Integer planAnualPrazoFiltro;
+	
+	@FilterFieldOption(label = "Planejamento Anual de Prazo", property = "planAnualPrazo.numeroExercicio", type = FieldType.LIST, fieldVisibility = FieldVisibility.GRID)
 	private PlanejamentoAnualPrazos planAnualPrazo;
 
 	public PrazoSolicitacaoMensalCriteria() {
