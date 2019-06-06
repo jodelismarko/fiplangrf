@@ -135,7 +135,7 @@
 				<wildfly-username>admingci</wildfly-username>
 				<wildfly-password>123456</wildfly-password>
 				<wildfly-hostname>192.168.0.229</wildfly-hostname>
-				<wildfly-portname>20190</wildfly-portname>
+				<wildfly-portname>10490</wildfly-portname>
 			</properties>
 		</profile>
 
@@ -143,7 +143,7 @@
 			<id>homologacao</id>
 			<properties>
 				<ambiente.identificador>hom</ambiente.identificador>
-				<wildfly-username>admingci</wildfly-username>
+				<wildfly-username>admin</wildfly-username>
 				<wildfly-password>123456</wildfly-password>
 				<wildfly-hostname>192.168.0.229</wildfly-hostname>
 				<wildfly-portname>20090</wildfly-portname>
